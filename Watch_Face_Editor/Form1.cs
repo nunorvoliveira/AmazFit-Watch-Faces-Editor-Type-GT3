@@ -11195,7 +11195,7 @@ namespace Watch_Face_Editor
             int compassDirection = rnd.Next(0, 360);
 
             int spo2 = rnd.Next(80, 101);
-            int trainingLoad = rnd.Next(280, 600);
+            int trainingLoad = rnd.Next(80, 600);
             int trainingLoadGoal = rnd.Next(300, 600);
             int vo2max = rnd.Next(30, 70);
             int floor = rnd.Next(0, 30);
@@ -12478,7 +12478,7 @@ namespace Watch_Face_Editor
             string versionText = "v " +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
-            indexText = indexText.Replace("* Watch_Face_Editor tool v1.x", "* Watch_Face_Editor tool v" + versionText);
+            indexText = indexText.Replace("* Watch_Face_Editor tool v*.*", "* Watch_Face_Editor tool " + versionText);
 
             if (variables.Length > 0) indexText = indexText.Replace("//Variable declaration section", variables);
             if (items.Length > 0) indexText = indexText.Replace("//Item description section", items);
@@ -12538,8 +12538,9 @@ namespace Watch_Face_Editor
             //fileName = fileName.TrimStart('\\');
 
             // Разрешённые символы:
-            // латиница, цифры, пробел и: - _ . , : ; +
-            var regex = new Regex(@"^[A-Za-z0-9 \-_.,:;+\\]+$");
+            // латиница, цифры, пробел и: - _ . , : ; +()\
+            //var regex = new Regex(@"^[A-Za-z0-9 \-_.,:;+\\]+$");
+            var regex = new Regex(@"^[A-Za-z0-9 _\-.,:;+\(\)\\]+$");
 
             if (!regex.IsMatch(fileName))
             {
@@ -12910,7 +12911,8 @@ namespace Watch_Face_Editor
             if (SaveRequest() == DialogResult.Cancel) return;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = Properties.FormStrings.FilterZip;
+            //openFileDialog.Filter = Properties.FormStrings.FilterZip;
+            openFileDialog.Filter = Properties.FormStrings.FilterZipZab;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Multiselect = false;
             openFileDialog.Title = Properties.FormStrings.Dialog_Title_Unpack;
@@ -12918,15 +12920,17 @@ namespace Watch_Face_Editor
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullfilename = openFileDialog.FileName;
-                Unpack_Zip(fullfilename);
+                string extension = Path.GetExtension(fullfilename).ToLower();
+                if (extension == ".zip") Unpack_Zip(fullfilename);
+                else if (extension == ".zpk") Unpack_Zpk(fullfilename);
             }
         }
 
-        private void Unpack_Zip(string fullFileName)
+        private void Unpack_Zip(string fullFileName, bool depTempDir = true)
         {
             if (!File.Exists(fullFileName)) return;
             string tempDir = Application.StartupPath + @"\Temp";
-            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+            if (Directory.Exists(tempDir) && depTempDir) DeleteDirectory(tempDir);
             Directory.CreateDirectory(tempDir);
             string watchFacePath = Application.StartupPath + @"\Watch_face\";
             if (!Directory.Exists(watchFacePath)) Directory.CreateDirectory(watchFacePath);
@@ -13519,7 +13523,6 @@ namespace Watch_Face_Editor
                         Watch_Face.ScreenNormal.Background.BackgroundColor.h = SelectedModel.background.h;
                         Watch_Face.ScreenNormal.Background.BackgroundColor.w = SelectedModel.background.w;
 
-
                     }
 
 
@@ -13643,6 +13646,53 @@ namespace Watch_Face_Editor
 #if !DEBUG
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
 #endif
+        }
+
+        private void Unpack_Zpk(string fullFileName)
+        {
+            if (!File.Exists(fullFileName)) return;
+            string tempDir = Application.StartupPath + @"\Temp";
+            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+            Directory.CreateDirectory(tempDir);
+
+            string projectName = Path.GetFileNameWithoutExtension(fullFileName);
+            projectName = projectName.Replace(" ", "_");
+            using (Ionic.Zip.ZipFile zip = Ionic.Zip.ZipFile.Read(fullFileName))
+            {
+                List<Ionic.Zip.ZipEntry> fileList = zip.Entries.ToList();
+                if (IsWatchFace(fileList))
+                {
+                    Unpack_Zip(fullFileName);
+                    return;
+                }
+                Ionic.Zip.ZipEntry item = fileList.Find(f => f.FileName == "device.zip");
+                if (item != null)
+                {
+                    item.Extract(tempDir, Ionic.Zip.ExtractExistingFileAction.OverwriteSilently); // распаковываем
+                    string fileName = Path.Combine(tempDir, "device.zip");
+                    string newFileName = Path.Combine(tempDir, projectName + ".zip");
+                    if (File.Exists(fileName)) File.Move(fileName, newFileName);
+                    Unpack_Zip(newFileName, false);
+                }
+            }
+
+        }
+
+        // Проверяем что есть необходимые файлы для циферблата
+        private bool IsWatchFace(List<Ionic.Zip.ZipEntry> fileList)
+        {
+            bool appJs = false;
+            bool appJson = false;
+            bool assets = false;
+            foreach (Ionic.Zip.ZipEntry item in fileList)
+            {
+                if (item.FileName == "app.js") appJs = true;
+                if (item.FileName == "app.bin") appJs = true;
+                if (item.FileName == "app.json") appJson = true;
+                if (item.FileName.StartsWith("assets/")) assets = true;
+                if (appJs && appJson && assets) return true;
+            }
+            return false;
         }
 
         private bool SetModelByID (int id)
@@ -27524,6 +27574,10 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingInput_Model.Text = "466 (Active 3 Premium)";
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
+                    case "Cheetah 2 Pro":
+                        comboBox_ConvertingInput_Model.Text = "466 (Cheetah 2 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
                     case "GTR 4":
                         comboBox_ConvertingInput_Model.Text = "466 (GTR 4)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
@@ -27619,6 +27673,7 @@ namespace Watch_Face_Editor
                     break;
                 case "466 (Active 2)":
                 case "466 (Active 3 Premium)":
+                case "466 (Cheetah 2 Pro)":
                 case "466 (GTR 4)":
                 case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingInput_Custom.Value = 466;
@@ -27671,6 +27726,7 @@ namespace Watch_Face_Editor
                     break;
                 case "466 (Active 2)":
                 case "466 (Active 3 Premium)":
+                case "466 (Cheetah 2 Pro)":
                 case "466 (GTR 4)":
                 case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingOutput_Custom.Value = 466;
@@ -27767,6 +27823,10 @@ namespace Watch_Face_Editor
                     case "466 (Active 3 Premium)":
                         suffix = "_Active_3_Premium";
                         DeviceName = "Active 3 Premium";
+                        break;
+                    case "466 (Cheetah 2 Pro)":
+                        suffix = "_Cheetah_2_Pro";
+                        DeviceName = "Cheetah 2 Pro";
                         break;
                     case "466 (GTR 4)":
                         suffix = "_GTR_4";
@@ -28468,10 +28528,10 @@ namespace Watch_Face_Editor
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fileFullName = openFileDialog.FileName;
-                string fileName = Path.GetFileName(fileFullName);
+                string fileName = Path.GetFileNameWithoutExtension(fileFullName);
                 try
                 {
-                    string newFileName = Path.Combine(fonts_path, fileName);
+                    string newFileName = Path.Combine(fonts_path, fileName + ".ttf");
                     if (File.Exists(newFileName))
                     {
                         DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Font_Exist1
@@ -28514,10 +28574,10 @@ namespace Watch_Face_Editor
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fileFullName = openFileDialog.FileName;
-                string fileName = Path.GetFileName(fileFullName);
+                string fileName = Path.GetFileNameWithoutExtension(fileFullName);
                 try
                 {
-                    string newFileName = Path.Combine(fonts_path, fileName);
+                    string newFileName = Path.Combine(fonts_path, fileName + ".ttf");
                     if (File.Exists(newFileName))
                     {
                         DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Font_Exist1

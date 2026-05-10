@@ -177,6 +177,9 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Fichier zip pour le cadran (*.zip)|*.zip</value>
   </data>
+  <data name="FilterZipZab" xml:space="preserve">
+    <value>Fichier du cadran (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Suit les heures</value>
   </data>

@@ -642,6 +642,49 @@
     "fixSize": true,
     "versionOS": 3.5
   },
+  "Cheetah 2 Pro": {
+    "name": "Amazfit Cheetah 2 Pro",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      11010304,
+      11010305,
+      11010307
+    ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Cheetah_2_Pro.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
   "Falcon": {
     "name": "Amazfit Falcon",
     "designWidth": 416,
@@ -1065,7 +1108,7 @@
     "previewHeight": 324,
     "colorScheme": 1,
     "fixSize": true,
-    "versionOS": 4.0
+    "versionOS": 4.5
   },
   "T-Rex 3 Pro (44mm)": {
     "name": "Amazfit T-Rex 3 Pro (44mm)",
@@ -1203,7 +1246,7 @@
       10879232,
       10879235
     ],
-    "cpuPlatform": "NXP",
+    "cpuPlatform": "MHS",
     "screenType": "round",
     "background": {
       "w": 480,
@@ -1232,7 +1275,7 @@
       }
     },
     "maskImage": "mask_gtr_3_pro.png",
-    "watchSkin": "WatchSkin_T_Rex_3_Ultra_2.json",
+    "watchSkin": "WatchSkin_T_Rex_Ultra_2.json",
     "previewHeight": 324,
     "colorScheme": 1,
     "fixSize": true,

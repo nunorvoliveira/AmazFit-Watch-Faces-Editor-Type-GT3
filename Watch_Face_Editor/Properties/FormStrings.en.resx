@@ -177,6 +177,9 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip file of the watch face (*.zip)|*.zip</value>
   </data>
+  <data name="FilterZipZab" xml:space="preserve">
+    <value>Watch face file (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Follow the hours</value>
   </data>

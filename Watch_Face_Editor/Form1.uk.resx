@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPage_Edit.Text" xml:space="preserve">
+    <value>Редагування</value>
+  </data>
+  <data name="tabPageConverting.Text" xml:space="preserve">
+    <value>Конвертування</value>
+  </data>
+  <data name="tabPage_Settings.Text" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="tabPage_Tips.Text" xml:space="preserve">
+    <value>Поради щодо використання</value>
+  </data>
+  <data name="tabPage_About.Text" xml:space="preserve">
+    <value>Про програму</value>
+  </data>
   <data name="NameFile.HeaderText" xml:space="preserve">
     <value>Назва файлу</value>
   </data>
@@ -127,6 +142,9 @@
     <value>Малюнок</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenuStrip_RemoveImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 48</value>
+  </data>
   <data name="удалитьИзображениеToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 22</value>
   </data>
@@ -138,9 +156,6 @@
   </data>
   <data name="обновитьСписокИзображенийToolStripMenuItem.Text" xml:space="preserve">
     <value>Оновити список зображень</value>
-  </data>
-  <data name="contextMenuStrip_RemoveImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 48</value>
   </data>
   <data name="dataGridViewTextBoxColumn2.HeaderText" xml:space="preserve">
     <value>Назва файлу</value>
@@ -171,6 +186,12 @@
   </data>
   <data name="button_SaveJson.Text" xml:space="preserve">
     <value>Зберегти файл JSON</value>
+  </data>
+  <data name="tabPage_Edit_Elements.Text" xml:space="preserve">
+    <value>Редагування</value>
+  </data>
+  <data name="groupBox_AddElemets.Text" xml:space="preserve">
+    <value>Додати елементи на циферблат</value>
   </data>
   <data name="comboBox_AddBackground.Items2" xml:space="preserve">
     <value>Перемикаємий фон</value>
@@ -215,7 +236,7 @@
     <value>Схід/захід</value>
   </data>
   <data name="comboBox_AddAir.Items5" xml:space="preserve">
-    <value>Сила вітру</value>
+    <value>Вітер</value>
   </data>
   <data name="comboBox_AddAir.Items7" xml:space="preserve">
     <value>Місяць</value>
@@ -283,9 +304,6 @@
   <data name="comboBox_AddTime.Items6" xml:space="preserve">
     <value>Всесвітній час</value>
   </data>
-  <data name="groupBox_AddElemets.Text" xml:space="preserve">
-    <value>Додати елементи на циферблат</value>
-  </data>
   <data name="button_CopyAOD.Text" xml:space="preserve">
     <value>Копіювати елементи до AOD</value>
   </data>
@@ -298,8 +316,8 @@
   <data name="radioButton_ScreenNormal.Text" xml:space="preserve">
     <value>Головний екран</value>
   </data>
-  <data name="tabPage_Edit_Elements.Text" xml:space="preserve">
-    <value>Редагування</value>
+  <data name="tabPage_Show_Set.Text" xml:space="preserve">
+    <value>Дані для попереднього перегляду</value>
   </data>
   <data name="userCtrl_Set12.ButtonText" xml:space="preserve">
     <value>Набір параметрів 12</value>
@@ -346,12 +364,6 @@
   <data name="button_JsonPreview_Write.Text" xml:space="preserve">
     <value>Зберегти значення</value>
   </data>
-  <data name="tabPage_Show_Set.Text" xml:space="preserve">
-    <value>Дані для попереднього перегляду</value>
-  </data>
-  <data name="tabPage_Edit.Text" xml:space="preserve">
-    <value>Редагування</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>*** Для моделей GTS серії із-за різного співвідношення сторін та різного скруглення кутів повноцінне масштабування не можливе, частина зображення знизу та по кутах може бути обрізана.</value>
   </data>
@@ -382,20 +394,17 @@
   <data name="button_Converting.Text" xml:space="preserve">
     <value>Конвертувати</value>
   </data>
-  <data name="comboBox_ConvertingOutput_Model.Items" xml:space="preserve">
-    <value>Довільний розмір</value>
-  </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Цільова модель</value>
   </data>
-  <data name="comboBox_ConvertingInput_Model.Items" xml:space="preserve">
+  <data name="comboBox_ConvertingOutput_Model.Items" xml:space="preserve">
     <value>Довільний розмір</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Вихідна модель</value>
   </data>
-  <data name="tabPageConverting.Text" xml:space="preserve">
-    <value>Конвертування</value>
+  <data name="comboBox_ConvertingInput_Model.Items" xml:space="preserve">
+    <value>Довільний розмір</value>
   </data>
   <data name="button_createZAB.Text" xml:space="preserve">
     <value>Створити *.zab файл</value>
@@ -433,6 +442,9 @@
   <data name="checkBox_CreateZPK.Text" xml:space="preserve">
     <value>Створювати *.zpk файл</value>
   </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Конвертувати зображення без втрати якості</value>
+  </data>
   <data name="checkBox_Use_ARGB.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 17</value>
   </data>
@@ -451,8 +463,8 @@
   <data name="radioButton_ARGB_color.Text" xml:space="preserve">
     <value>Тільки за зазначеної кількості кольорів</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Конвертувати зображення без втрати якості</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Тип виділення кнопок</value>
   </data>
   <data name="button_SavePNG_button.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -478,9 +490,6 @@
   <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
     <value>Виділяти область кнопки</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Тип виділення кнопок</value>
-  </data>
   <data name="comboBox_Animation_Preview_Speed.Location" type="System.Drawing.Point, System.Drawing">
     <value>674, 426</value>
   </data>
@@ -493,6 +502,9 @@
   <data name="checkBox_AllWidgetsInGif.Text" xml:space="preserve">
     <value>Показати всі елементи редагованих зон під час збереження файлу GIF</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Зображення годинника</value>
+  </data>
   <data name="button_WatchSkin_PathGet.Text" xml:space="preserve">
     <value>Огляд</value>
   </data>
@@ -501,9 +513,6 @@
   </data>
   <data name="checkBox_WatchSkin_Use.Text" xml:space="preserve">
     <value>Накладати зображення годинника під час збереження *.png і *.gif</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Зображення годинника</value>
   </data>
   <data name="label355.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 13</value>
@@ -516,6 +525,9 @@
   </data>
   <data name="checkBox_ShowIn12hourFormat.Text" xml:space="preserve">
     <value>По можливості, відображати час у 12-годинному форматі</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Тип виділення ярликів</value>
   </data>
   <data name="button_SavePNG_shortcut.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -547,9 +559,6 @@
   <data name="checkBox_Shortcuts_Area.Text" xml:space="preserve">
     <value>Виділити область ярлика</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Тип виділення ярликів</value>
-  </data>
   <data name="checkBox_JsonWarnings.Size" type="System.Drawing.Size, System.Drawing">
     <value>307, 17</value>
   </data>
@@ -564,6 +573,9 @@
   </data>
   <data name="label356.Text" xml:space="preserve">
     <value>Мова:</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Дія після створення циферблату</value>
   </data>
   <data name="radioButton_Settings_Pack_DoNotning.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
@@ -583,8 +595,8 @@
   <data name="radioButton_Settings_Pack_Dialog.Text" xml:space="preserve">
     <value>Запропонувати вибір</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Дія після створення циферблату</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Дія після відкриття проекту</value>
   </data>
   <data name="button_PreviewStates_PathGet.Text" xml:space="preserve">
     <value>Огляд</value>
@@ -613,8 +625,8 @@
   <data name="radioButton_Settings_Open_Dialog.Text" xml:space="preserve">
     <value>Запропонувати вибір</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Дія після відкриття проекту</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Дія після розпакування циферблату</value>
   </data>
   <data name="radioButton_Settings_AfterUnpack_DoNothing.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
@@ -634,8 +646,8 @@
   <data name="radioButton_Settings_AfterUnpack_Dialog.Text" xml:space="preserve">
     <value>Запропонувати вибір</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Дія після розпакування циферблату</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Дія при співпаданні назв розпаковуванних циферблатів</value>
   </data>
   <data name="radioButton_Settings_Unpack_Replace.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
@@ -655,9 +667,6 @@
   <data name="radioButton_Settings_Unpack_Dialog.Text" xml:space="preserve">
     <value>Запропонувати вибір</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Дія при співпаданні назв розпаковуванних циферблатів</value>
-  </data>
   <data name="label483.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 39</value>
   </data>
@@ -665,12 +674,6 @@
     <value>Швидкість анімації під час попереднього 
 перегляду анімації (велика швидкість - гладка 
 анімація, більше завантаження на систему)</value>
-  </data>
-  <data name="tabPage_Settings.Text" xml:space="preserve">
-    <value>Налаштування</value>
-  </data>
-  <data name="tabPage_Tips.Text" xml:space="preserve">
-    <value>Поради щодо використання</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 39</value>
@@ -720,9 +723,6 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="label406.Text" xml:space="preserve">
     <value>Версія:</value>
-  </data>
-  <data name="tabPage_About.Text" xml:space="preserve">
-    <value>Про програму</value>
   </data>
   <data name="checkBox_WidgetsArea.Text" xml:space="preserve">
     <value>Виділяти редаговані зони</value>
@@ -774,7 +774,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAcQBMgHEATIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAcwBMgHMATIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="panel_Direction.ToolTip" xml:space="preserve">
-    <value>N - norte
-NE - noreste
-E - este
-SE - sureste
-S - sur
-SO - suroeste
-W - oeste
-NW - noroeste</value>
-  </data>
   <data name="button_WindSpeed_Font.Text" xml:space="preserve">
     <value>Veloc. viento en fuente (km/h)</value>
   </data>
@@ -140,6 +130,16 @@ NW - noroeste</value>
     <value>Dirección del viento</value>
   </data>
   <data name="button_Direction.ToolTip" xml:space="preserve">
+    <value>N - norte
+NE - noreste
+E - este
+SE - sureste
+S - sur
+SO - suroeste
+W - oeste
+NW - noroeste</value>
+  </data>
+  <data name="panel_Direction.ToolTip" xml:space="preserve">
     <value>N - norte
 NE - noreste
 E - este

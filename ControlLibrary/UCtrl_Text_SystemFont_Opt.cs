@@ -335,6 +335,7 @@ namespace ControlLibrary
             {
                 string font_fileName = comboBox_fonts.Text;
                 if (font_fileName.IndexOf(".ttf") > 0) font_fileName = font_fileName.Substring(0, font_fileName.IndexOf(".ttf") + ".ttf".Length);
+                else if (font_fileName.IndexOf(".TTF") > 0) font_fileName = font_fileName.Substring(0, font_fileName.IndexOf(".TTF") + ".TTF".Length);
                 font = font_fileName;
             }
             return font;

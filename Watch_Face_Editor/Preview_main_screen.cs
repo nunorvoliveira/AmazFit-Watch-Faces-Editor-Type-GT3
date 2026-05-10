@@ -5541,8 +5541,8 @@ namespace Watch_Face_Editor
             }
             if (elementName == "ElementTrainingLoad" && imgCount == 3)
             {
-                if ((float)imgCount / goal > 2f / 3) return 2;
-                if ((float)imgCount / goal > 1f / 3) return 1;
+                if ((float)value / goal > 2f / 3) return 2;
+                if ((float)value / goal > 1f / 3) return 1;
                 return 0;
             }
             if (elementName == "ElementAQI" && imgCount == 6)
@@ -6045,30 +6045,6 @@ namespace Watch_Face_Editor
             if (crop)
             {
                 Logger.WriteLine("Preview_edit_screen (crop)");
-                /* Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                 switch (ProgramSettings.Watch_Model)
-                 {
-                     case "GTR 3 Pro":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                         break;
-                     case "GTS 3":
-                     case "GTS 4":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                         break;
-                     case "GTR 4":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                         break;
-                     case "Amazfit Band 7":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_band_7.png");
-                         break;
-                     case "GTS 4 mini":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                         break;
-                     case "Falcon":
-                     case "GTR mini":
-                         mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_falcon.png");
-                         break;
-                 }*/
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 mask = FormColor(mask);
                 gPanel.DrawImage(mask, 0, 0);
@@ -6153,30 +6129,6 @@ namespace Watch_Face_Editor
             if (crop)
             {
                 Logger.WriteLine("PreviewToBitmap (crop)");
-                /*Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                switch (ProgramSettings.Watch_Model)
-                {
-                    case "GTR 3 Pro":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                        break;
-                    case "GTS 3":
-                    case "GTS 4":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                        break;
-                    case "GTR 4":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                        break;
-                    case "Amazfit Band 7":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_band_7.png");
-                        break;
-                    case "GTS 4 mini":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                        break;
-                    case "Falcon":
-                    case "GTR mini":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_falcon.png");
-                        break;
-                }*/
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 mask = FormColor(mask);
                 gPanel.DrawImage(mask, 0, 0);
@@ -6722,19 +6674,13 @@ namespace Watch_Face_Editor
                     int startAngle = pointer.start_angle;
                     int endAngle = pointer.end_angle;
                     int image_index = ListImages.IndexOf(pointer.src);
-                    //float progressHeart = 57 / 360f;
-                    //if (value == 0) progressHeart = 0;
-                    //if (value >= 90 && value < 108) progressHeart = 118 / 360f;
-                    //if (value >= 108 && value < 126) progressHeart = 180 / 360f;
-                    //if (value >= 126 && value < 144) progressHeart = 237 / 360f;
-                    //if (value >= 144 && value < 162) progressHeart = 298 / 360f;
-                    //if (value >= 162) progressHeart = 359 / 360f;
 
                     //float angle = startAngle + progress * (endAngle - startAngle);
                     float angle = startAngle + (progressPercent/100f) * (endAngle - startAngle);
                     if (elementName == "ElementPAI")
                     {
                         int tempProgressPercent = (int)(100* goal/525);
+                        if (tempProgressPercent > 100) tempProgressPercent = 100;
                         angle = startAngle + (tempProgressPercent / 100f) * (endAngle - startAngle);
                     }
 
@@ -7209,13 +7155,14 @@ namespace Watch_Face_Editor
                     string align_v = number_font.align_v;
                     string text_style = number_font.text_style;
                     string valueStr = ((int)temperature_value).ToString();
-                    if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
-                        valueStr = Math.Round(temperature_value, 1).ToString();
+                    if (SelectedModel.versionOS > 4) valueStr = Math.Round(temperature_value, 1).ToString();
+                    //if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
+                    //    valueStr = Math.Round(temperature_value, 1).ToString();
 
                     string unitStr = unit;
                     if (number_font.padding) valueStr = valueStr.PadLeft(3, '0');
-                    if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
-                        valueStr = valueStr.PadLeft(5, '0');
+                    //if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
+                    //    valueStr = valueStr.PadLeft(5, '0');
                     if (number_font.unit_type > 0) valueStr += unitStr;
 
 
@@ -12597,7 +12544,7 @@ namespace Watch_Face_Editor
                 }
 
                 if (windSpeed != null && windSpeed.img_First != null && windSpeed.img_First.Length > 0 &&
-                    index == windSpeed.position && windSpeed.visible)
+                    index == windSpeed.position && windSpeed.visible && SelectedModel.versionOS > 4)
                 {
                     int imageIndex = ListImages.IndexOf(windSpeed.img_First);
                     int x = windSpeed.imageX;
@@ -12627,9 +12574,10 @@ namespace Watch_Face_Editor
                         case 10: valueSpeed = 95; break;
                         case 11: valueSpeed = 109; break;
                         case 12: valueSpeed = 125; break;
+                        default: valueSpeed = 125; break;
                     }
 
-                     Draw_dagital_text(gPanel, imageIndex, x, y,
+                    Draw_dagital_text(gPanel, imageIndex, x, y,
                         spasing, alignment, valueSpeed, alpha, addZero, value_lenght, separator_index, angle, BBorder, "ElementWind");
 
                     if (windSpeed.icon != null && windSpeed.icon.Length > 0)
@@ -12644,7 +12592,7 @@ namespace Watch_Face_Editor
                     }
                 }
 
-                if (windSpeed_font != null && index == windSpeed_font.position && windSpeed_font.visible)
+                if (windSpeed_font != null && index == windSpeed_font.position && windSpeed_font.visible && SelectedModel.versionOS > 4)
                 {
                     int x = windSpeed_font.x;
                     int y = windSpeed_font.y;
@@ -12695,6 +12643,7 @@ namespace Watch_Face_Editor
                         case 10: valueSpeed = 95; break;
                         case 11: valueSpeed = 109; break;
                         case 12: valueSpeed = 125; break;
+                        default: valueSpeed = 125; break;
                     }
 
                     string unitStr = "km/h";
@@ -17734,6 +17683,8 @@ namespace Watch_Face_Editor
         private Size GetStringSize (string fontPath, int fontSize, string stringCache)
         {
             Size size = new Size(0, 0);
+            if (!File.Exists(fontPath)) return size;
+            if (string.IsNullOrEmpty(stringCache) || fontSize <= 0) return size;
             using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
             {
                 Bitmap bitmap = new Bitmap(55, 55, PixelFormat.Format32bppArgb);
