@@ -241,6 +241,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk.
+        /// </summary>
+        internal static string FilterZipZab {
+            get {
+                return ResourceManager.GetString("FilterZipZab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Следовать за часами.
         /// </summary>
         internal static string FollowMinute {

@@ -1255,7 +1255,7 @@ namespace Watch_Face_Editor
 
             if (items.IndexOf("timeSensor =") >= 0) variables += TabInString(4) + "let timeSensor = '';" + Environment.NewLine;
             if (items.IndexOf("worldClock =") >= 0) variables += TabInString(4) + "let worldClock = '';" + Environment.NewLine;
-            if (variables.IndexOf("worldClockIndex =") >= 0) variables += TabInString(4) + "worldClockIndex = hmFS.SysProGetInt('worldClockIndex') ?? 0;;" + Environment.NewLine;
+            if (variables.IndexOf("worldClockIndex =") >= 0) variables += TabInString(4) + "worldClockIndex = hmFS.SysProGetInt('worldClockIndex') ?? 0;" + Environment.NewLine;
 
             #region script
             // добавляем пользовательские скрипты

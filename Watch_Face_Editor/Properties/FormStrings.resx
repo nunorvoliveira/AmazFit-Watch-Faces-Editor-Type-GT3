@@ -177,6 +177,9 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip файл циферблата (*.zip)|*.zip</value>
   </data>
+  <data name="FilterZipZab" xml:space="preserve">
+    <value>Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Следовать за часами</value>
   </data>

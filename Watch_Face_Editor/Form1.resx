@@ -886,7 +886,7 @@
     <value>Восход / закат</value>
   </data>
   <data name="comboBox_AddAir.Items5" xml:space="preserve">
-    <value>Сила ветра</value>
+    <value>Ветер</value>
   </data>
   <data name="comboBox_AddAir.Items6" xml:space="preserve">
     <value>Барометр</value>
@@ -6859,33 +6859,36 @@
     <value>466 (Active 3 Premium)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items18" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>466 (Cheetah 2 Pro)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items19" xml:space="preserve">
-    <value>466 (T-Rex 3 Pro 44mm)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items20" xml:space="preserve">
-    <value>480 (Active Max)</value>
+    <value>466 (T-Rex 3 Pro 44mm)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items21" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>480 (Active Max)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items22" xml:space="preserve">
-    <value>480 (Balance 2)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items23" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items24" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items25" xml:space="preserve">
-    <value>480 (T-Rex 3)</value>
+    <value>480 (GTR 3 Pro)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items26" xml:space="preserve">
-    <value>480 (T-Rex 3 Pro 48mm)</value>
+    <value>480 (T-Rex 3)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items27" xml:space="preserve">
+    <value>480 (T-Rex 3 Pro 48mm)</value>
+  </data>
+  <data name="comboBox_ConvertingOutput_Model.Items28" xml:space="preserve">
     <value>480 (T-Rex Ultra 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Location" type="System.Drawing.Point, System.Drawing">
@@ -7012,33 +7015,36 @@
     <value>466 (Active 3 Premium)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items18" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>466 (Cheetah 2 Pro)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items19" xml:space="preserve">
-    <value>466 (T-Rex 3 Pro 44mm)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items20" xml:space="preserve">
-    <value>480 (Active Max)</value>
+    <value>466 (T-Rex 3 Pro 44mm)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items21" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>480 (Active Max)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items22" xml:space="preserve">
-    <value>480 (Balance 2)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items23" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items24" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items25" xml:space="preserve">
-    <value>480 (T-Rex 3)</value>
+    <value>480 (GTR 3 Pro)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items26" xml:space="preserve">
-    <value>480 (T-Rex 3 Pro 48mm)</value>
+    <value>480 (T-Rex 3)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items27" xml:space="preserve">
+    <value>480 (T-Rex 3 Pro 48mm)</value>
+  </data>
+  <data name="comboBox_ConvertingInput_Model.Items28" xml:space="preserve">
     <value>480 (T-Rex Ultra 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Location" type="System.Drawing.Point, System.Drawing">
@@ -10232,7 +10238,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAdgBRAHYAUQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAASwBRQEsAUUBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

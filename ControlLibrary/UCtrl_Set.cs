@@ -836,7 +836,7 @@ namespace ControlLibrary
             numericUpDown_FatBurning_Set.Value = rnd.Next(0, 35);
 
             numericUpDown_SpO2_Set.Value = rnd.Next(80, 101);
-            numericUpDown_TrainingLoad_Set.Value = rnd.Next(280, 600);
+            numericUpDown_TrainingLoad_Set.Value = rnd.Next(80, 600);
             TrainingLoadGoal = rnd.Next(300, 600);
             numericUpDown_VO2Max_Set.Value = rnd.Next(30, 70);
             numericUpDown_Floor_Set.Value = rnd.Next(0, 30);

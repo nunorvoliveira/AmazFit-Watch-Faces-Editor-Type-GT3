@@ -1,5 +1,5 @@
     /*
-    ** Watch_Face_Editor tool
+    ** Watch_Face_Editor tool v*.*
     ** watchface js version v2.1.1
     ** Copyright © SashaCX75. All Rights Reserved
     */

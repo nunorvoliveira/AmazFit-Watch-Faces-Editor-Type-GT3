@@ -2762,7 +2762,8 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingOutput_Model.Items24"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items25"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items26"),
-            resources.GetString("comboBox_ConvertingOutput_Model.Items27")});
+            resources.GetString("comboBox_ConvertingOutput_Model.Items27"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items28")});
             resources.ApplyResources(this.comboBox_ConvertingOutput_Model, "comboBox_ConvertingOutput_Model");
             this.comboBox_ConvertingOutput_Model.Name = "comboBox_ConvertingOutput_Model";
             this.comboBox_ConvertingOutput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingOutput_Model_SelectedIndexChanged);
@@ -2828,7 +2829,8 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingInput_Model.Items24"),
             resources.GetString("comboBox_ConvertingInput_Model.Items25"),
             resources.GetString("comboBox_ConvertingInput_Model.Items26"),
-            resources.GetString("comboBox_ConvertingInput_Model.Items27")});
+            resources.GetString("comboBox_ConvertingInput_Model.Items27"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items28")});
             resources.ApplyResources(this.comboBox_ConvertingInput_Model, "comboBox_ConvertingInput_Model");
             this.comboBox_ConvertingInput_Model.Name = "comboBox_ConvertingInput_Model";
             this.comboBox_ConvertingInput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingInput_Model_SelectedIndexChanged);
