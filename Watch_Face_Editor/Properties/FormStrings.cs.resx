@@ -177,8 +177,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip soubor ciferníku (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Soubor ciferníku (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Soubor ciferníku (*.zpk)|*.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Postupujte podle hodin</value>

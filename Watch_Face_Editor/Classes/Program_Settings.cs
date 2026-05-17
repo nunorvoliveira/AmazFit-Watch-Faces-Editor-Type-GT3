@@ -65,6 +65,8 @@ namespace Watch_Face_Editor
         public int AutoSaveTime = 0;
         public bool DevelopmentMode = false;
 
+        public string FilePost_API_key = "";
+
         public int[] CustomColors = { };
 
         public string language { get; set; }
@@ -75,8 +77,8 @@ namespace Watch_Face_Editor
 
         public string model_config = @"\model_config\configurations.json";
 
-        public string CacheFonts_light = "0123456789 _-.,:;`'%°\\\\/";
+        public string CacheFonts_light = "0123456789 _+-.,:;`'%°\\\\/";
         public string CacheFonts_full = "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " +
-                "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя  ҐЄІЇґєії " + "_-.,:;`'%°\\\\/";
+                "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя  ҐЄІЇґєії " + "_+-.,:;`'%°\\\\/";
     }
 }

@@ -165,6 +165,12 @@
   <data name="Elemet_Time" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="FilePost_info_storage_used" xml:space="preserve">
+    <value>Storage_used</value>
+  </data>
+  <data name="FilePost_info_uploads_month" xml:space="preserve">
+    <value>Uploads this month</value>
+  </data>
   <data name="FilterGif" xml:space="preserve">
     <value>GIF Files (*.gif)|*.gif</value>
   </data>
@@ -177,8 +183,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip file of the watch face (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Watch face file (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Watch face file (*.zpk)|*.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Follow the hours</value>
@@ -234,6 +243,9 @@
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>You need to set the image as the main background.</value>
   </data>
+  <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
+    <value>Connected to Simulator!</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>A new watch face has been created.</value>
   </data>
@@ -260,6 +272,9 @@
   </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>It is not possible to delete an existing watch face file.</value>
+  </data>
+  <data name="Message_DXGI_error_Text" xml:space="preserve">
+    <value>DXGI is not supported. Switching to BitBlt.</value>
   </data>
   <data name="Message_EditableElementsAOD_Text" xml:space="preserve">
     <value>You cannot add editable elements to the AOD screen.</value>
@@ -312,6 +327,9 @@
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Image conversion error</value>
   </data>
+  <data name="Message_Infirmation_Caption" xml:space="preserve">
+    <value>Information</value>
+  </data>
   <data name="Message_InvalidFileName_Caption" xml:space="preserve">
     <value>Invalid file name</value>
   </data>
@@ -326,6 +344,9 @@
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Error reading JSON file.</value>
+  </data>
+  <data name="Message_LaunchSimulator_Text" xml:space="preserve">
+    <value>Launch the simulator</value>
   </data>
   <data name="Message_LoadPreviewStates_Caption" xml:space="preserve">
     <value>Download preview settings</value>
@@ -344,6 +365,9 @@
   </data>
   <data name="Message_Old_OS" xml:space="preserve">
     <value>This widget is not supported by the selected watch model.</value>
+  </data>
+  <data name="Message_OpenProject_Text" xml:space="preserve">
+    <value>Open the project with the watch face.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Reboot</value>
@@ -368,6 +392,24 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>You cannot add shortcuts to the AOD screen.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text1" xml:space="preserve">
+    <value>Simulator is running.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text2" xml:space="preserve">
+    <value>Select a model and launch the emulator.</value>
+  </data>
+  <data name="Message_Simulator_Disconnected_Text" xml:space="preserve">
+    <value>Simulator is disconnected!</value>
+  </data>
+  <data name="Message_Simulator_NotConnected_Text" xml:space="preserve">
+    <value>Simulator not connected.</value>
+  </data>
+  <data name="Message_Simulator_PushSuccess_Text" xml:space="preserve">
+    <value>Push success!</value>
+  </data>
+  <data name="Message_Simulator_StillConnecting_Text" xml:space="preserve">
+    <value>Still connecting... Please wait.</value>
   </data>
   <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
     <value>The number of images for the training load should be 3.</value>
@@ -414,8 +456,14 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Message_Warning_InvalidAPIKey_Text" xml:space="preserve">
+    <value>Invalid API key</value>
+  </data>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>A folder with JS files already exists in this folder.</value>
+  </data>
+  <data name="Message_Warning_OverwriteFile_Text" xml:space="preserve">
+    <value>The file ‘*.zpk’ already exists. Do you want to overwrite it?</value>
   </data>
   <data name="Message_Warning_Version_Lower" xml:space="preserve">
     <value>Do not reduce the version number of the watch face.</value>

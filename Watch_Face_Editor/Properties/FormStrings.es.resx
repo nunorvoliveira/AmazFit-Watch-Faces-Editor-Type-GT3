@@ -177,8 +177,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Archivo zip de la esfera del reloj (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Archivo de la esfera (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Archivo de la esfera (*.zpk)|*.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Sigue a las horas</value>

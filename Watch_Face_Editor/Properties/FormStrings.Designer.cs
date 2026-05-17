@@ -205,6 +205,24 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Занято места.
+        /// </summary>
+        internal static string FilePost_info_storage_used {
+            get {
+                return ResourceManager.GetString("FilePost_info_storage_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузок за месяц.
+        /// </summary>
+        internal static string FilePost_info_uploads_month {
+            get {
+                return ResourceManager.GetString("FilePost_info_uploads_month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GIF файлы (*.gif)|*.gif.
         /// </summary>
         internal static string FilterGif {
@@ -243,9 +261,18 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk.
         /// </summary>
-        internal static string FilterZipZab {
+        internal static string FilterZipZpk {
             get {
-                return ResourceManager.GetString("FilterZipZab", resourceCulture);
+                return ResourceManager.GetString("FilterZipZpk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл циферблата (*.zpk)|*.zpk.
+        /// </summary>
+        internal static string FilterZpk {
+            get {
+                return ResourceManager.GetString("FilterZpk", resourceCulture);
             }
         }
         
@@ -412,6 +439,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подключено к симулятору!.
+        /// </summary>
+        internal static string Message_ConnectedSimulator_Text {
+            get {
+                return ResourceManager.GetString("Message_ConnectedSimulator_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Новый циферблат создан..
         /// </summary>
         internal static string Message_ConvertingCompleted_Text {
@@ -489,6 +525,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_DontDelZip {
             get {
                 return ResourceManager.GetString("Message_DontDelZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на DXGI не поддерживается. Переключение на BitBlt..
+        /// </summary>
+        internal static string Message_DXGI_error_Text {
+            get {
+                return ResourceManager.GetString("Message_DXGI_error_Text", resourceCulture);
             }
         }
         
@@ -646,6 +691,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Информация.
+        /// </summary>
+        internal static string Message_Infirmation_Caption {
+            get {
+                return ResourceManager.GetString("Message_Infirmation_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Недопустимое имя файла.
         /// </summary>
         internal static string Message_InvalidFileName_Caption {
@@ -687,6 +741,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_JsonReadError_Text {
             get {
                 return ResourceManager.GetString("Message_JsonReadError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Запустите симулятор..
+        /// </summary>
+        internal static string Message_LaunchSimulator_Text {
+            get {
+                return ResourceManager.GetString("Message_LaunchSimulator_Text", resourceCulture);
             }
         }
         
@@ -741,6 +804,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_Old_OS {
             get {
                 return ResourceManager.GetString("Message_Old_OS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Откройте проект с циферблатом..
+        /// </summary>
+        internal static string Message_OpenProject_Text {
+            get {
+                return ResourceManager.GetString("Message_OpenProject_Text", resourceCulture);
             }
         }
         
@@ -822,6 +894,60 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ShortcutsAOD_Text {
             get {
                 return ResourceManager.GetString("Message_ShortcutsAOD_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор отключен!.
+        /// </summary>
+        internal static string Message_Simulator_Disconnected_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_Disconnected_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор не подключен..
+        /// </summary>
+        internal static string Message_Simulator_NotConnected_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_NotConnected_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправлено успешно!.
+        /// </summary>
+        internal static string Message_Simulator_PushSuccess_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_PushSuccess_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Все еще соединяюсь... Пожалуйста, подождите..
+        /// </summary>
+        internal static string Message_Simulator_StillConnecting_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_StillConnecting_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор запущен..
+        /// </summary>
+        internal static string Message_SimulatorRuning_Text1 {
+            get {
+                return ResourceManager.GetString("Message_SimulatorRuning_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выберите модель и запустите эмулятор..
+        /// </summary>
+        internal static string Message_SimulatorRuning_Text2 {
+            get {
+                return ResourceManager.GetString("Message_SimulatorRuning_Text2", resourceCulture);
             }
         }
         
@@ -925,11 +1051,29 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не верный API Key.
+        /// </summary>
+        internal static string Message_Warning_InvalidAPIKey_Text {
+            get {
+                return ResourceManager.GetString("Message_Warning_InvalidAPIKey_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на В этой папке уже существует папка с JS файлами..
         /// </summary>
         internal static string Message_Warning_JS_Exist1 {
             get {
                 return ResourceManager.GetString("Message_Warning_JS_Exist1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл &quot;*.zpk&quot; уже существует. Перезаписать?.
+        /// </summary>
+        internal static string Message_Warning_OverwriteFile_Text {
+            get {
+                return ResourceManager.GetString("Message_Warning_OverwriteFile_Text", resourceCulture);
             }
         }
         

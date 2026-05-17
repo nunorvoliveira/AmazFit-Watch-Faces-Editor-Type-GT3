@@ -143,6 +143,16 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap logo_qr {
+            get {
+                object obj = ResourceManager.GetObject("logo_qr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Logos_Administrative_Tools_16 {
             get {
                 object obj = ResourceManager.GetObject("Logos-Administrative-Tools_16", resourceCulture);

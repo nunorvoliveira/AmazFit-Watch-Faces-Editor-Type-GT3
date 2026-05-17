@@ -165,6 +165,12 @@
   <data name="Elemet_Time" xml:space="preserve">
     <value>Час</value>
   </data>
+  <data name="FilePost_info_storage_used" xml:space="preserve">
+    <value>Зайнято місця</value>
+  </data>
+  <data name="FilePost_info_uploads_month" xml:space="preserve">
+    <value>Завантажень за місяць</value>
+  </data>
   <data name="FilterGif" xml:space="preserve">
     <value>GIF файли (*.gif)|*.gif</value>
   </data>
@@ -177,8 +183,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip файл циферблата (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Файл циферблата (*.zpk)|*.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Слідувати за годинами</value>
@@ -234,6 +243,9 @@
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Потрібно встановити зображення як основний фон.</value>
   </data>
+  <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
+    <value>Підключено до симулятора!</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Новий циферблат створений.</value>
   </data>
@@ -260,6 +272,9 @@
   </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Не можна видалити існуючий файл циферблата.</value>
+  </data>
+  <data name="Message_DXGI_error_Text" xml:space="preserve">
+    <value>DXGI не підтримується. Перехід на BitBlt.</value>
   </data>
   <data name="Message_EditableElementsAOD_Text" xml:space="preserve">
     <value>Ви не можете додавати  редаговані елементи екран AOD.</value>
@@ -312,6 +327,9 @@
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Помилка конвертації зображення</value>
   </data>
+  <data name="Message_Infirmation_Caption" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
   <data name="Message_InvalidFileName_Caption" xml:space="preserve">
     <value>Неприпустиме ім'я файлу</value>
   </data>
@@ -326,6 +344,9 @@
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Помилка прочитання JSON файла</value>
+  </data>
+  <data name="Message_LaunchSimulator_Text" xml:space="preserve">
+    <value>Запустіть симулятор.</value>
   </data>
   <data name="Message_LoadPreviewStates_Caption" xml:space="preserve">
     <value>Завантаження налаштувань попереднього перегляду</value>
@@ -344,6 +365,9 @@
   </data>
   <data name="Message_Old_OS" xml:space="preserve">
     <value>Цей віджет не підтримується обраною моделлю годинника.</value>
+  </data>
+  <data name="Message_OpenProject_Text" xml:space="preserve">
+    <value>Відкрийте проект із циферблатом.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Перезавантаження</value>
@@ -368,6 +392,24 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Ви не можете додавати ярлики до екрану AOD.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text1" xml:space="preserve">
+    <value>Симулятор запущено.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text2" xml:space="preserve">
+    <value>Оберіть модель і запустіть емулятор.</value>
+  </data>
+  <data name="Message_Simulator_Disconnected_Text" xml:space="preserve">
+    <value>Симулятор відключено!</value>
+  </data>
+  <data name="Message_Simulator_NotConnected_Text" xml:space="preserve">
+    <value>Симулятор не підключено.</value>
+  </data>
+  <data name="Message_Simulator_PushSuccess_Text" xml:space="preserve">
+    <value>Надіслано успішно!</value>
+  </data>
+  <data name="Message_Simulator_StillConnecting_Text" xml:space="preserve">
+    <value>Все ще з'єднуюсь... Будь ласка, зачекайте.</value>
   </data>
   <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
     <value>Кількість зображень для відображення тренувального навантаження має дорівнювати 3.</value>
@@ -414,8 +456,14 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Інформація</value>
   </data>
+  <data name="Message_Warning_InvalidAPIKey_Text" xml:space="preserve">
+    <value>Невірний API Key</value>
+  </data>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>У цій папці вже існує папка з JS файлами.</value>
+  </data>
+  <data name="Message_Warning_OverwriteFile_Text" xml:space="preserve">
+    <value>Файл "*.zpk" вже існує. Перезаписати?</value>
   </data>
   <data name="Message_Warning_Version_Lower" xml:space="preserve">
     <value>Не можна зменшувати номер версії циферблата.</value>

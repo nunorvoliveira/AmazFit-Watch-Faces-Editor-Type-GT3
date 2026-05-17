@@ -177,8 +177,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip-Datei vom Zifferblatt (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Datei des Zifferblatts (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Datei des Zifferblatts (*.zpk)| *.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Folge den Stunden</value>
