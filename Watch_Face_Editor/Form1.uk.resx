@@ -498,11 +498,17 @@
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Конвертування</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>817, 13</value>
+  <data name="button_CaptureResumeGif.Text" xml:space="preserve">
+    <value>Продовжити</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Необхідно вибрати модель емулятора, що відповідає циферблату. Емулятор - це не справжній годинник, не всі елементи на ньому працюють належним чином.</value>
+  <data name="checkBox_DrawCursor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="checkBox_DrawCursor.Text" xml:space="preserve">
+    <value>Відображати курсор</value>
+  </data>
+  <data name="button_CaptureBreakGif.Text" xml:space="preserve">
+    <value>Перервати і зберегти GIF</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Кількість кадрів для збереження</value>
@@ -537,16 +543,19 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Область охоплення</value>
   </data>
-  <data name="button_UpdateScreenPos.Text" xml:space="preserve">
-    <value>Оновити</value>
-  </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Координати вікна</value>
   </data>
-  <data name="checkBox_screen_capture.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>817, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Необхідно вибрати модель емулятора, що відповідає циферблату. Емулятор - це не справжній годинник, не всі елементи на ньому працюють належним чином.</value>
+  </data>
+  <data name="checkBox_SimulatorCapture.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 17</value>
   </data>
-  <data name="checkBox_screen_capture.Text" xml:space="preserve">
+  <data name="checkBox_SimulatorCapture.Text" xml:space="preserve">
     <value>Увімкнути захват екрану</value>
   </data>
   <data name="button_SimulatorSend.Text" xml:space="preserve">
@@ -561,8 +570,111 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Ця функція призначена для досвідчених користувачів. Для її роботи у вас мають бути встановлені та налаштовані такі утиліти:</value>
   </data>
+  <data name="button_UpdateScreenPos.Text" xml:space="preserve">
+    <value>Оновити координати</value>
+  </data>
   <data name="groupBox_simulator.Text" xml:space="preserve">
     <value>Тестування в симуляторі</value>
+  </data>
+  <data name="button_ZeppPlayer_UpdateScreenPos.Text" xml:space="preserve">
+    <value>Оновити координати</value>
+  </data>
+  <data name="checkBox_ZeppPlayerCapture.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 17</value>
+  </data>
+  <data name="checkBox_ZeppPlayerCapture.Text" xml:space="preserve">
+    <value>Увімкнути захват екрану</value>
+  </data>
+  <data name="button_ZeppPlayerSend.Text" xml:space="preserve">
+    <value>Надіслати</value>
+  </data>
+  <data name="linkLabel_ZeppPlayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>692, 22</value>
+  </data>
+  <data name="linkLabel_ZeppPlayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 13</value>
+  </data>
+  <data name="linkLabel_ZeppPlayer.Text" xml:space="preserve">
+    <value>Завантажити ZeppPlayer</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>ZeppPlayer – простий і швидкий симулятор. Більшість нових віджетів у ньому не працюють. Необхідно розпакувати архів із ZeppPlayer та вказати шлях до файлу ZeppPlayer.exe. Якщо циферблат не відображається у випадаючому списку, то потрібно оновити сторінку.</value>
+  </data>
+  <data name="groupBox_ZeppPlayer.Text" xml:space="preserve">
+    <value>Тестування в ZeppPlayer</value>
+  </data>
+  <data name="checkBox_AddPreviewQR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 69</value>
+  </data>
+  <data name="checkBox_AddPreviewQR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 30</value>
+  </data>
+  <data name="checkBox_AddPreviewQR.Text" xml:space="preserve">
+    <value>Додати попередній 
+перегляд</value>
+  </data>
+  <data name="button_saveQR.Text" xml:space="preserve">
+    <value>Зберегти QR-код</value>
+  </data>
+  <data name="label_GitHub_Instructions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>511, 283</value>
+  </data>
+  <data name="label_GitHub_Instructions.Text" xml:space="preserve">
+    <value>Покрокова інструкція з налаштування GitHub:
+1. Зайдіть на GitHub і увійдіть у свій обліковий запис.
+2. У правому верхньому куті натисніть на своє фото профілю та виберіть Settings (Налаштування).
+3. У лівій панелі прокрутіть до самого низу та натисніть Developer settings (Налаштування розробника).
+4. Перейдіть у розділ Personal access tokens → Fine-grained tokens. Натисніть Generate new token.
+5. Введіть ім'я (Token name) та термін дії (Expiration). У блоці Repository access виберіть Only select repositories і в списку, що з'явився, виберіть конкретний репозиторій, у який програма завантажуватиме файли. У блоці Permissions відкрийте випадаючий список Repository permissions. Знайдіть пункт Contents (Вміст) і змініть рівень доступу на Read and write (Читання та запис). Це автоматично надасть права на додавання файлів. Натисніть Generate token внизу.
+6. Зайдіть у свій репозиторій на сайті GitHub і на верхній панелі вкладок натисніть на Settings (Налаштування, іконка шестерні) та виберіть пункт Pages. У розділі Build and deployment переконайтеся, що у випадаючому списку Source вибрано значення Deploy from a branch (Розгорнути з гілки). Трохи нижче в полі Branch виберіть вашу основну гілку (зазвичай це main або master) і натисніть кнопку Save (Зберегти).
+
+⚠️ВАЖЛИВО. Токен зберігається у файлі налаштувань редактора в зашифрованому вигляді і буде доступний лише поточному користувачеві.
+⚠️УВАГА. Не завжди доступ до завантажених на GitHub файлів з’являється одразу. Іноді потрібно почекати кілька хвилин.</value>
+  </data>
+  <data name="checkBox_GitHub_AskConfirmation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 17</value>
+  </data>
+  <data name="checkBox_GitHub_AskConfirmation.Text" xml:space="preserve">
+    <value>Запитувати підтвердження у разі збігу імен файлів</value>
+  </data>
+  <data name="btnUploadToGitHub.Text" xml:space="preserve">
+    <value>Завантажити</value>
+  </data>
+  <data name="label_GitHub_help.Text" xml:space="preserve">
+    <value>Інструкція</value>
+  </data>
+  <data name="label_owner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="label_owner.Text" xml:space="preserve">
+    <value>Ім'я власника</value>
+  </data>
+  <data name="label_filePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 13</value>
+  </data>
+  <data name="label_filePath.Text" xml:space="preserve">
+    <value>Шлях до файлу в репозиторії</value>
+  </data>
+  <data name="label_repoName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 13</value>
+  </data>
+  <data name="label_repoName.Text" xml:space="preserve">
+    <value>Назва репозиторію (публічного)</value>
+  </data>
+  <data name="panel_GitHub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 420</value>
+  </data>
+  <data name="linkLabel_FilePost_API_key.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 13</value>
+  </data>
+  <data name="linkLabel_FilePost_API_key.Text" xml:space="preserve">
+    <value>Отримати API Key</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>УВАГА: вам потрібно зареєструватися на сайті та отримати API Key. Термін зберігання файлів на сайті не обмежений. Ви можете керувати завантаженими файлами в особистому кабінеті на сайті.</value>
+  </data>
+  <data name="btnUploadToFilePost.Text" xml:space="preserve">
+    <value>Завантажити</value>
   </data>
   <data name="btnUploadToLitterbox.Text" xml:space="preserve">
     <value>Завантажити</value>
@@ -584,21 +696,6 @@
   </data>
   <data name="radioButton_3days.Text" xml:space="preserve">
     <value>3 дні</value>
-  </data>
-  <data name="linkLabel_FilePost_API_key.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
-  </data>
-  <data name="linkLabel_FilePost_API_key.Text" xml:space="preserve">
-    <value>Отримати API Key</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>УВАГА: вам потрібно зареєструватися на сайті та отримати API Key. Термін зберігання файлів на сайті не обмежений. Ви можете керувати завантаженими файлами в особистому кабінеті на сайті.</value>
-  </data>
-  <data name="btnUploadToFilePost.Text" xml:space="preserve">
-    <value>Завантажити</value>
-  </data>
-  <data name="button_saveQR.Text" xml:space="preserve">
-    <value>Зберегти QR-код</value>
   </data>
   <data name="groupBox_UploadToLitterbox.Text" xml:space="preserve">
     <value>Завантажити на сайт   litterbox.catbox.moe</value>
@@ -5390,7 +5487,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAfQBMgH0ATIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAVQBMwFUATMBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -5489,6 +5586,15 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="button_unpack_zip.Text" xml:space="preserve">
     <value>Розпакувати циферблат</value>
+  </data>
+  <data name="button_DownloadQR.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAJ9JREFUOE/tk0EKwzAMBOfzeVOPya1vagiouLhC3ji1DD1mQWCk9cgGCWABXoBd
+        RKkVT1HaewBPM6MXwFbNU17TokZ9xZTXjfodNXZyMW5oB1qTrgH0pOgtY7JGsDR5yEilvKOB3ieGP3r/
+        r1H3uKYx35PX0qs3A02vXgLq+kC/Z70o0KiTtyneUM25fkBVTYP06l29qqqBjoY/rl4K+gY1gwTfD9SJ
+        dwAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

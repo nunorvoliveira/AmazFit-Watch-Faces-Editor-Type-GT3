@@ -517,6 +517,47 @@
     "fixSize": true,
     "versionOS": 5.0
   },
+  "Bip Max": {
+    "name": "Amazfit Bip Max",
+    "designWidth": 432,
+    "deviceSource_ids": [
+      11206915
+    ],
+    "cpuPlatform": "MHS",
+    "screenType": "square",
+    "background": {
+      "w": 432,
+      "h": 514
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 219,
+        "h": 260
+      },
+      "scaling_1_0": {
+        "w": 434,
+        "h": 516
+      },
+      "scaling_1_5": {
+        "w": 650,
+        "h": 773
+      },
+      "scaling_2_0": {
+        "w": 865,
+        "h": 1029
+      },
+      "scaling_2_5": {
+        "w": 1081,
+        "h": 1286
+      }
+    },
+    "maskImage": "mask_bip_max.png",
+    "watchSkin": "WatchSkin_Bip_Max.json",
+    "previewHeight": 350,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
   "Cheetah": {
     "name": "Amazfit Cheetah",
     "designWidth": 454,

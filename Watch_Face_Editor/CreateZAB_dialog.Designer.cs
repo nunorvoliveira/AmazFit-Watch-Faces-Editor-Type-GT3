@@ -39,7 +39,13 @@
             this.button_cancel = new System.Windows.Forms.Button();
             this.button_savePNG = new System.Windows.Forms.Button();
             this.button_saveGIF = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_version)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_name
@@ -119,26 +125,48 @@
             this.button_saveGIF.UseVisualStyleBackColor = true;
             this.button_saveGIF.Click += new System.EventHandler(this.button_saveGIF_Click);
             // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.label_name);
+            this.panel1.Controls.Add(this.textBox_name);
+            this.panel1.Controls.Add(this.label_id);
+            this.panel1.Controls.Add(this.textBox_id);
+            this.panel1.Controls.Add(this.label_version);
+            this.panel1.Controls.Add(this.numeric_version);
+            this.panel1.Name = "panel1";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.button_savePNG);
+            this.panel2.Controls.Add(this.button_saveGIF);
+            this.panel2.Name = "panel2";
+            // 
+            // panel3
+            // 
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Controls.Add(this.button_save);
+            this.panel3.Controls.Add(this.button_cancel);
+            this.panel3.Name = "panel3";
+            // 
             // CreateZAB_dialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_cancel;
-            this.Controls.Add(this.button_saveGIF);
-            this.Controls.Add(this.button_savePNG);
-            this.Controls.Add(this.button_cancel);
-            this.Controls.Add(this.button_save);
-            this.Controls.Add(this.numeric_version);
-            this.Controls.Add(this.label_version);
-            this.Controls.Add(this.textBox_id);
-            this.Controls.Add(this.label_id);
-            this.Controls.Add(this.textBox_name);
-            this.Controls.Add(this.label_name);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateZAB_dialog";
             ((System.ComponentModel.ISupportInitialize)(this.numeric_version)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,5 +184,8 @@
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.Button button_savePNG;
         private System.Windows.Forms.Button button_saveGIF;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

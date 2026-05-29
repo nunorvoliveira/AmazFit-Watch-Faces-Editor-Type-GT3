@@ -151,4 +151,7 @@
   <data name="label_EditableBackground_Hint.Text" xml:space="preserve">
     <value>Буде використано фон, що налаштовується, з основного екрану</value>
   </data>
+  <data name="button_EditInformation.Text" xml:space="preserve">
+    <value>Змінити інформацію</value>
+  </data>
 </root>

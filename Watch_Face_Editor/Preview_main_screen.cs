@@ -687,11 +687,11 @@ namespace Watch_Face_Editor
                 //if (panel_Preview.Height > 690) LineDistance = 10;
                 for (i = 0; i < 30; i++)
                 {
-                    gPanel.DrawLine(pen, new Point(offSet_X + i * LineDistance, 0), new Point(offSet_X + i * LineDistance, 480));
-                    gPanel.DrawLine(pen, new Point(offSet_X - i * LineDistance, 0), new Point(offSet_X - i * LineDistance, 480));
+                    gPanel.DrawLine(pen, new Point(offSet_X + i * LineDistance, 0), new Point(offSet_X + i * LineDistance, SelectedModel.background.h));
+                    gPanel.DrawLine(pen, new Point(offSet_X - i * LineDistance, 0), new Point(offSet_X - i * LineDistance, SelectedModel.background.h));
 
-                    gPanel.DrawLine(pen, new Point(0, offSet_Y + i * LineDistance), new Point(480, offSet_Y + i * LineDistance));
-                    gPanel.DrawLine(pen, new Point(0, offSet_Y - i * LineDistance), new Point(480, offSet_Y - i * LineDistance));
+                    gPanel.DrawLine(pen, new Point(0, offSet_Y + i * LineDistance), new Point(SelectedModel.background.w, offSet_Y + i * LineDistance));
+                    gPanel.DrawLine(pen, new Point(0, offSet_Y - i * LineDistance), new Point(SelectedModel.background.w, offSet_Y - i * LineDistance));
 
                     if (i == 0) pen.Width = pen.Width / 3f;
                 }
@@ -708,11 +708,11 @@ namespace Watch_Face_Editor
                 //if (panel_Preview.Height > 690) LineDistance = 10;
                 for (i = 0; i < 30; i++)
                 {
-                    gPanel.DrawLine(pen, new Point(offSet_X + i * LineDistance, 0), new Point(offSet_X + i * LineDistance, 480));
-                    gPanel.DrawLine(pen, new Point(offSet_X - i * LineDistance, 0), new Point(offSet_X - i * LineDistance, 480));
+                    gPanel.DrawLine(pen, new Point(offSet_X + i * LineDistance, 0), new Point(offSet_X + i * LineDistance, SelectedModel.background.h));
+                    gPanel.DrawLine(pen, new Point(offSet_X - i * LineDistance, 0), new Point(offSet_X - i * LineDistance, SelectedModel.background.h));
 
-                    gPanel.DrawLine(pen, new Point(0, offSet_Y + i * LineDistance), new Point(480, offSet_Y + i * LineDistance));
-                    gPanel.DrawLine(pen, new Point(0, offSet_Y - i * LineDistance), new Point(480, offSet_Y - i * LineDistance));
+                    gPanel.DrawLine(pen, new Point(0, offSet_Y + i * LineDistance), new Point(SelectedModel.background.w, offSet_Y + i * LineDistance));
+                    gPanel.DrawLine(pen, new Point(0, offSet_Y - i * LineDistance), new Point(SelectedModel.background.w, offSet_Y - i * LineDistance));
 
                     if (i == 0) pen.Width = pen.Width / 3f;
                 }

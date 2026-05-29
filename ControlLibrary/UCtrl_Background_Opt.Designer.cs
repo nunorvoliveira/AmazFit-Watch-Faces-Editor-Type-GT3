@@ -41,6 +41,7 @@ namespace ControlLibrary
             this.label_ID = new System.Windows.Forms.Label();
             this.radioButton_EditableBackground = new System.Windows.Forms.RadioButton();
             this.label_EditableBackground_Hint = new System.Windows.Forms.Label();
+            this.button_EditInformation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_GenerateID
@@ -68,20 +69,20 @@ namespace ControlLibrary
             // 
             // comboBox_Background_color
             // 
-            resources.ApplyResources(this.comboBox_Background_color, "comboBox_Background_color");
             this.comboBox_Background_color.BackColor = System.Drawing.Color.DarkOrange;
             this.comboBox_Background_color.DropDownHeight = 1;
             this.comboBox_Background_color.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Background_color, "comboBox_Background_color");
             this.comboBox_Background_color.Name = "comboBox_Background_color";
             this.comboBox_Background_color.Click += new System.EventHandler(this.comboBox_Background_color_Click);
             this.comboBox_Background_color.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
             // 
             // comboBox_Preview_image
             // 
-            resources.ApplyResources(this.comboBox_Preview_image, "comboBox_Preview_image");
             this.comboBox_Preview_image.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Preview_image.DropDownWidth = 135;
             this.comboBox_Preview_image.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_Preview_image, "comboBox_Preview_image");
             this.comboBox_Preview_image.Name = "comboBox_Preview_image";
             this.comboBox_Preview_image.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
             this.comboBox_Preview_image.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.comboBox_MeasureItem);
@@ -91,9 +92,9 @@ namespace ControlLibrary
             // 
             // comboBox_Background_image
             // 
-            resources.ApplyResources(this.comboBox_Background_image, "comboBox_Background_image");
             this.comboBox_Background_image.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Background_image.DropDownWidth = 135;
+            resources.ApplyResources(this.comboBox_Background_image, "comboBox_Background_image");
             this.comboBox_Background_image.FormattingEnabled = true;
             this.comboBox_Background_image.Name = "comboBox_Background_image";
             this.comboBox_Background_image.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
@@ -129,10 +130,18 @@ namespace ControlLibrary
             resources.ApplyResources(this.label_EditableBackground_Hint, "label_EditableBackground_Hint");
             this.label_EditableBackground_Hint.Name = "label_EditableBackground_Hint";
             // 
+            // button_EditInformation
+            // 
+            resources.ApplyResources(this.button_EditInformation, "button_EditInformation");
+            this.button_EditInformation.Name = "button_EditInformation";
+            this.button_EditInformation.UseVisualStyleBackColor = true;
+            this.button_EditInformation.Click += new System.EventHandler(this.button_EditInformation_Click);
+            // 
             // UCtrl_Background_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button_EditInformation);
             this.Controls.Add(this.label_EditableBackground_Hint);
             this.Controls.Add(this.radioButton_EditableBackground);
             this.Controls.Add(this.label_ID);
@@ -163,5 +172,6 @@ namespace ControlLibrary
         public System.Windows.Forms.RadioButton radioButton_Background_color;
         public System.Windows.Forms.RadioButton radioButton_EditableBackground;
         private System.Windows.Forms.Label label_EditableBackground_Hint;
+        private System.Windows.Forms.Button button_EditInformation;
     }
 }

@@ -141,6 +141,9 @@
   <data name="Dialog_Title_SavePNG" xml:space="preserve">
     <value>Save preview</value>
   </data>
+  <data name="Dialog_Title_SaveQR" xml:space="preserve">
+    <value>Save QR code</value>
+  </data>
   <data name="Dialog_Title_Save_As" xml:space="preserve">
     <value>Save project as...</value>
   </data>
@@ -195,11 +198,74 @@
   <data name="FollowSecond" xml:space="preserve">
     <value>Follow the minutes</value>
   </data>
+  <data name="FormName_EditInformation" xml:space="preserve">
+    <value>Edit information</value>
+  </data>
   <data name="Form_Preview" xml:space="preserve">
     <value>Preview</value>
   </data>
   <data name="Form_PreviewX" xml:space="preserve">
     <value>Preview [X =</value>
+  </data>
+  <data name="GitHub_AuthError" xml:space="preserve">
+    <value>Authorisation validation error</value>
+  </data>
+  <data name="GitHub_CheckingRepository" xml:space="preserve">
+    <value>Checking if the repository exists...</value>
+  </data>
+  <data name="GitHub_CheckingToken" xml:space="preserve">
+    <value>Checking GitHub credentials...</value>
+  </data>
+  <data name="GitHub_FileAdded" xml:space="preserve">
+    <value>A new file has been added</value>
+  </data>
+  <data name="GitHub_InvalidToken" xml:space="preserve">
+    <value>The GitHub token provided is invalid (Error 401: Unauthorised).</value>
+  </data>
+  <data name="GitHub_PreparingForLaunch" xml:space="preserve">
+    <value>Preparing for start-up...</value>
+  </data>
+  <data name="GitHub_RepositoryCheckError" xml:space="preserve">
+    <value>Error checking the repository</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound1" xml:space="preserve">
+    <value>Repository</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound2" xml:space="preserve">
+    <value>not found or no access to it.</value>
+  </data>
+  <data name="GitHub_Stage_CheckExistingFile" xml:space="preserve">
+    <value>Checking the existing file in the repository...</value>
+  </data>
+  <data name="GitHub_Stage_ConnectingToAPI" xml:space="preserve">
+    <value>Connecting to the GitHub API...</value>
+  </data>
+  <data name="GitHub_Stage_EncodeBase64" xml:space="preserve">
+    <value>Encode data in Base64...</value>
+  </data>
+  <data name="GitHub_Stage_ReadFile" xml:space="preserve">
+    <value>Reading the archive from the disc...</value>
+  </data>
+  <data name="GitHub_Stage_UpdateFile" xml:space="preserve">
+    <value>Updating the file on the server (uploading data)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFile" xml:space="preserve">
+    <value>Creating a new file on the server (uploading data)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFileCompleted" xml:space="preserve">
+    <value>Upload completed successfully!</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch1" xml:space="preserve">
+    <value>The token belongs to the user</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch2" xml:space="preserve">
+    <value>but the owner is listed as</value>
+  </data>
+  <data name="GitHub_UploadCanceled" xml:space="preserve">
+    <value>File exists. Upload cancelled by the user.</value>
+  </data>
+  <data name="GitHub_UploadSuccess" xml:space="preserve">
+    <value>The upload was successful!</value>
   </data>
   <data name="Img_Convert_Error_NoPalette" xml:space="preserve">
     <value>Missing colour map</value>
@@ -234,6 +300,9 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Are you sure you want to convert your images to ARGB format?</value>
   </data>
+  <data name="Message_AuthorisationError_Caption" xml:space="preserve">
+    <value>Authorisation error</value>
+  </data>
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Recovery</value>
   </data>
@@ -242,6 +311,9 @@
   </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>You need to set the image as the main background.</value>
+  </data>
+  <data name="Message_ConfigurationError_Caption" xml:space="preserve">
+    <value>Configuration error</value>
   </data>
   <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
     <value>Connected to Simulator!</value>
@@ -479,6 +551,15 @@
   </data>
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Failed to create preview image. Perhaps such an image is already available.</value>
+  </data>
+  <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
+    <value>ZeppPlayer cannot be found at the specified path.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound1" xml:space="preserve">
+    <value>No running instance of ZeppPlayer was found.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound2" xml:space="preserve">
+    <value>Open a tab with ZeppPlayer in Chrome or enter the coordinates manually.</value>
   </data>
   <data name="Month_StrArray" xml:space="preserve">
     <value>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</value>

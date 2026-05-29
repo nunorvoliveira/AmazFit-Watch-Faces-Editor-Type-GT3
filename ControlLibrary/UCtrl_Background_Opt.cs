@@ -34,6 +34,7 @@ namespace ControlLibrary
                 AODmode = value;
                 comboBox_Preview_image.Visible = !AODmode;
                 button_GenerateID.Visible = !AODmode;
+                button_EditInformation.Visible = !AODmode;
                 label3.Visible = !AODmode;
                 label1.Visible = !AODmode;
                 label_ID.Visible = !AODmode;
@@ -64,6 +65,11 @@ namespace ControlLibrary
         public event ValueChangedHandler ValueChanged;
         public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
 
+        [Browsable(true)]
+        [Description("Происходит при изменении выбора элемента")]
+        public event InformationChangedHandler InformationChanged;
+        public delegate void InformationChangedHandler(object sender, EventArgs eventArgs);
+
         private void button_GenerateID_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
@@ -77,11 +83,13 @@ namespace ControlLibrary
             }
         }
 
-        public void GenerateID()
+        private void button_EditInformation_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            ID = rnd.Next(1000, 10000000);
-            label_ID.Text = ID.ToString();
+            if (InformationChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                InformationChanged(this, eventArgs);
+            }
         }
 
         /// <summary>Получаем ID</summary>

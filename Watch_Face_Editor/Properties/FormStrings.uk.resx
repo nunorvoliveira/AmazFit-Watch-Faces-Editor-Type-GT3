@@ -141,6 +141,9 @@
   <data name="Dialog_Title_SavePNG" xml:space="preserve">
     <value>Зберегти попередній перегляд</value>
   </data>
+  <data name="Dialog_Title_SaveQR" xml:space="preserve">
+    <value>Зберегти QR-код</value>
+  </data>
   <data name="Dialog_Title_Save_As" xml:space="preserve">
     <value>Зберегти проект як...</value>
   </data>
@@ -195,11 +198,74 @@
   <data name="FollowSecond" xml:space="preserve">
     <value>Слідувати за хвилинами</value>
   </data>
+  <data name="FormName_EditInformation" xml:space="preserve">
+    <value>Змінити інформацію</value>
+  </data>
   <data name="Form_Preview" xml:space="preserve">
     <value>Попередній перегляд</value>
   </data>
   <data name="Form_PreviewX" xml:space="preserve">
     <value>Попередній перегляд [Х =</value>
+  </data>
+  <data name="GitHub_AuthError" xml:space="preserve">
+    <value>Помилка перевірки авторизації</value>
+  </data>
+  <data name="GitHub_CheckingRepository" xml:space="preserve">
+    <value>Перевірка наявності репозиторію...</value>
+  </data>
+  <data name="GitHub_CheckingToken" xml:space="preserve">
+    <value>Перевірка облікових даних GitHub...</value>
+  </data>
+  <data name="GitHub_FileAdded" xml:space="preserve">
+    <value>Додано новий файл</value>
+  </data>
+  <data name="GitHub_InvalidToken" xml:space="preserve">
+    <value>Переданий токен GitHub недійсний (помилка 401 Unauthorized).</value>
+  </data>
+  <data name="GitHub_PreparingForLaunch" xml:space="preserve">
+    <value>Підготовка до запуску...</value>
+  </data>
+  <data name="GitHub_RepositoryCheckError" xml:space="preserve">
+    <value>Помилка під час перевірки репозиторію</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound1" xml:space="preserve">
+    <value>Репозиторій</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound2" xml:space="preserve">
+    <value>не знайдено або до нього немає доступу.</value>
+  </data>
+  <data name="GitHub_Stage_CheckExistingFile" xml:space="preserve">
+    <value>Перевірка наявного файлу в репозиторії...</value>
+  </data>
+  <data name="GitHub_Stage_ConnectingToAPI" xml:space="preserve">
+    <value>Підключення до API GitHub...</value>
+  </data>
+  <data name="GitHub_Stage_EncodeBase64" xml:space="preserve">
+    <value>Кодування даних у Base64...</value>
+  </data>
+  <data name="GitHub_Stage_ReadFile" xml:space="preserve">
+    <value>Читання архіву з диска...</value>
+  </data>
+  <data name="GitHub_Stage_UpdateFile" xml:space="preserve">
+    <value>Оновлення файлу на сервері (завантаження даних)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFile" xml:space="preserve">
+    <value>Створення нового файлу на сервері (завантаження даних)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFileCompleted" xml:space="preserve">
+    <value>Завантаження успішно завершено!</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch1" xml:space="preserve">
+    <value>Токен належить користувачеві</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch2" xml:space="preserve">
+    <value>але вказано власника</value>
+  </data>
+  <data name="GitHub_UploadCanceled" xml:space="preserve">
+    <value>Файл існує. Завантаження скасовано користувачем.</value>
+  </data>
+  <data name="GitHub_UploadSuccess" xml:space="preserve">
+    <value>Завантаження успішно завершено!</value>
   </data>
   <data name="Img_Convert_Error_NoPalette" xml:space="preserve">
     <value>Відсутня карта кольорів</value>
@@ -234,6 +300,9 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Ви точно бажаєте конвертувати зображення у формат ARGB?</value>
   </data>
+  <data name="Message_AuthorisationError_Caption" xml:space="preserve">
+    <value>Помилка авторизації</value>
+  </data>
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Відновлення</value>
   </data>
@@ -242,6 +311,9 @@
   </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Потрібно встановити зображення як основний фон.</value>
+  </data>
+  <data name="Message_ConfigurationError_Caption" xml:space="preserve">
+    <value>Помилка конфігурації</value>
   </data>
   <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
     <value>Підключено до симулятора!</value>
@@ -479,6 +551,15 @@
   </data>
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Не вдалося створити зображення попереднього перегляду. Можливо, це зображення вже існує.</value>
+  </data>
+  <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
+    <value>ZeppPlayer не знайдено за вказаним шляхом.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound1" xml:space="preserve">
+    <value>Не вдалося знайти запущений ZeppPlayer.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound2" xml:space="preserve">
+    <value>Відкрийте у Chrome вкладку з ZeppPlayer або введіть координати вручну.</value>
   </data>
   <data name="Month_StrArray" xml:space="preserve">
     <value>Січ, Лют, Бер, Квіт, Трав, Черв, Лип, Серп, Вер, Жовт, Лист, Груд</value>

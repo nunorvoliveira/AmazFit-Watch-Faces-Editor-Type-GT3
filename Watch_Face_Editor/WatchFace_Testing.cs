@@ -1,5 +1,6 @@
 ﻿using ImageMagick;
 using Newtonsoft.Json;
+using Octokit;
 using QRCoder;
 using SharpDX;
 using SharpDX.Direct3D11;
@@ -22,15 +23,19 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.Windows.Automation;
 using System.Windows.Forms;
 using static Watch_Face_Editor.Form1;
+using Application = System.Windows.Forms.Application;
 using Device = SharpDX.Direct3D11.Device;
+using DxgiResource = SharpDX.DXGI.Resource;
 
 namespace Watch_Face_Editor
 {
@@ -59,6 +64,15 @@ namespace Watch_Face_Editor
             bool IsSupported();
         }
 
+        public struct UploadProgress
+        {
+            // Текстовое описание текущего действия (например, "Чтение файла...", "Отправка в сеть...")
+            public string Stage { get; set; }
+
+            // Процент выполнения (от 0 до 100)
+            //public int Percentage { get; set; }
+        }
+
         int EmulatorAreaPosX = 0;
         int EmulatorAreaPosY = 0;
         int EmulatorAreaWidth = 0;
@@ -71,7 +85,7 @@ namespace Watch_Face_Editor
         private async void btnUploadToLitterbox_Click(object sender, EventArgs e)
         {
             string zpkName = "";
-            ; if (ProjectDir == null || Watch_Face == null)
+            if (ProjectDir == null || Watch_Face == null)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = Properties.FormStrings.FilterZpk;
@@ -88,7 +102,7 @@ namespace Watch_Face_Editor
             else
             {
                 string SaveFileName = Path.GetFileNameWithoutExtension(FileName);
-                if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                if (Watch_Face.WatchFace_Info?.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
                     SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
                 zpkName = ProjectDir + @"\" + SaveFileName + ".zpk";
                 string zipName = ProjectDir + @"\" + SaveFileName + ".zip";
@@ -123,7 +137,7 @@ namespace Watch_Face_Editor
                 {
                     //string url = UploadToLitterbox(zpkName);
                     string url = await UploadToLitterboxAsync(zpkName);
-                    textBox_LitterboxURL.Text = url.Replace("https://", "").Replace("http://", "");
+                    textBox_FileSharingURL.Text = url.Replace("https://", "").Replace("http://", "");
 
                     string correctedURL = CorrectUrl(url);
                     //CheckFileExists(correctedURL);
@@ -134,6 +148,7 @@ namespace Watch_Face_Editor
                     pictureBoxQRCode.Image = currentQRCode;
                     pictureBoxQRCode.Visible = true;
                     button_saveQR.Enabled = true;
+                    checkBox_AddPreviewQR.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -145,6 +160,9 @@ namespace Watch_Face_Editor
                     );
 
                 }
+
+                string tempDir = Application.StartupPath + @"\Temp";
+                if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
             }
         }
 
@@ -181,9 +199,8 @@ namespace Watch_Face_Editor
             }
             else
             {
-                if (ProjectDir == null || Watch_Face == null) return;
                 string SaveFileName = Path.GetFileNameWithoutExtension(FileName);
-                if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                if (Watch_Face.WatchFace_Info?.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
                     SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
                 zpkName = ProjectDir + @"\" + SaveFileName + ".zpk";
                 string zipName = ProjectDir + @"\" + SaveFileName + ".zip";
@@ -218,7 +235,7 @@ namespace Watch_Face_Editor
                 {
                     //string url = UploadToLitterbox(zpkName);
                     string url = await UploadToFilePostAsync(zpkName, apiKey);
-                    textBox_LitterboxURL.Text = url.Replace("https://", "").Replace("http://", "");
+                    textBox_FileSharingURL.Text = url.Replace("https://", "").Replace("http://", "");
 
                     string correctedURL = CorrectUrl(url);
                     //CheckFileExists(correctedURL);
@@ -229,16 +246,10 @@ namespace Watch_Face_Editor
                     pictureBoxQRCode.Image = currentQRCode;
                     pictureBoxQRCode.Visible = true;
                     button_saveQR.Enabled = true;
+                    checkBox_AddPreviewQR.Enabled = true;
                 }
                 catch (Exception ex)
                 {
-
-                    //pictureBoxQRCode.Image = GetLogo();
-                    //label_URL_status.Text = "❌";
-                    //label_URL_status.ForeColor = Color.Red;
-                    //pictureBoxQRCode.Visible = false;
-                    //button_saveQR.Enabled = false;
-
                     MessageBox.Show(
                         ex.Message,
                         "Upload error",
@@ -249,6 +260,10 @@ namespace Watch_Face_Editor
                 }
 
                 panel_FilePost_info.Visible = true;
+
+                string tempDir = Application.StartupPath + @"\Temp";
+                if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+
                 try
                 {
                     FilePostAccountInfo info = await GetFilePostAccountAsync(apiKey);
@@ -266,10 +281,6 @@ namespace Watch_Face_Editor
                             label_FilePost_info_uploads_month.Text = Properties.FormStrings.FilePost_info_uploads_month + uploads_this_month;
                         }
 
-
-                        //string storage_used = ": " + info.usage.storage_used_mb.ToString() + " / " +
-                        //    (Math.Round(100f * info.usage.storage_used_mb / info.usage.storage_limit_mb)).ToString() + " MB";
-                        //if (info.usage.storage_used_mb != 0) label_FilePost_info_storage_used.Text = Properties.FormStrings.FilePost_info_storage_used + storage_used;
                     }
                 }
                 catch (Exception ex)
@@ -287,15 +298,174 @@ namespace Watch_Face_Editor
             }
         }
 
+        private async void btnUploadToGitHub_Click(object sender, EventArgs e)
+        {
+            string zpkName = "";
+            if (ProjectDir == null || Watch_Face == null)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = Properties.FormStrings.FilterZpk;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = false;
+                //openFileDialog.Title = Properties.FormStrings.Dialog_Title_Unpack;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    zpkName = openFileDialog.FileName;
+                    NameForQR = Path.GetFileNameWithoutExtension(zpkName);
+                }
+            }
+            else
+            {
+                string SaveFileName = Path.GetFileNameWithoutExtension(FileName);
+                if (Watch_Face.WatchFace_Info?.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                    SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
+                zpkName = ProjectDir + @"\" + SaveFileName + ".zpk";
+                string zipName = ProjectDir + @"\" + SaveFileName + ".zip";
+
+                if (File.Exists(zpkName))
+                {
+                    DialogResult dr = MessageBox.Show(Properties.FormStrings.Message_Warning_OverwriteFile_Text,
+                            Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                    if (dr == DialogResult.Yes)
+                    {
+                        zipName = await CreateWatchFace(zipName);
+                        if (File.Exists(zipName)) zpkName = CreateZPK(zipName);
+                    }
+                    if (dr == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    zipName = await CreateWatchFace(zipName);
+                    if (File.Exists(zipName)) zpkName = CreateZPK(zipName);
+                }
+            }
+            progressBar1.Visible = false;
+
+            if (File.Exists(zpkName))
+            {
+                resetQRCode();
+
+                try
+                {
+                    string token = textBox_GitHub_token.Text;
+                    string owner = textBox_GitHub_owner.Text;
+                    string repoName = textBox_GitHub_repoName.Text;
+                    string branch = "main";
+                    string localFilePath = zpkName;
+                    string targetFilePath = textBox_GitHub_filePath.Text;
+                    targetFilePath = targetFilePath.Trim('/');
+                    targetFilePath += "/" + Path.GetFileName(localFilePath);
+                    targetFilePath = targetFilePath.TrimStart('/');
+
+                    // 1. Блокируем кнопку, чтобы пользователь не нажал её дважды во время загрузки
+                    btnUploadToGitHub.Enabled = false;
+
+                    // Сбрасываем прогресс-бар в ноль
+                    progressBar1.Value = 0;
+                    lblStatus.Text = Properties.FormStrings.GitHub_PreparingForLaunch;
+
+                    // 2. Создаем обработчик прогресса.
+                    // Благодаря магии IProgress<T>, этот код выполнится безопасно в UI-потоке.
+                    var uiProgress = new Progress<UploadProgress>(progress =>
+                    {
+                        //progressBar1.Value = progress.Percentage;
+                        lblStatus.Text = progress.Stage;
+                    });
+
+                    try
+                    {
+                        Console.WriteLine("Проверка учетных данных GitHub...");
+                        // Шаг 1: Сначала проверяем токен и логин
+                        lblStatus.Text = Properties.FormStrings.GitHub_CheckingToken;
+                        await GitHubRepoChecker.ValidateCredentialsAsync(token, owner);
+                        lblStatus.Text = Properties.FormStrings.GitHub_CheckingRepository;
+                        await GitHubRepoChecker.CheckRepositoryExistsAsync(token, owner, repoName);
+
+                        // Шаг 2: Если проверка прошла, загружаем архив
+                        Console.WriteLine("Начало загрузки архива...");
+                        string url = await GitHubArchiveUploader.UploadArchiveToGitHubAsync(
+                            token, owner, repoName, branch, targetFilePath, localFilePath, 
+                            Properties.FormStrings.GitHub_FileAdded + ": ",
+                            checkBox_GitHub_AskConfirmation.Checked,
+                            uiProgress
+                        );
+
+                        Console.WriteLine($"\nУспешно! Ссылка: {url}");
+
+                        // Показываем результат
+                        lblStatus.Text = Properties.FormStrings.GitHub_UploadSuccess;
+                        //MessageBox.Show($"Файл успешно загружен!\nСсылка для скачивания:\n{url}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        string correctedURL = ConvertGitHubBlobToPagesUrl(url); // форматируем в правильный вид для GitHub
+                        textBox_FileSharingURL.Text = correctedURL.Replace("https://", "").Replace("http://", "");
+                        correctedURL = CorrectUrl(correctedURL); // Заменяем https на zpkd1
+
+                        Bitmap currentQRCode = GenerateQRCodeWithLogo(correctedURL);
+                        pictureBoxQRCode.Image = currentQRCode;
+                        pictureBoxQRCode.Visible = true;
+                        button_saveQR.Enabled = true;
+                        checkBox_AddPreviewQR.Enabled = true;
+
+                    }
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        Console.WriteLine($"\nОшибка авторизации: {ex.Message}");
+                        MessageBox.Show(ex.Message, Properties.FormStrings.Message_AuthorisationError_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblStatus.Text = Properties.FormStrings.Message_AuthorisationError_Caption;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine($"\nОшибка конфигурации: {ex.Message}");
+                        MessageBox.Show(ex.Message, Properties.FormStrings.Message_ConfigurationError_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblStatus.Text = Properties.FormStrings.Message_ConfigurationError_Caption;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"\nНепредвиденная ошибка: {ex.Message}");
+                        MessageBox.Show(ex.Message, Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblStatus.Text = Properties.FormStrings.Message_Error_Caption;
+                    }
+                    finally
+                    {
+                        // 4. В любом случае возвращаем кнопку в рабочее состояние
+                        btnUploadToGitHub.Enabled = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message,
+                        "Upload error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+
+                }
+
+                string tempDir = Application.StartupPath + @"\Temp";
+                if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+            }
+        }
+
+        private void pictureBox_GitHub_help_Click(object sender, EventArgs e)
+        {
+            label_GitHub_Instructions.Visible = !label_GitHub_Instructions.Visible;
+        }
+
         private void resetQRCode()
         {
             pictureBoxQRCode.Visible = false;
             pictureBoxQRCode.Image = null;
-            textBox_LitterboxURL.Text = "";
+            textBox_FileSharingURL.Text = "";
             //label_URL_status.Text = "❌";
             //label_URL_status.ForeColor = Color.Red;
             button_saveQR.Enabled = false;
-            button_saveQR.Enabled = false;
+            checkBox_AddPreviewQR.Enabled = false;
+            lblStatus.Text = "";
         }
 
         public async Task<string> UploadToLitterboxAsync(string filePath)
@@ -457,7 +627,7 @@ namespace Watch_Face_Editor
                     // Файл
                     using (FileStream fs = new FileStream(
                         filePath,
-                        FileMode.Open,
+                        System.IO.FileMode.Open,
                         FileAccess.Read))
                     {
                         await fs.CopyToAsync(stream);
@@ -506,6 +676,43 @@ namespace Watch_Face_Editor
             }
 
             return input;
+        }
+
+        public static string ConvertGitHubBlobToPagesUrl(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return url;
+
+            try
+            {
+                Uri uri = new Uri(url);
+                string[] segments = uri.AbsolutePath.Trim('/').Split('/');
+
+                if (segments.Length >= 5 &&
+                    (segments[2] == "blob" || segments[2] == "tree") &&
+                    segments[3] == "main")
+                {
+                    string user = segments[0];
+                    string repo = segments[1];
+                    string path = string.Join("/", segments.Skip(4));
+
+                    // Проверка: если репозиторий называется UserName.github.io
+                    if (repo.Equals($"{user}.github.io", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return $"https://{user}.github.io/{path}";
+                    }
+                    else
+                    {
+                        return $"https://{user}.github.io/{repo}/{path}";
+                    }
+                }
+            }
+            catch
+            {
+                // Игнорируем ошибки и возвращаем исходную ссылку
+            }
+
+            return url;
         }
 
         private Bitmap GenerateQRCodeWithLogo(string text)
@@ -788,6 +995,33 @@ namespace Watch_Face_Editor
             return padded;
         }
 
+        private Bitmap AddPreviewWithMargins(Bitmap original, Bitmap preview, int margin, Color backgroundColor)
+        {
+            float previewScale = original.Height / (float)preview.Height;
+            int newPreviewWidth = (int)Math.Round(preview.Width * previewScale);
+            int newPreviewHeight = (int)Math.Round(preview.Height * previewScale);
+            Bitmap scaledPreview = new Bitmap(newPreviewWidth, newPreviewHeight);
+            using (Graphics g = Graphics.FromImage(scaledPreview))
+            {
+                g.Clear(Color.Transparent);
+                g.DrawImage(preview, 0, 0, newPreviewWidth, newPreviewHeight);
+            }
+
+            int newWidth = original.Width + margin + scaledPreview.Width;
+
+            Bitmap padded = new Bitmap(newWidth, original.Height);
+            using (Graphics g = Graphics.FromImage(padded))
+            {
+                g.Clear(backgroundColor);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                g.DrawImage(original, 0, 0, original.Width, original.Height);
+                g.DrawImage(scaledPreview, original.Width + margin, 0, scaledPreview.Width, scaledPreview.Height);
+            }
+
+            return padded;
+        }
+
         public static async Task<bool> UrlFileExistsAsync(string url)
         {
             try
@@ -808,29 +1042,6 @@ namespace Watch_Face_Editor
                 return false;
             }
         }
-
-        //private async void CheckFileExists(string url)
-        //{
-        //    url = url.Replace("zpkd1://", "http://");
-        //    bool exists = await UrlFileExistsAsync(url);
-
-        //    //label_URL_status.Text = exists ? "Файл найден ✅" : "Файл не найден ❌";
-        //    if (exists)
-        //    {
-        //        label_URL_status.Text = "✅";
-        //        label_URL_status.ForeColor = Color.Green;
-        //    }
-        //    else
-        //    {
-        //        label_URL_status.Text = "⚠️";
-        //        label_URL_status.ForeColor = Color.DarkOrange;
-        //        //label_URL_status.Text = "❌";
-        //        //label_URL_status.ForeColor = Color.Red;
-        //        //pictureBoxQRCode.Visible = false;
-        //        //button_saveQR.Enabled = false;
-        //        //resetQRCode();
-        //    }
-        //}
 
         public async Task<bool> CheckFilePostApiKeyAsync(string apiKey)
         {
@@ -896,20 +1107,20 @@ namespace Watch_Face_Editor
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 string nameText = NameForQR;
-                if (FileName != null) Path.GetFileNameWithoutExtension(FileName);
+                if (FileName != null) nameText = Path.GetFileNameWithoutExtension(FileName);
                 if (Watch_Face != null && Watch_Face.WatchFace_Info != null)
                 {
                     if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
                         nameText = Watch_Face.WatchFace_Info.WatchFaceName;
                     nameText = nameText.Trim();
-                    if (Watch_Face.WatchFace_Info.WatchFaceVersion != 0) nameText += " v" + Watch_Face.WatchFace_Info.WatchFaceVersion.ToString() + ".0.0";
+                    if (Watch_Face.WatchFace_Info.WatchFaceVersion != 0) nameText += " v" + Watch_Face.WatchFace_Info.WatchFaceVersion.ToString();
                 }
                 string fileName = "QRCode.png";
                 if (!string.IsNullOrWhiteSpace(nameText)) fileName = "QRCode " + nameText + ".png";
                 fileName = fileName.Replace(' ', '_');
 
-                saveDialog.Filter = "PNG Image|*.png";
-                saveDialog.Title = "Save QR code";
+                saveDialog.Filter = Properties.FormStrings.FilterPng;
+                saveDialog.Title = Properties.FormStrings.Dialog_Title_SaveQR;
                 saveDialog.FileName = fileName;
 
                 if (saveDialog.ShowDialog() == DialogResult.OK)
@@ -924,6 +1135,16 @@ namespace Watch_Face_Editor
                         DrawRoundedBorder(g, currentQRCode.Width, currentQRCode.Height, cornerRadius: 15, borderWidth: 4, borderColor: Color.Black);
                     }
                     Bitmap roundedQRCode = ApplyRoundedCorners(currentQRCode, cornerRadius: 15);
+
+                    // Добавляем предпросмотр
+                    if (checkBox_AddPreviewQR.Checked)
+                    {
+                        if (Watch_Face?.WatchFace_Info?.Preview != null)
+                        {
+                            Bitmap preview = OpenFileStream(Watch_Face.WatchFace_Info.Preview);
+                            if (preview != null) roundedQRCode = AddPreviewWithMargins(roundedQRCode, preview, margin: 20, backgroundColor: Color.FromArgb(255, 255, 224, 178));
+                        }
+                    }
 
                     //int textAreaHeight = 30;
                     //if (!string.IsNullOrWhiteSpace(nameText)) textAreaHeight = 25;
@@ -953,6 +1174,7 @@ namespace Watch_Face_Editor
                     if (SelectedModel.screenType == "round") modelsText = "○ " + modelsText;
                     else if (SelectedModel.screenType == "square") modelsText = "▢ " + modelsText;
                     else if (SelectedModel.screenType == "bar") modelsText = "▯ " + modelsText;
+                    modelsText += " (" + SelectedModel.background.w + "x" + SelectedModel.background.h + ")";
                     //Bitmap imageWithModels = DrawTextWrapped(
                     Bitmap imageWithModels = DrawTextWithOptions(
                             imageWithName,
@@ -1010,9 +1232,12 @@ namespace Watch_Face_Editor
 
         private void textBox_FilePost_API_key_TextChanged(object sender, EventArgs e)
         {
-            ProgramSettings.FilePost_API_key = textBox_FilePost_API_key.Text;
             if (textBox_FilePost_API_key.Text.Length > 10) btnUploadToFilePost.Enabled = true;
             else btnUploadToFilePost.Enabled = false;
+            if (Settings_Load) return;
+
+            //ProgramSettings.FilePost_API_key = textBox_FilePost_API_key.Text;
+            ProgramSettings.FilePost_API_key = SecretStorage.Encrypt(textBox_FilePost_API_key.Text);
 
             string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
             {
@@ -1022,13 +1247,413 @@ namespace Watch_Face_Editor
             File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
         }
 
-        private void radioButton_Litterbox_CheckedChanged(object sender, EventArgs e)
+        private void textBox_GitHub_TextChanged(object sender, EventArgs e)
         {
+            if (textBox_GitHub_owner.Text.Length > 0 && textBox_GitHub_token.Text.Length > 0 &&
+                    textBox_GitHub_repoName.Text.Length > 0) btnUploadToGitHub.Enabled = true;
+            else btnUploadToGitHub.Enabled = false;
+            if (Settings_Load) return;
+
+            ProgramSettings.GitHub_owner = textBox_GitHub_owner.Text;
+            ProgramSettings.GitHub_token = SecretStorage.Encrypt(textBox_GitHub_token.Text);
+            ProgramSettings.GitHub_repoName = textBox_GitHub_repoName.Text;
+            ProgramSettings.GitHub_filePath = textBox_GitHub_filePath.Text;
+            ProgramSettings.GitHub_AskConfirmation = checkBox_GitHub_AskConfirmation.Checked;
+
+            string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+        }
+
+        private void radioButton_FileSharing_CheckedChanged(object sender, EventArgs e)
+        {
+            //RadioButton radioButton = (RadioButton)sender;
             panel_Litterbox.Visible = radioButton_Litterbox.Checked;
             panel_FilePost.Visible = radioButton_FilePost.Checked;
+            panel_GitHub.Visible = radioButton_GitHub.Checked;
+
             panel_FilePost.Location = panel_Litterbox.Location;
-            if (radioButton_Litterbox.Checked) panel_FilePost_info.Visible = false;
+            panel_GitHub.Location = panel_Litterbox.Location;
+            panel_FilePost_info.Visible = false;
         }
+
+        private void panel_GitHub_VisibleChanged(object sender, EventArgs e)
+        {
+            if (panel_GitHub.Visible) 
+            {
+                if(textBox_GitHub_owner.Text.Length > 0 && textBox_GitHub_token.Text.Length > 0 &&
+                    textBox_GitHub_repoName.Text.Length > 0 && textBox_GitHub_filePath.Text.Length > 0) btnUploadToGitHub.Enabled = true;
+                else btnUploadToGitHub.Enabled = false;
+            }
+        }
+        #endregion
+
+        #region ZeppPlyer
+
+        private void button_ZeppPlayerBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "ZeppPlayer.exe|ZeppPlayer.exe";
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "ZeppPlayer";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox_ZeppPlayerPath.Text = openFileDialog.FileName;
+                ProgramSettings.ZeppPlayerPath = openFileDialog.FileName;
+
+                string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
+                {
+                    //DefaultValueHandling = DefaultValueHandling.Ignore,
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+                File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+            }
+        }
+
+        private async void button_ZeppPlayerSend_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(textBox_ZeppPlayerPath.Text))
+            {
+                MessageBox.Show(Properties.FormStrings.Message_ZeppPlayerNotFound,
+                    Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string projectPath = Path.GetDirectoryName(textBox_ZeppPlayerPath.Text) + @"\projects\";
+            if (!Directory.Exists(projectPath)) Directory.CreateDirectory(projectPath);
+            string projectName = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info?.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                projectName = Watch_Face.WatchFace_Info.WatchFaceName;
+            projectPath += projectName;
+
+            await CreateWatchFace_ZeppPlayer(projectPath, true);
+            MessageBox.Show(Properties.FormStrings.Message_Simulator_PushSuccess_Text,
+                Properties.FormStrings.Message_Infirmation_Caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            string tempDir = Application.StartupPath + @"\Temp";
+            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+        }
+
+        private void textBox_ZeppPlayerPath_TextChanged(object sender, EventArgs e)
+        {
+            button_ZeppPlayerSend.Enabled = File.Exists(textBox_ZeppPlayerPath.Text);
+        }
+
+        private void checkBox_ZeppPlayerCapture_CheckedChanged(object sender, EventArgs e)
+        {
+            if (button_CaptureStop.Enabled) button_CaptureStop_Click(null, null);
+            CheckBox checkBox = sender as CheckBox;
+
+            panel_SimulatorCapture.Visible = checkBox.Checked;
+            groupBox_simulator.Visible = !checkBox.Checked;
+
+            //if (checkBox.Checked) radioButton_Litterbox.Checked = true;
+            if (checkBox.Checked) label_GitHub_Instructions.Visible = false;
+        }
+
+        private void button_ZeppPlayer_UpdateScreenPos_Click(object sender, EventArgs e)
+        {
+            updateWindowsPos();
+        }
+
+        private void UpdateZeppPlayerPos()
+        {
+            var rect = UIAHelper.FindChromeElementRect(
+                "ZeppPlayer - Google Chrome",
+                "display");
+
+            if (rect != null)
+            {
+                //Console.WriteLine($"X={rect.Value.X}");
+                //Console.WriteLine($"Y={rect.Value.Y}");
+                //Console.WriteLine($"W={rect.Value.Width}");
+                //Console.WriteLine($"H={rect.Value.Height}");
+
+                numericUpDown_CapturePosX.Value = rect.Value.X;
+                numericUpDown_CapturePosY.Value = rect.Value.Y;
+                numericUpDown_CaptureHeight.Value = rect.Value.Height;
+
+                numericUpDown_CaptureOffsetX.Value = 0;
+                numericUpDown_CaptureOffsetY.Value = 0;
+            }
+            else
+            {
+                MessageBox.Show(Properties.FormStrings.Message_ZeppPlayerTabNotFound1 + Environment.NewLine +
+                    Properties.FormStrings.Message_ZeppPlayerTabNotFound2,
+                    Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async Task CreateWatchFace_ZeppPlayer(string projectPath, bool isSimulator = false)
+        {
+            try
+            {
+                if (Directory.Exists(projectPath)) DeleteDirectory(projectPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.FormStrings.Message_DontDelZip + Environment.NewLine + Environment.NewLine + ex.Message,
+                    Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string templatesFileDir = Application.StartupPath + @"\File_templates";
+
+            //if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
+            if (Directory.Exists(projectPath)) DeleteDirectory(projectPath);
+            Directory.CreateDirectory(projectPath);
+            Directory.CreateDirectory(projectPath + @"\assets");
+            Directory.CreateDirectory(projectPath + @"\watchface");
+
+            string imagesFolder = ProjectDir + @"\assets";
+            DirectoryInfo Folder;
+            Folder = new DirectoryInfo(imagesFolder);
+
+            // читаем подпапки в папках
+            List<string> allDirs = GetRecursDirectories(ProjectDir + @"\assets", 5, ProjectDir + @"\assets");
+            foreach (string dirNames in allDirs)
+            {
+                //Console.WriteLine(dirNames);
+                if (!Directory.Exists(projectPath + @"\assets" + dirNames)) Directory.CreateDirectory(projectPath + @"\assets" + dirNames);
+            }
+            List<string> allImagesFiles = GetRecursFiles(ProjectDir + @"\assets", "*.png", 5, ProjectDir + @"\assets");
+
+            progressBar1.Value = 0;
+            progressBar1.Maximum = allImagesFiles.Count;
+            progressBar1.Visible = true;
+            try
+            {
+                await Task.Run(() =>
+                {
+                    if (!isSimulator)
+                    {
+                        int fix_color = SelectedModel.colorScheme;
+                        bool fix_size = SelectedModel.fixSize;
+
+                        if (fix_color < 1 || fix_color > 3)
+                        {
+                            fix_color = 1;
+
+                            Invoke(new Action(() =>
+                            {
+                                MessageBox.Show(
+                                    Properties.FormStrings.Message_Wrong_ColorScheme + SelectedModel.name,
+                                    Properties.FormStrings.Message_Warning_Caption,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                            }));
+                        }
+
+                        if (ProgramSettings.Use_ARGB_encoding)
+                        {
+                            DialogResult result = DialogResult.No;
+
+                            Invoke(new Action(() =>
+                            {
+                                result = MessageBox.Show(
+                                    Properties.FormStrings.Message_ARGB_Line1 + Environment.NewLine +
+                                    Properties.FormStrings.Message_ARGB_Line2,
+                                    Properties.FormStrings.Message_Warning_Caption,
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question,
+                                    MessageBoxDefaultButton.Button2);
+                            }));
+
+                            if (result != DialogResult.Yes)
+                            {
+                                ProgramSettings.Use_ARGB_encoding = false;
+
+                                Invoke(new Action(() =>
+                                {
+                                    checkBox_Use_ARGB.Checked = false;
+                                }));
+                            }
+                        }
+
+                        foreach (string imgFileName in allImagesFiles)
+                        {
+                            string newDir = Path.GetDirectoryName(projectPath + @"\assets" + imgFileName);
+
+                            ImageAutoDetectWriteFormat(
+                                ProjectDir + @"\assets" + imgFileName,
+                                newDir,
+                                fix_size,
+                                fix_color);
+
+                            ValidateFileName(imgFileName);
+
+                            Invoke(new Action(() =>
+                            {
+                                progressBar1.Value++;
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        foreach (string imgFileName in allImagesFiles)
+                        {
+                            File.Copy(
+                                ProjectDir + @"\assets" + imgFileName,
+                                projectPath + @"\assets" + imgFileName,
+                                true);
+
+                            Invoke(new Action(() =>
+                            {
+                                progressBar1.Value++;
+                            }));
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error creating the watch face" + Environment.NewLine + Environment.NewLine + ex.Message,
+                    Properties.FormStrings.Message_Error_Caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            App_WatchFace app = new App_WatchFace();
+            app.app.appName = Path.GetFileNameWithoutExtension(FileName);
+            app.i18n.enUS.appName = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+            {
+                app.app.appName = Watch_Face.WatchFace_Info.WatchFaceName;
+                app.i18n.enUS.appName = Watch_Face.WatchFace_Info.WatchFaceName;
+            }
+            if (Watch_Face != null && Watch_Face.WatchFace_Info != null)
+            {
+                if (Watch_Face.WatchFace_Info.WatchFaceId > 999 && Watch_Face.WatchFace_Info.WatchFaceId < 10000000)
+                {
+                    app.app.appId = Watch_Face.WatchFace_Info.WatchFaceId;
+                }
+                if (Watch_Face.WatchFace_Info.Preview != null && Watch_Face.WatchFace_Info.Preview.Length > 0)
+                {
+                    app.app.icon = Watch_Face.WatchFace_Info.Preview + ".png";
+                    app.app.cover.Add(Watch_Face.WatchFace_Info.Preview + ".png");
+                    app.i18n.enUS.icon = Watch_Face.WatchFace_Info.Preview + ".png";
+                }
+                app.app.version.code = Watch_Face.WatchFace_Info.WatchFaceVersion;
+                app.app.version.name = Watch_Face.WatchFace_Info.WatchFaceVersion.ToString() + ".0.0";
+            }
+            if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Elements != null)
+            {
+                List<object> Elements = Watch_Face.ScreenNormal.Elements;
+                ElementAnimation animation = (ElementAnimation)Watch_Face.ScreenNormal.Elements.Find(ea => ea.GetType().Name == "ElementAnimation");
+                if (animation != null)
+                {
+                    if (animation.visible)
+                    {
+                        bool anim_exists = false;
+                        if (animation.Frame_Animation_List != null && animation.Frame_Animation_List.visible) anim_exists = true;
+                        if (animation.Motion_Animation_List != null && animation.Motion_Animation_List.visible) anim_exists = true;
+                        if (animation.Rotate_Animation_List != null && animation.Rotate_Animation_List.visible) anim_exists = true;
+                        if (anim_exists) app.module.watchface.hightCost = 1;
+                    }
+                }
+            }
+            if (Watch_Face.ScreenAOD != null)
+            {
+                if (Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0) app.module.watchface.lockscreen = 1;
+                if (Watch_Face.ScreenAOD.Background != null && Watch_Face.ScreenAOD.Background.visible)
+                {
+                    if (Watch_Face.ScreenAOD.Background.BackgroundImage != null &&
+                        Watch_Face.ScreenAOD.Background.BackgroundImage.src != null &&
+                        Watch_Face.ScreenAOD.Background.BackgroundImage.src.Length > 0) app.module.watchface.lockscreen = 1;
+                    if (Watch_Face.ScreenAOD.Background.BackgroundColor != null) app.module.watchface.lockscreen = 1;
+                }
+            }
+            if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
+            {
+                if (Watch_Face.ScreenNormal.Background.Editable_Background != null &&
+                    Watch_Face.ScreenNormal.Background.Editable_Background.enable_edit_bg &&
+                    Watch_Face.ScreenNormal.Background.Editable_Background.BackgroundList != null &&
+                    Watch_Face.ScreenNormal.Background.Editable_Background.BackgroundList.Count > 0) app.module.watchface.editable = 1;
+            }
+            if (Watch_Face.Editable_Elements != null && Watch_Face.Editable_Elements.visible) app.module.watchface.editable = 1;
+            if (Watch_Face.ElementEditablePointers != null && Watch_Face.ElementEditablePointers.visible &&
+                Watch_Face.ElementEditablePointers.config != null && Watch_Face.ElementEditablePointers.config.Count > 0) app.module.watchface.editable = 1;
+
+            app.designWidth = SelectedModel.designWidth;
+            foreach (int id in SelectedModel.deviceSource_ids)
+            {
+                app.platforms.Add(new Platform() { name = SelectedModel.name, deviceSource = id });
+            }
+
+            if (ProgramSettings.DevelopmentMode) app.packageInfo.mode = "development";
+
+            int timeStamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            app.packageInfo.timeStamp = timeStamp;
+            string appText = JsonConvert.SerializeObject(app, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            appText = appText.Replace("enUS", "en-US");
+            File.WriteAllText(projectPath + @"\app.json", appText, new UTF8Encoding(false));
+
+            File.Copy(templatesFileDir + @"\app.js", projectPath + @"\app.js");
+            if (Directory.Exists(ProjectDir + @"\assets\fonts"))
+            {
+                List<string> allFontsFiles = GetRecursFiles(ProjectDir + @"\assets\fonts", "*", 5, ProjectDir + @"\assets");
+                foreach (string fontFileName in allFontsFiles)
+                {
+                    ValidateFileName(fontFileName);
+                }
+                CopyDirectory(ProjectDir + @"\assets\fonts", projectPath + @"\assets\fonts", false);
+            }
+
+            // преобразуем настройки в текстовый файл
+            string variables = "";
+            string items = "";
+
+            JsonToJS(out variables, out items);
+
+
+            string indexText = File.ReadAllText(templatesFileDir + @"\index.js");
+            string versionText = "v " +
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+            indexText = indexText.Replace("* Watch_Face_Editor tool v*.*", "* Watch_Face_Editor tool " + versionText);
+
+            if (variables.Length > 0) indexText = indexText.Replace("//Variable declaration section", variables);
+            if (items.Length > 0) indexText = indexText.Replace("//Item description section", items);
+
+            // удаляем слушателя для пульса
+            int pos_destory = indexText.IndexOf("heart_rate.addEventListener");
+            if (pos_destory > 0)
+            {
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
+                if (pos_destory > 0)
+                {
+                    indexText = indexText.Insert(pos_destory, "heart_rate.removeEventListener(heart.event.CURRENT, hrCurrListener);"
+                                + Environment.NewLine + TabInString(8));
+                }
+            }
+
+            // удаляем мировое время
+            pos_destory = indexText.IndexOf("worldClock.init()");
+            if (pos_destory > 0)
+            {
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
+                if (pos_destory > 0)
+                {
+                    indexText = indexText.Insert(pos_destory, "worldClock.uninit();"
+                                + Environment.NewLine + TabInString(8));
+                }
+            }
+            indexText = indexText.Replace("\r", "");
+
+            File.WriteAllText(projectPath + @"\watchface\index.js", indexText, Encoding.UTF8);
+
+            progressBar1.Visible = false;
+        }
+
         #endregion
 
         #region Similator
@@ -1073,6 +1698,11 @@ namespace Watch_Face_Editor
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+        }
+
+        private async void button_SimulatorDisconnect_Click(object sender, EventArgs e)
+        {
+            await SimulatorShutdownAsync();
         }
 
         private async void button_SimulatorSend_Click(object sender, EventArgs e)
@@ -1128,21 +1758,36 @@ namespace Watch_Face_Editor
                 {
                     WindowHelper.BringToFront(hWnd_ModelEmulator);
                 }
+
+                if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
             }
         }
 
-        private void checkBox_screen_capture_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_SimulatorCapture_CheckedChanged(object sender, EventArgs e)
         {
-            panel_SimulatorCapture.Visible = checkBox_screen_capture.Checked;
+            if (button_CaptureStop.Enabled) button_CaptureStop_Click(null, null);
+            CheckBox checkBox = sender as CheckBox;
+
+            panel_SimulatorCapture.Visible = checkBox.Checked;
+            groupBox_ZeppPlayer.Visible = !checkBox.Checked;
+
+            if (checkBox.Checked) label_GitHub_Instructions.Visible = false;
         }
 
         private void button_UpdateScreenPos_Click(object sender, EventArgs e)
         {
-            updateSimulatorPos();
+            updateWindowsPos();
+        }
+
+        private void updateWindowsPos()
+        {
+            if (checkBox_SimulatorCapture.Checked) updateSimulatorPos();
+            else if (checkBox_ZeppPlayerCapture.Checked) UpdateZeppPlayerPos();
         }
 
         private void updateSimulatorPos()
         {
+            //if (socket == null || !socket.Connected) return;
             // Поиск окна симуляторапо заголовку
             IntPtr hWnd_Simulator = FindWindow(null, "Huami OS Simulator");
             if (hWnd_Simulator == IntPtr.Zero)
@@ -1171,14 +1816,11 @@ namespace Watch_Face_Editor
                 WinApiHelper.ClientAreaInfo EmulatorArea = WinApiHelper.GetClientArea(hWnd_ModelEmulator);
                 EmulatorAreaPosX = EmulatorArea.WindowRect.Left + EmulatorArea.ClientOffset.X;
                 EmulatorAreaPosY = EmulatorArea.WindowRect.Top + EmulatorArea.ClientOffset.Y;
-                label_ScreenPosX.Text = "X: " + EmulatorAreaPosX.ToString();
-                label_ScreenPosY.Text = "Y: " + EmulatorAreaPosY.ToString();
-                //label_offsetX.Text = "OffsetX: " + EmulatorArea.ClientOffset.X.ToString();
-                //label_offsetY.Text = "OffsetY: " + EmulatorArea.ClientOffset.Y.ToString();
-                //label_Width.Text = "Width: " + EmulatorArea.Width.ToString();
-                //label_Height.Text = "Height: " + EmulatorArea.Height.ToString();
+                numericUpDown_CapturePosX.Value = EmulatorAreaPosX;
+                numericUpDown_CapturePosY.Value = EmulatorAreaPosY;
 
-                if (numericUpDown_CaptureHeight.Value <= 100)
+                if (numericUpDown_CaptureHeight.Value <= 100 || 
+                    (numericUpDown_CaptureOffsetX.Value == 0 && numericUpDown_CaptureOffsetY.Value == 0))
                 {
                     numericUpDown_CaptureHeight.Value = SelectedModel.background.h;
                     EmulatorAreaOffsetY = EmulatorArea.Height - SelectedModel.background.h;
@@ -1191,6 +1833,30 @@ namespace Watch_Face_Editor
                 captureArea.Width = EmulatorAreaWidth;
                 captureArea.Height = EmulatorAreaHeight;
             }
+        }
+
+        private void numericUpDown_CapturePosX_ValueChanged(object sender, EventArgs e)
+        {
+            EmulatorAreaPosX = (int)numericUpDown_CapturePosX.Value;
+            captureArea.X = EmulatorAreaPosX + EmulatorAreaOffsetX;
+        }
+
+        private void numericUpDown_CapturePosY_ValueChanged(object sender, EventArgs e)
+        {
+            EmulatorAreaPosY = (int)numericUpDown_CapturePosY.Value;
+            captureArea.Y = EmulatorAreaPosY + EmulatorAreaOffsetY;
+        }
+
+        private void numericUpDown_CaptureOffsetX_ValueChanged(object sender, EventArgs e)
+        {
+            EmulatorAreaOffsetX = (int)numericUpDown_CaptureOffsetX.Value;
+            captureArea.X = EmulatorAreaPosX + EmulatorAreaOffsetX;
+        }
+
+        private void numericUpDown_CaptureOffsetY_ValueChanged(object sender, EventArgs e)
+        {
+            EmulatorAreaOffsetY = (int)numericUpDown_CaptureOffsetY.Value;
+            captureArea.Y = EmulatorAreaPosY + EmulatorAreaOffsetY;
         }
 
         private void numericUpDown_CaptureHeight_ValueChanged(object sender, EventArgs e)
@@ -1206,7 +1872,7 @@ namespace Watch_Face_Editor
         private void resetCaptureArea()
         {
             numericUpDown_CaptureHeight.Value = 99;
-            updateSimulatorPos();
+            updateWindowsPos();
         }
 
         private void button_CaptureStart_Click(object sender, EventArgs e)
@@ -1237,14 +1903,18 @@ namespace Watch_Face_Editor
             }
 
             SwitchCaptureElements(false);
+            if (progressBar_Capture.Visible) button_CaptureSaveGif.Enabled = false;
 
             StartCapture();
         }
 
         private void SwitchCaptureElements(bool enabled)
         {
-            checkBox_screen_capture.Enabled = enabled;
+            checkBox_SimulatorCapture.Enabled = enabled;
             button_UpdateScreenPos.Enabled = enabled;
+
+            numericUpDown_CapturePosX.Enabled = enabled;
+            numericUpDown_CapturePosY.Enabled = enabled;
             numericUpDown_CaptureHeight.Enabled = enabled;
             numericUpDown_CaptureOffsetX.Enabled = enabled;
             numericUpDown_CaptureOffsetY.Enabled = enabled;
@@ -1268,24 +1938,35 @@ namespace Watch_Face_Editor
         private void button_CaptureSaveGif_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //openFileDialog.InitialDirectory = subPath;
             saveFileDialog.Filter = "GIF Files: (*.gif)|*.gif";
             saveFileDialog.FileName = "Preview.gif";
-            //openFileDialog.Filter = "Binary File (*.bin)|*.bin";
-            ////openFileDialog1.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_SaveGIF;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                button_CaptureSaveGif.Enabled = false;
+                if (WindowHelper.WindowExists(hWnd_ModelEmulator))
+                {
+                    WindowHelper.BringToFront(hWnd_ModelEmulator);
+                }
+
                 numericUpDown_CaptureFrameCount.Enabled = false;
 
                 progressBar_Capture.Value = 0;
                 progressBar_Capture.Maximum = (int)numericUpDown_CaptureFrameCount.Value;
                 progressBar_Capture.Visible = true;
+                int captureFrameCount = (int)numericUpDown_CaptureFrameCount.Value;
+                button_CaptureBreakGif.Enabled = true;
+                button_CaptureBreakGif.Visible = true;
+
+                button_CapturePauseGif.Visible = true;
+                button_CaptureResumeGif.Visible = true;
 
                 Task.Run(async () =>
                 {
-                    await Task.Delay(100); // 👈 небольшая пауза (UI успевает обновиться)
+                    int startDelay = (int)(Math.Max(100, 1000 / numericUpDown_CaptureFps.Value));
+                    startDelay += 50;
+                    await Task.Delay(startDelay); // 👈 небольшая пауза (UI успевает обновиться)
                     try
                     {
                         int delay = (int)(1000 / numericUpDown_CaptureFps.Value);
@@ -1296,39 +1977,42 @@ namespace Watch_Face_Editor
                             {
                                 while (frameCount < numericUpDown_CaptureFrameCount.Value)
                                 {
-                                    Bitmap bitmap = null;
-
-                                    lock (frameLock)
+                                    if (button_CapturePauseGif.Enabled) // пауза
                                     {
-                                        bitmap = (Bitmap)currentFrame.Clone();
+                                        Bitmap bitmap = null;
+
+                                        lock (frameLock)
+                                        {
+                                            bitmap = (Bitmap)currentFrame.Clone();
+                                        }
+
+                                        //if (checkBox_WatchSkin_Use.Checked) bitmap = ApplyWatchSkin(bitmap);
+                                        //else if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
+                                        Bitmap processed = bitmap;
+
+                                        if (checkBox_WatchSkin_Use.Checked) processed = ApplyWatchSkin(bitmap);
+                                        else if (checkBox_crop.Checked) processed = ApplyMask(bitmap, mask);
+
+                                        if (!ReferenceEquals(processed, bitmap)) bitmap.Dispose();
+                                        bitmap = processed;
+
+                                        // Add first image and set the animation delay to 100ms
+                                        //MagickImage item = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap));
+                                        //collection.Add(item);
+                                        using (var item = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap)))
+                                        {
+                                            collection.Add(item.Clone());
+                                        }
+                                        collection[collection.Count - 1].AnimationDelay = (int)(100 / numericUpDown_CaptureFps.Value);
+                                        bitmap.Dispose();
+                                        //item.Dispose();
+
+                                        frameCount++;
+                                            Invoke(new Action(() =>
+                                            {
+                                                progressBar_Capture.Value = frameCount;
+                                            }));
                                     }
-
-                                    //if (checkBox_WatchSkin_Use.Checked) bitmap = ApplyWatchSkin(bitmap);
-                                    //else if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
-                                    Bitmap processed = bitmap;
-
-                                    if (checkBox_WatchSkin_Use.Checked) processed = ApplyWatchSkin(bitmap);
-                                    else if (checkBox_crop.Checked) processed = ApplyMask(bitmap, mask);
-
-                                    if (!ReferenceEquals(processed, bitmap)) bitmap.Dispose();
-                                    bitmap = processed;
-
-                                    // Add first image and set the animation delay to 100ms
-                                    //MagickImage item = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap));
-                                    //collection.Add(item);
-                                    using (var item = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap)))
-                                    {
-                                        collection.Add(item.Clone());
-                                    }
-                                    collection[collection.Count - 1].AnimationDelay = (int)(100 / numericUpDown_CaptureFps.Value);
-                                    bitmap.Dispose();
-                                    //item.Dispose();
-
-                                    frameCount++;
-                                    Invoke(new Action(() =>
-                                    {
-                                        progressBar_Capture.Value = frameCount;
-                                    }));
                                     await Task.Delay(delay);
                                 }
 
@@ -1354,12 +2038,42 @@ namespace Watch_Face_Editor
                     Invoke(new Action(() =>
                     {
                         progressBar_Capture.Visible = false;
+                        button_CaptureBreakGif.Visible = false;
+
+                        button_CapturePauseGif.Visible = false;
+                        button_CaptureResumeGif.Visible = false;
+
+                        numericUpDown_CaptureFrameCount.Enabled = true;
+                        numericUpDown_CaptureFrameCount.Value = captureFrameCount;
+
+                        button_CaptureSaveGif.Enabled = button_CaptureStop.Enabled;
                     }));
                 });
                 //progressBar_Capture.Visible = false;
 
-                numericUpDown_CaptureFrameCount.Enabled = true;
             }
+        }
+
+        private void button_CaptureBreakGif_Click(object sender, EventArgs e)
+        {
+            numericUpDown_CaptureFrameCount.Value = numericUpDown_CaptureFrameCount.Minimum;
+            button_CaptureBreakGif.Enabled = false;
+
+            button_CapturePauseGif.Enabled = true;
+            button_CaptureResumeGif.Enabled = false;
+
+        }
+
+        private void button_CapturePauseGif_Click(object sender, EventArgs e)
+        {
+            button_CapturePauseGif.Enabled = false;
+            button_CaptureResumeGif.Enabled = true;
+        }
+
+        private void button_CaptureResumeGif_Click(object sender, EventArgs e)
+        {
+            button_CapturePauseGif.Enabled = true; 
+            button_CaptureResumeGif.Enabled = false;
         }
 
         private void StartCapture()
@@ -1370,8 +2084,6 @@ namespace Watch_Face_Editor
 
             Task.Run(async () =>
             {
-                int delay = (int)(1000 / numericUpDown_CaptureFps.Value);
-
                 while (!cts.Token.IsCancellationRequested)
                 {
                     var frame = capture.GetFrame();
@@ -1383,6 +2095,13 @@ namespace Watch_Face_Editor
                         {
                             currentFrame?.Dispose();
                             currentFrame = (Bitmap)frame.Clone();
+                            if (checkBox_DrawCursor.Checked && currentFrame != null)
+                            {
+                                using (Graphics g = Graphics.FromImage(currentFrame))
+                                {
+                                    CursorHelper.DrawCursor(g, captureArea, checkBox_DrawCursor.CheckState);
+                                }
+                            }
                             uiCopy = (Bitmap)currentFrame.Clone();
                         }
 
@@ -1394,6 +2113,7 @@ namespace Watch_Face_Editor
                         }));
                     }
 
+                    int delay = (int)(1000 / numericUpDown_CaptureFps.Value);
                     await Task.Delay(delay);
                 }
             }, cts.Token);
@@ -1454,7 +2174,9 @@ namespace Watch_Face_Editor
                     MessageBox.Show(Properties.FormStrings.Message_ConnectedSimulator_Text, 
                         Properties.FormStrings.Message_Infirmation_Caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     button_SimulatorSend.Enabled = true;
-                    checkBox_screen_capture.Enabled = true;
+                    checkBox_SimulatorCapture.Enabled = true;
+                    button_SimulatorConnect.Enabled = false;
+                    button_SimulatorDisconnect.Enabled = true;
                     updateSimulatorPos();
                 });
             };
@@ -1466,8 +2188,10 @@ namespace Watch_Face_Editor
                     MessageBox.Show(Properties.FormStrings.Message_Simulator_Disconnected_Text,
                         Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     button_SimulatorSend.Enabled = false;
-                    checkBox_screen_capture.Checked = false;
-                    checkBox_screen_capture.Enabled = false;
+                    checkBox_SimulatorCapture.Checked = false;
+                    checkBox_SimulatorCapture.Enabled = false;
+                    button_SimulatorConnect.Enabled = true;
+                    button_SimulatorDisconnect.Enabled = false;
                 });
             };
 
@@ -1482,6 +2206,36 @@ namespace Watch_Face_Editor
                     Console.WriteLine($"Connect Error: {ex.Message}");
                 }
             });
+        }
+
+        public async Task SimulatorShutdownAsync()
+        {
+            if (socket == null)
+                return;
+
+            try
+            {
+                // 1. Отключаемся от сервера
+                await socket.DisconnectAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Disconnect error: {ex.Message}");
+            }
+            finally
+            {
+                try
+                {
+                    // 2. Освобождаем ресурсы
+                    socket.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Dispose error: {ex.Message}");
+                }
+
+                socket = null;
+            }
         }
 
         /// <summary>
@@ -1527,7 +2281,6 @@ namespace Watch_Face_Editor
             Console.WriteLine($"[DEBUG] Send 'message' event!");
 
             // 4. Send the JSON string to the simulator use same method like the Node via Socket.IO
-            // Uses new[] { jsonString } to matching IEnumerable<object> for EmitAsync
             await socket.EmitAsync("message", new[] { jsonMessage });
         }
 
@@ -1551,6 +2304,292 @@ namespace Watch_Face_Editor
         public int uploads_limit { get; set; }
 
         public int max_file_size_mb { get; set; }
+    }
+
+    public class GitHubRepoChecker
+    {
+        /// <summary>
+        /// Проверяет валидность токена и его соответствие указанному логину владельца.
+        /// </summary>
+        public static async Task<bool> ValidateCredentialsAsync(string token, string expectedOwner)
+        {
+            var client = new GitHubClient(new Octokit.ProductHeaderValue("GitHubAuthCheckerApp"));
+            client.Credentials = new Credentials(token);
+
+            try
+            {
+                // Запрашиваем данные текущего пользователя по токену
+                var user = await client.User.Current();
+
+                // Проверяем, совпадает ли владелец токена с ожидаемым логином (без учета регистра)
+                if (!string.Equals(user.Login, expectedOwner, StringComparison.OrdinalIgnoreCase))
+                {
+                    //throw new ArgumentException($"Токен принадлежит пользователю '{user.Login}', но указан владелец '{expectedOwner}'.");
+                    throw new ArgumentException(Properties.FormStrings.GitHub_TokenOwnerMismatch1 +" " + user.Login + ", " + Properties.FormStrings.GitHub_TokenOwnerMismatch2 + " " + expectedOwner);
+                }
+
+                Console.WriteLine($"Авторизация успешна! Токен принадлежит пользователю: {user.Login}");
+                return true;
+            }
+            catch (AuthorizationException)
+            {
+                // Срабатывает, если токен невалидный, просрочен или отозван
+                //throw new UnauthorizedAccessException("Переданный GitHub токен недействителен (ошибка 401 Unauthorized).");
+                throw new UnauthorizedAccessException(Properties.FormStrings.GitHub_InvalidToken);
+            }
+            catch (Exception ex) when (!(ex is ArgumentException || ex is UnauthorizedAccessException))
+            {
+                // Прочие ошибки (например, проблемы с сетью)
+                //throw new Exception($"Ошибка проверки авторизации: {ex.Message}", ex);
+                throw new Exception(Properties.FormStrings.GitHub_AuthError + ": " + ex.Message + ", " + ex);
+            }
+        }
+        
+        /// <summary>
+        /// Проверяет, существует ли указанный репозиторий и есть ли к нему доступ.
+        /// </summary>
+        public static async Task<bool> CheckRepositoryExistsAsync(string token, string owner, string repoName)
+        {
+            var client = new GitHubClient(new Octokit.ProductHeaderValue("GitHubRepoCheckerApp"));
+            client.Credentials = new Credentials(token);
+
+            try
+            {
+                // Пытаемся получить данные о репозитории
+                var repository = await client.Repository.Get(owner, repoName);
+
+                // Если код прошел сюда, значит репозиторий найден
+                Console.WriteLine($"Репозиторий найден! Полное имя: {repository.FullName}");
+                return true;
+            }
+            catch (NotFoundException)
+            {
+                // GitHub возвращает 404, если репозиторий приватный (и токен его не видит) или если его вообще нет
+                //throw new Exception($"Репозиторий '{repoName}' у пользователя '{owner}' не найден или к нему нет доступа.");
+                throw new Exception(Properties.FormStrings.GitHub_RepositoryNotFound1 + " " + repoName + " " + Properties.FormStrings.GitHub_RepositoryNotFound2);
+            }
+            catch (AuthorizationException)
+            {
+                throw new UnauthorizedAccessException(Properties.FormStrings.GitHub_InvalidToken);
+            }
+            catch (Exception ex) when (!(ex is NotFoundException || ex is UnauthorizedAccessException))
+            {
+                //throw new Exception($"Ошибка при проверке репозитория: {ex.Message}", ex);
+                throw new Exception(Properties.FormStrings.GitHub_RepositoryCheckError + ": " + ex.Message + ". " + ex);
+            }
+        }
+    }
+
+    public class GitHubArchiveUploader
+    {
+        public static async Task<string> UploadArchiveToGitHubAsync(
+            string token,
+            string owner,
+            string repoName,
+            string branch,
+            string targetFilePath,
+            string localFilePath,
+            string commitMessage,
+            bool confirm_file_replacement,
+            IProgress<UploadProgress> progress = null) // Добавили параметр прогресса
+        {
+            // Шаг 1: Чтение файла с диска
+            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_ReadFile/*, Percentage = 10*/ });
+            byte[] fileBytes = File.ReadAllBytes(localFilePath);
+
+            // Шаг 2: Кодирование в Base64 (для больших архивов это занимает время)
+            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_EncodeBase64/*, Percentage = 30*/ });
+            string base64Content = Convert.ToBase64String(fileBytes);
+
+            // Шаг 3: Авторизация клиента
+            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_ConnectingToAPI/*, Percentage = 50*/ });
+            var client = new GitHubClient(new Octokit.ProductHeaderValue("GitHubArchiveUploaderApp"));
+            client.Credentials = new Credentials(token);
+
+            string currentFileSha = null;
+
+            // Шаг 4: Проверка наличия старого файла на сервере
+            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_CheckExistingFile/*, Percentage = 60*/ });
+            try
+            {
+                var existingFiles = await client.Repository.Content.GetAllContentsByRef(owner, repoName, targetFilePath, branch);
+                if (existingFiles != null && existingFiles.Count > 0)
+                {
+                    currentFileSha = existingFiles[0].Sha;
+                }
+            }
+            catch (NotFoundException)
+            {
+                // Файла нет, это нормально
+            }
+
+            // Шаг 5: Передача по сети (Самый долгий этап. Ставим 80% и ждем ответа сервера)
+            if (currentFileSha == null)
+            {
+                progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UploadFile/*, Percentage = 80*/ });
+                //var createFileRequest = new CreateFileRequest(commitMessage, base64Content, branch, convertContentToBase64: true);
+                var createFileRequest = new CreateFileRequest(commitMessage + Path.GetFileName(targetFilePath), base64Content, branch, convertContentToBase64: false);
+                await client.Repository.Content.CreateFile(owner, repoName, targetFilePath, createFileRequest);
+            }
+            else
+            {
+                //progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UpdateFile/*, Percentage = 80*/ });
+                //var updateFileRequest = new UpdateFileRequest(commitMessage, base64Content, currentFileSha, branch, convertContentToBase64: false);
+                //await client.Repository.Content.UpdateFile(owner, repoName, targetFilePath, updateFileRequest);
+
+                if (!confirm_file_replacement)
+                {
+                    progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UpdateFile/*, Percentage = 80*/ });
+                    var updateFileRequest = new UpdateFileRequest(commitMessage + Path.GetFileName(targetFilePath), base64Content, currentFileSha, branch, convertContentToBase64: false);
+                    await client.Repository.Content.UpdateFile(owner, repoName, targetFilePath, updateFileRequest);
+                }
+                else
+                {
+                    Logger.WriteLine("File.Exists");
+                    FormFileExists f = new FormFileExists();
+                    f.ShowDialog();
+                    int dialogResult = f.Data;
+
+                    switch (dialogResult)
+                    {
+                        case 0: // Отмена
+                            throw new Exception(Properties.FormStrings.GitHub_UploadCanceled);
+                        //break;
+                        case 1: // заменить
+                            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UpdateFile/*, Percentage = 80*/ });
+                            var updateFileRequest = new UpdateFileRequest(commitMessage + Path.GetFileName(targetFilePath), base64Content, currentFileSha, branch, convertContentToBase64: false);
+                            await client.Repository.Content.UpdateFile(owner, repoName, targetFilePath, updateFileRequest);
+
+                            break;
+                        case 2: // сохранить оба
+                            Logger.WriteLine("newFileName.Copy");
+                            int count = 1;
+                            //string path = Path.GetDirectoryName(targetFilePath);
+                            string path = "";
+                            if (targetFilePath.Contains('/')) path = targetFilePath.Substring(0, targetFilePath.LastIndexOf('/'));
+                            string fileName = Path.GetFileNameWithoutExtension(targetFilePath);
+                            string extension = Path.GetExtension(targetFilePath);
+
+                            while (currentFileSha != null)
+                            {
+                                currentFileSha = null;
+                                targetFilePath = $"{path}/{fileName}({count++}){extension}".TrimStart('/'); // На случай, если path пустой.
+                                //targetFilePath = Path.Combine(path, newFileName);
+                                try
+                                {
+                                    var existingFiles = await client.Repository.Content.GetAllContentsByRef(owner, repoName, targetFilePath, branch);
+                                    if (existingFiles != null && existingFiles.Count > 0)
+                                    {
+                                        currentFileSha = existingFiles[0].Sha;
+                                    }
+                                }
+                                catch (NotFoundException)
+                                {
+                                    // Файла нет, это нормально
+                                }
+                            }
+                            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UploadFile/*, Percentage = 80*/ });
+                            var createFileRequest = new CreateFileRequest(commitMessage + Path.GetFileName(targetFilePath), base64Content, branch, convertContentToBase64: false);
+                            await client.Repository.Content.CreateFile(owner, repoName, targetFilePath, createFileRequest);
+
+                            break;
+                    }
+                }
+            }
+
+            // Готово!
+            progress?.Report(new UploadProgress { Stage = Properties.FormStrings.GitHub_Stage_UploadFileCompleted/*, Percentage = 100*/ });
+
+            //string downloadUrl = $"https://{owner}.github.io/{repoName}/{targetFilePath}";
+            string downloadUrl = $"https://github.com/{owner}/{repoName}/tree/{branch}/{targetFilePath}";
+            return downloadUrl;
+        }
+    }
+
+    public static class SecretStorage
+    {
+        public static string Encrypt(string text)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(text);
+
+            byte[] encrypted = ProtectedData.Protect(
+                data,
+                null,
+                DataProtectionScope.CurrentUser);
+
+            return Convert.ToBase64String(encrypted);
+        }
+
+        public static string Decrypt(string encryptedText)
+        {
+            try 
+            {
+                byte[] data = Convert.FromBase64String(encryptedText);
+
+                byte[] decrypted = ProtectedData.Unprotect(
+                    data,
+                    null,
+                    DataProtectionScope.CurrentUser);
+
+                return Encoding.UTF8.GetString(decrypted);
+            }
+            catch
+            {
+                return "";
+            }
+        }
+    }
+    #endregion
+
+    #region Zepplayer
+    public static class UIAHelper
+    {
+        public static Rectangle? FindChromeElementRect(
+            string windowName,
+            string automationId)
+        {
+            try
+            {
+                // 1. Ищем окно Chrome
+                var root = AutomationElement.RootElement;
+
+                var windowCondition = new PropertyCondition(
+                    AutomationElement.NameProperty,
+                    windowName);
+
+                var window = root.FindFirst(TreeScope.Children, windowCondition);
+
+                if (window == null)
+                    return null;
+
+                // 2. Ищем элемент внутри окна по AutomationId
+                var elementCondition = new PropertyCondition(
+                    AutomationElement.AutomationIdProperty,
+                    automationId);
+
+                var element = window.FindFirst(TreeScope.Descendants, elementCondition);
+
+                if (element == null)
+                    return null;
+
+                // 3. Берём координаты
+                var rect = element.Current.BoundingRectangle;
+
+                if (rect == System.Windows.Rect.Empty)
+                    return null;
+
+                // 4. Конвертация в System.Drawing.Rectangle
+                return new Rectangle(
+                    (int)rect.X,
+                    (int)rect.Y,
+                    (int)rect.Width,
+                    (int)rect.Height);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
     #endregion
 
@@ -1699,18 +2738,194 @@ namespace Watch_Face_Editor
         }
     }
 
+    //public class DxgiCapture : IScreenCapture
+    //{
+    //    private Device device;
+    //    private OutputDuplication duplication;
+    //    private bool initialized;
+    //    private Rectangle captureArea;
+
+    //    public bool IsSupported()
+    //    {
+    //        try
+    //        {
+    //            using (var d = new Device(SharpDX.Direct3D.DriverType.Hardware))
+    //            {
+    //                return true;
+    //            }
+    //        }
+    //        catch
+    //        {
+    //            return false;
+    //        }
+    //    }
+
+    //    public void Start(Rectangle area)
+    //    {
+    //        if (initialized) return;
+    //        captureArea = area;
+    //        captureArea = Rectangle.Intersect(captureArea, Screen.PrimaryScreen.Bounds); // ограничеваем размером экрана
+
+    //        device = new Device(SharpDX.Direct3D.DriverType.Hardware);
+
+    //        var dxgiDevice = device.QueryInterface<SharpDX.DXGI.Device>();
+    //        var adapter = dxgiDevice.Adapter;
+    //        var output = adapter.Outputs[0];
+    //        var output1 = output.QueryInterface<Output1>();
+
+    //        duplication = output1.DuplicateOutput(device);
+
+    //        initialized = true;
+    //    }
+
+    //    public void Stop()
+    //    {
+    //        try
+    //        {
+    //            duplication?.ReleaseFrame();
+    //        }
+    //        catch
+    //        {
+    //        }
+
+    //        duplication?.Dispose();
+    //        duplication = null;
+
+    //        device?.Dispose();
+    //        device = null;
+
+    //        initialized = false;
+    //    }
+
+    //    public Bitmap GetFrame()
+    //    {
+    //        SharpDX.DXGI.Resource screenResource = null;
+
+    //        try
+    //        {
+    //            OutputDuplicateFrameInformation frameInfo;
+
+    //            duplication.AcquireNextFrame(
+    //                100,
+    //                out frameInfo,
+    //                out screenResource);
+
+    //            using (var texture = screenResource.QueryInterface<Texture2D>())
+    //            {
+    //                var desc = texture.Description;
+
+    //                // staging texture (CPU readable)
+    //                var stagingDesc = new Texture2DDescription()
+    //                {
+    //                    CpuAccessFlags = CpuAccessFlags.Read,
+    //                    BindFlags = BindFlags.None,
+    //                    Format = desc.Format,
+    //                    Width = desc.Width,
+    //                    Height = desc.Height,
+    //                    OptionFlags = ResourceOptionFlags.None,
+    //                    MipLevels = 1,
+    //                    ArraySize = 1,
+    //                    SampleDescription = new SharpDX.DXGI.SampleDescription(1, 0),
+    //                    Usage = ResourceUsage.Staging
+    //                };
+
+    //                using (var stagingTex = new Texture2D(device, stagingDesc))
+    //                {
+    //                    // GPU -> CPU texture copy
+    //                    device.ImmediateContext.CopyResource(texture, stagingTex);
+
+    //                    // map CPU texture
+    //                    var mapSource = device.ImmediateContext.MapSubresource(
+    //                        stagingTex,
+    //                        0,
+    //                        SharpDX.Direct3D11.MapMode.Read,
+    //                        SharpDX.Direct3D11.MapFlags.None);
+    //                    Bitmap bmp = new Bitmap(
+    //                        captureArea.Width,
+    //                        captureArea.Height,
+    //                        PixelFormat.Format32bppArgb);
+    //                    Rectangle boundsRect = new Rectangle(
+    //                        0,
+    //                        0,
+    //                        captureArea.Width,
+    //                        captureArea.Height);
+
+    //                    BitmapData mapDest = bmp.LockBits(
+    //                        boundsRect,
+    //                        ImageLockMode.WriteOnly,
+    //                        bmp.PixelFormat);
+
+    //                    IntPtr sourcePtr = mapSource.DataPointer;
+    //                    IntPtr destPtr = mapDest.Scan0;
+
+    //                    int sourcePitch = mapSource.RowPitch;
+    //                    int destPitch = mapDest.Stride;
+
+    //                    for (int y = 0; y < captureArea.Height; y++)
+    //                    {
+    //                        IntPtr src = sourcePtr
+    //                            + (y + captureArea.Top) * sourcePitch
+    //                            + captureArea.Left * 4;
+
+    //                        IntPtr dst = destPtr
+    //                            + y * destPitch;
+
+    //                        Utilities.CopyMemory(
+    //                            dst,
+    //                            src,
+    //                            captureArea.Width * 4);
+    //                    }
+
+    //                    bmp.UnlockBits(mapDest);
+
+    //                    device.ImmediateContext.UnmapSubresource(stagingTex, 0);
+
+    //                    return bmp;
+    //                }
+    //            }
+    //        }
+    //        catch
+    //        {
+    //            return null;
+    //        }
+    //        finally
+    //        {
+    //            screenResource?.Dispose();
+
+    //            try
+    //            {
+    //                duplication.ReleaseFrame();
+    //            }
+    //            catch
+    //            {
+    //            }
+    //        }
+    //    }
+
+    //}
+
     public class DxgiCapture : IScreenCapture
     {
         private Device device;
         private OutputDuplication duplication;
-        private bool initialized;
+
+        private Texture2D stagingTexture;
+
         private Rectangle captureArea;
+        private Rectangle monitorBounds;
+
+        private bool initialized;
+
+        // =========================================================
+        // Проверка поддержки DXGI
+        // =========================================================
 
         public bool IsSupported()
         {
             try
             {
-                using (var d = new Device(SharpDX.Direct3D.DriverType.Hardware))
+                using (var d = new Device(
+                    SharpDX.Direct3D.DriverType.Hardware))
                 {
                     return true;
                 }
@@ -1721,23 +2936,99 @@ namespace Watch_Face_Editor
             }
         }
 
+        // =========================================================
+        // START
+        // =========================================================
+
         public void Start(Rectangle area)
         {
             if (initialized) return;
-            captureArea = area;
-            captureArea = Rectangle.Intersect(captureArea, Screen.PrimaryScreen.Bounds); // ограничеваем размером экрана
 
-            device = new Device(SharpDX.Direct3D.DriverType.Hardware);
+            captureArea = Rectangle.Intersect(
+                area,
+                SystemInformation.VirtualScreen);
 
-            var dxgiDevice = device.QueryInterface<SharpDX.DXGI.Device>();
-            var adapter = dxgiDevice.Adapter;
-            var output = adapter.Outputs[0];
-            var output1 = output.QueryInterface<Output1>();
+            if (captureArea.Width <= 0 || captureArea.Height <= 0)
+                throw new Exception("Invalid capture area");
 
-            duplication = output1.DuplicateOutput(device);
+            Console.WriteLine("VirtualScreen = " + SystemInformation.VirtualScreen);
+            Console.WriteLine("CaptureArea = " + captureArea);
+
+            var factory = new Factory1();
+
+            Output1 foundOutput = null;
+            Adapter1 foundAdapter = null;
+
+            // ============================
+            // FIND MONITOR
+            // ============================
+
+            foreach (var adapter in factory.Adapters1)
+            {
+                device?.Dispose();
+                device = new Device(adapter); // важно: device от adapter
+
+                foreach (var output in adapter.Outputs)
+                {
+                    var desc = output.Description;
+
+                    var rect = new Rectangle(
+                        desc.DesktopBounds.Left,
+                        desc.DesktopBounds.Top,
+                        desc.DesktopBounds.Right - desc.DesktopBounds.Left,
+                        desc.DesktopBounds.Bottom - desc.DesktopBounds.Top);
+
+                    Console.WriteLine($"MONITOR: {rect}");
+
+                    if (rect.IntersectsWith(captureArea))
+                    {
+                        monitorBounds = rect;
+                        foundOutput = output.QueryInterface<Output1>();
+                        foundAdapter = adapter;
+                        break;
+                    }
+                }
+
+                if (foundOutput != null)
+                    break;
+            }
+
+            if (foundOutput == null) throw new Exception("Monitor not found");
+
+            // ============================
+            // DUPLICATION
+            // ============================
+
+            duplication = foundOutput.DuplicateOutput(device);
+
+            // ============================
+            // STAGING TEXTURE
+            // ============================
+
+            stagingTexture?.Dispose();
+
+            stagingTexture = new Texture2D(
+                device,
+                new Texture2DDescription()
+                {
+                    CpuAccessFlags = CpuAccessFlags.Read,
+                    BindFlags = BindFlags.None,
+                    Format = Format.B8G8R8A8_UNorm,
+                    Width = monitorBounds.Width,
+                    Height = monitorBounds.Height,
+                    OptionFlags = ResourceOptionFlags.None,
+                    MipLevels = 1,
+                    ArraySize = 1,
+                    SampleDescription = new SampleDescription(1, 0),
+                    Usage = ResourceUsage.Staging
+                });
 
             initialized = true;
         }
+
+        // =========================================================
+        // STOP
+        // =========================================================
 
         public void Stop()
         {
@@ -1749,6 +3040,9 @@ namespace Watch_Face_Editor
             {
             }
 
+            stagingTexture?.Dispose();
+            stagingTexture = null;
+
             duplication?.Dispose();
             duplication = null;
 
@@ -1758,9 +3052,20 @@ namespace Watch_Face_Editor
             initialized = false;
         }
 
+        // =========================================================
+        // GET FRAME
+        // =========================================================
+
         public Bitmap GetFrame()
         {
-            SharpDX.DXGI.Resource screenResource = null;
+            if (!initialized || duplication == null)
+            {
+                return null;
+            }
+
+            DxgiResource screenResource = null;
+
+            bool frameAcquired = false;
 
             try
             {
@@ -1771,98 +3076,126 @@ namespace Watch_Face_Editor
                     out frameInfo,
                     out screenResource);
 
-                using (var texture = screenResource.QueryInterface<Texture2D>())
+                frameAcquired = true;
+
+                using (var screenTexture =
+                    screenResource.QueryInterface<Texture2D>())
                 {
-                    var desc = texture.Description;
+                    // =============================================
+                    // GPU -> CPU
+                    // =============================================
 
-                    // staging texture (CPU readable)
-                    var stagingDesc = new Texture2DDescription()
-                    {
-                        CpuAccessFlags = CpuAccessFlags.Read,
-                        BindFlags = BindFlags.None,
-                        Format = desc.Format,
-                        Width = desc.Width,
-                        Height = desc.Height,
-                        OptionFlags = ResourceOptionFlags.None,
-                        MipLevels = 1,
-                        ArraySize = 1,
-                        SampleDescription = new SharpDX.DXGI.SampleDescription(1, 0),
-                        Usage = ResourceUsage.Staging
-                    };
+                    device.ImmediateContext.CopyResource(
+                        screenTexture,
+                        stagingTexture);
 
-                    using (var stagingTex = new Texture2D(device, stagingDesc))
-                    {
-                        // GPU -> CPU texture copy
-                        device.ImmediateContext.CopyResource(texture, stagingTex);
+                    // =============================================
+                    // MAP
+                    // =============================================
 
-                        // map CPU texture
-                        var mapSource = device.ImmediateContext.MapSubresource(
-                            stagingTex,
+                    var mapSource =
+                        device.ImmediateContext.MapSubresource(
+                            stagingTexture,
                             0,
                             SharpDX.Direct3D11.MapMode.Read,
                             SharpDX.Direct3D11.MapFlags.None);
+                    int localX = captureArea.X - monitorBounds.X;
+                    int localY = captureArea.Y - monitorBounds.Y;
+
+                    try
+                    {
+                        // =========================================
+                        // LOCAL COORDS INSIDE MONITOR
+                        // =========================================
+
+                        int localLeft = captureArea.Left - monitorBounds.Left;
+
+                        int localTop = captureArea.Top - monitorBounds.Top;
+
+                        // safety
+                        if (localLeft < 0 || localTop < 0)
+                        {
+                            return null;
+                        }
+
                         Bitmap bmp = new Bitmap(
                             captureArea.Width,
                             captureArea.Height,
                             PixelFormat.Format32bppArgb);
-                        Rectangle boundsRect = new Rectangle(
+
+                        Rectangle rect = new Rectangle(
                             0,
                             0,
-                            captureArea.Width,
-                            captureArea.Height);
+                            bmp.Width,
+                            bmp.Height);
 
-                        BitmapData mapDest = bmp.LockBits(
-                            boundsRect,
-                            ImageLockMode.WriteOnly,
-                            bmp.PixelFormat);
+                        BitmapData bmpData =
+                            bmp.LockBits(
+                                rect,
+                                ImageLockMode.WriteOnly,
+                                bmp.PixelFormat);
 
-                        IntPtr sourcePtr = mapSource.DataPointer;
-                        IntPtr destPtr = mapDest.Scan0;
-
-                        int sourcePitch = mapSource.RowPitch;
-                        int destPitch = mapDest.Stride;
-
-                        for (int y = 0; y < captureArea.Height; y++)
+                        try
                         {
-                            IntPtr src = sourcePtr
-                                + (y + captureArea.Top) * sourcePitch
-                                + captureArea.Left * 4;
+                            IntPtr sourcePtr = mapSource.DataPointer;
 
-                            IntPtr dst = destPtr
-                                + y * destPitch;
+                            IntPtr destPtr = bmpData.Scan0;
 
-                            Utilities.CopyMemory(
-                                dst,
-                                src,
-                                captureArea.Width * 4);
+                            int sourcePitch = mapSource.RowPitch;
+
+                            int destPitch = bmpData.Stride;
+
+                            // =====================================
+                            // COPY CROPPED AREA
+                            // =====================================
+
+                            for (int y = 0; y < captureArea.Height; y++)
+                            {
+                                IntPtr src = sourcePtr + (y + localY) * sourcePitch + localX * 4;
+
+                                IntPtr dst = destPtr + y * destPitch;
+
+                                Utilities.CopyMemory(dst, src, captureArea.Width * 4);
+                            }
                         }
-
-                        bmp.UnlockBits(mapDest);
-
-                        device.ImmediateContext.UnmapSubresource(stagingTex, 0);
+                        finally
+                        {
+                            bmp.UnlockBits(bmpData);
+                        }
 
                         return bmp;
                     }
+                    finally
+                    {
+                        device.ImmediateContext.UnmapSubresource(stagingTexture, 0);
+                    }
                 }
             }
-            catch
+            catch (SharpDXException ex)
             {
+                Console.WriteLine("DXGI ERROR: " + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
                 return null;
             }
             finally
             {
                 screenResource?.Dispose();
-
-                try
+                if (frameAcquired)
                 {
-                    duplication.ReleaseFrame();
-                }
-                catch
-                {
+                    try
+                    {
+                        duplication.ReleaseFrame();
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }
-
     }
 
     public static class WindowHelper
@@ -1914,6 +3247,136 @@ namespace Watch_Face_Editor
         public static bool WindowExists(IntPtr hWnd)
         {
             return hWnd != IntPtr.Zero && IsWindow(hWnd);
+        }
+    }
+
+    public static class CursorHelper
+    {
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int vKey);
+
+        private const int VK_LBUTTON = 0x01;
+        private const int VK_RBUTTON = 0x02;
+        private const int VK_MBUTTON = 0x04;
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct POINT
+        {
+            public int X;
+            public int Y;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct CURSORINFO
+        {
+            public int cbSize;
+            public int flags;
+            public IntPtr hCursor;
+            public POINT ptScreenPos;
+        }
+
+        const int CURSOR_SHOWING = 0x00000001;
+
+        [DllImport("user32.dll")]
+        static extern bool GetCursorInfo(out CURSORINFO pci);
+
+        [DllImport("user32.dll")]
+        static extern bool DrawIcon(
+            IntPtr hDC,
+            int X,
+            int Y,
+            IntPtr hIcon);
+
+        public static void DrawCursor(Graphics g, Rectangle captureArea, CheckState checkState)
+        {
+            bool leftPressed = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
+
+            bool rightPressed = (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0;
+
+            bool middlePressed = (GetAsyncKeyState(VK_MBUTTON) & 0x8000) != 0;
+
+            CURSORINFO ci = new CURSORINFO();
+            ci.cbSize = Marshal.SizeOf(ci);
+
+            if (!GetCursorInfo(out ci)) return;
+
+            if (ci.flags != CURSOR_SHOWING) return;
+
+            // =========================================
+            // Cursor position inside capture area
+            // =========================================
+
+            // Координаты курсора относительно области захвата
+            int x = ci.ptScreenPos.X - captureArea.Left;
+            int y = ci.ptScreenPos.Y - captureArea.Top;
+
+            // =========================================
+            // Draw mouse click effects FIRST
+            // =========================================
+            if (checkState == CheckState.Indeterminate)
+            {
+                using (Bitmap src = new Bitmap(Application.StartupPath + @"\Mask\shortcut_pointer.png"))
+                {
+                    g.DrawImage(src, x - 15, y - 9);
+                }
+            }
+
+            if (leftPressed)
+            {
+                using (Brush b = new SolidBrush(Color.FromArgb(170, Color.Red)))
+                {
+                    g.FillEllipse(
+                        b,
+                        x - 15,
+                        y - 15,
+                        30,
+                        30);
+                }
+            }
+
+            if (rightPressed)
+            {
+                using (Brush b = new SolidBrush(Color.FromArgb(170, Color.DeepSkyBlue)))
+                {
+                    g.FillEllipse(
+                        b,
+                        x - 15,
+                        y - 15,
+                        30,
+                        30);
+                }
+            }
+
+            if (middlePressed)
+            {
+                using (Brush b = new SolidBrush(Color.FromArgb(170, Color.Green)))
+                {
+                    g.FillEllipse(
+                        b,
+                        x - 15,
+                        y - 15,
+                        30,
+                        30);
+                }
+            }
+
+            // =========================================
+            // Draw cursor LAST
+            // =========================================
+
+            if (checkState == CheckState.Checked)
+            {
+                IntPtr hdc = g.GetHdc();
+
+                try
+                {
+                    DrawIcon(hdc, x, y, ci.hCursor);
+                }
+                finally
+                {
+                    g.ReleaseHdc(hdc);
+                }
+            }
         }
     }
 

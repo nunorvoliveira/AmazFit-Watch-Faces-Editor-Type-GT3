@@ -17,6 +17,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
@@ -27,6 +29,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using ZXing;
 
 namespace Watch_Face_Editor
 {
@@ -447,7 +450,15 @@ namespace Watch_Face_Editor
             if (ProgramSettings.language.Length > 1) comboBox_Language.Text = ProgramSettings.language;
             checkBox_CreateZPK.Checked = ProgramSettings.CreateZPK;
             checkBox_Del_Confirm.Checked = ProgramSettings.DelConfirm;
-            textBox_FilePost_API_key.Text = ProgramSettings.FilePost_API_key;
+
+            textBox_ZeppPlayerPath.Text = ProgramSettings.ZeppPlayerPath;
+            //textBox_FilePost_API_key.Text = ProgramSettings.FilePost_API_key;
+            textBox_FilePost_API_key.Text = SecretStorage.Decrypt(ProgramSettings.FilePost_API_key);
+            textBox_GitHub_owner.Text = ProgramSettings.GitHub_owner;
+            textBox_GitHub_token.Text = SecretStorage.Decrypt(ProgramSettings.GitHub_token);
+            textBox_GitHub_repoName.Text = ProgramSettings.GitHub_repoName;
+            textBox_GitHub_filePath.Text = ProgramSettings.GitHub_filePath;
+            checkBox_GitHub_AskConfirmation.Checked = ProgramSettings.GitHub_AskConfirmation;
 
             checkBox_AutoSave.Checked = ProgramSettings.AutoSave;
             numericUpDown_AutoSave_Time.Value = ProgramSettings.AutoSaveTime;
@@ -554,6 +565,9 @@ namespace Watch_Face_Editor
             uCtrl_JS_script_Opt.AutoSize = true;
 
             groupBox_UploadToLitterbox.AutoSize = true;
+            groupBox_simulator.AutoSize = true;
+            groupBox_ZeppPlayer.AutoSize = true;
+            panel_Choosing_FileSharing.AutoSize = true;
 
             button_CreatePreview.Location = button_RefreshPreview.Location;
 
@@ -3022,7 +3036,7 @@ namespace Watch_Face_Editor
             Logger.WriteLine("* JSON (end)");
         }
 
-        private async void LoadJson(string fileName)
+        private void LoadJson(string fileName)
         {
             string text = File.ReadAllText(fileName);
 
@@ -3036,7 +3050,9 @@ namespace Watch_Face_Editor
                     text = File.ReadAllText(autosave_FileName);
                 }
             }
-           
+            checkBox_ZeppPlayerCapture.Checked = false;
+            checkBox_SimulatorCapture.Checked = false;
+
             Watch_Face = TextToJson(text);
 
             // отображение кнопок создания картинки предпросмотра
@@ -3092,7 +3108,7 @@ namespace Watch_Face_Editor
             button_Add_Images.Enabled = true;
             button_Add_Anim_Images.Enabled = true;
             LastColor.last_color = null;
-            await ShowElemetsWatchFace();
+            ShowElemetsWatchFace();
             if (Watch_Face != null && Watch_Face.WatchFace_Info != null && Watch_Face.WatchFace_Info.DeviceName != null)
             {
                 comboBox_watch_model.Text = GetNewFormatDeviceName(Watch_Face.WatchFace_Info.DeviceName);
@@ -6678,7 +6694,7 @@ namespace Watch_Face_Editor
 
 
         /// <summary>Отображаем элемынты в соответствии с json файлом</summary>
-        private async Task ShowElemetsWatchFace()
+        private void ShowElemetsWatchFace()
         {
             PreviewView = false;
             tableLayoutPanel_ElemetsWatchFace.Visible = false;
@@ -9320,7 +9336,7 @@ namespace Watch_Face_Editor
                         ShowExtraordinaryElemetsWatchFace(type, count, i);
                     }
 #endif
-                    await Task.Yield();
+                    //await Task.Yield();
                 }
             }
 
@@ -12137,11 +12153,6 @@ namespace Watch_Face_Editor
 
             if ((formPreview != null) && (formPreview.Visible))
             {
-                //if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
-                //{
-                //    if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
-                //    else Form_Preview.Watch_Model = comboBox_watch_model.Text;
-                //}
                 formPreview.radioButton_CheckedChanged(sender, e);
             }
 
@@ -13044,44 +13055,7 @@ namespace Watch_Face_Editor
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 int PreviewHeight = SelectedModel.previewHeight;
-                /*Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                int PreviewHeight = 306;
-                switch (ProgramSettings.Watch_Model)
-                {
-                    case "GTR 3 Pro":
-                        bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                        PreviewHeight = 324;
-                        break;
-                    case "GTS 3":
-                    case "GTS 4":
-                        bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                        PreviewHeight = 306;
-                        break;
-                    case "GTR 4":
-                        bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                        PreviewHeight = 314;
-                        break;
-                    case "Amazfit Band 7":
-                        bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                        PreviewHeight = 288;
-                        break;
-                    case "GTS 4 mini":
-                        bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                        PreviewHeight = 256;
-                        break;
-                    case "Falcon":
-                    case "GTR mini":
-                        bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                        PreviewHeight = 280;
-                        break;
-                }*/
+              
                 Graphics gPanel = Graphics.FromImage(bitmap);
                 int link = radioButton_ScreenNormal.Checked ? 0 : 1;
                 Preview_screen(gPanel, 1.0f, false, false, false, false, false, false, false, false, false, false, false, true, false, 
@@ -27824,6 +27798,11 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
                         break;
 
+                    case "Bip Max":
+                        comboBox_ConvertingInput_Model.Text = "432 (Bip Max)";
+                        comboBox_ConvertingOutput_Model.Text = "390 (Bip 6)";
+                        break;
+
                     case "Cheetah":
                         comboBox_ConvertingInput_Model.Text = "454 (Cheetah)";
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
@@ -27907,12 +27886,6 @@ namespace Watch_Face_Editor
             }
             if (e.TabPage.Name == "tabPage_Test")
             {
-                //pictureBoxQRCode.Visible = false;
-                //pictureBoxQRCode.Image = null;
-                //textBox_LitterboxURL.Text = "";
-                //label_URL_status.Text = "❌";
-                //label_URL_status.ForeColor = Color.Red;
-                //button_saveQR.Enabled = false;
                 resetQRCode();
             }
 
@@ -27954,6 +27927,9 @@ namespace Watch_Face_Editor
                 case "416 (Falcon)":
                 case "416 (GTR mini)":
                     numericUpDown_ConvertingInput_Custom.Value = 416;
+                    break;
+                case "432 (Bip Max)":
+                    numericUpDown_ConvertingInput_Custom.Value = 432;
                     break;
                 case "454 (GTR 3)":
                 case "454 (T-Rex 2)":
@@ -28009,6 +27985,9 @@ namespace Watch_Face_Editor
                 case "416 (GTR mini)":
                     numericUpDown_ConvertingOutput_Custom.Value = 416;
                     break;
+                case "432 (Bip Max)":
+                    numericUpDown_ConvertingOutput_Custom.Value = 432;
+                    break;
                 case "454 (GTR 3)":
                 case "454 (T-Rex 2)":
                 case "454 (T-Rex Ultra)":
@@ -28042,6 +28021,10 @@ namespace Watch_Face_Editor
             {
                 // сохранение если файл не сохранен
                 if (SaveRequest() == DialogResult.Cancel) return;
+
+                radioButton_Litterbox.Checked = true;
+                checkBox_ZeppPlayerCapture.Checked = false;
+                checkBox_SimulatorCapture.Checked = false;
 
                 string suffix = "_GTR_3";
                 float scale = 1;
@@ -28091,6 +28074,10 @@ namespace Watch_Face_Editor
                     case "416 (GTR mini)":
                         suffix = "_GTR_mini";
                         DeviceName = "GTR mini";
+                        break;
+                    case "432 (Bip Max)":
+                        suffix = "_Bip_Max";
+                        DeviceName = "Bip Max";
                         break;
                     case "454 (Cheetah)":
                         suffix = "_Cheetah";
@@ -28175,9 +28162,6 @@ namespace Watch_Face_Editor
                 string newDirName = Path.GetFileName(newFullDirName);
                 if (Directory.Exists(newFullDirName))
                 {
-                    //DialogResult dr = MessageBox.Show(Properties.FormStrings.Message_Save_JSON_Modified_Text1 +
-                    //    Path.GetFileNameWithoutExtension(FileName) + Properties.FormStrings.Message_Save_JSON_Modified_Text2,
-                    //    Properties.FormStrings.Message_Save_JSON_Modified_Caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                     DialogResult dr = MessageBox.Show(Properties.FormStrings.Message_WarningConverting_Text1
                         + newDirName + Properties.FormStrings.Message_WarningConverting_Text2,
                         Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -28296,7 +28280,6 @@ namespace Watch_Face_Editor
 
                 MessageBox.Show(Properties.FormStrings.Message_ConvertingCompleted_Text,
                         Properties.FormStrings.Message_Warning_Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //MessageBox.Show(Properties.FormStrings.Message_ConvertingCompleted_Text);
             }
         }
 
@@ -28355,6 +28338,11 @@ namespace Watch_Face_Editor
         private void linkLabel_FilePost_API_key_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://filepost.dev/");
+        }
+
+        private void linkLabel_ZeppPlayer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://mmk.pw/zepp_player/");
         }
 
         private void удалитьИзображениеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29022,6 +29010,128 @@ namespace Watch_Face_Editor
             }
         }
 
+        private CancellationTokenSource _cts;
+        private async void button_DownloadQR_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Images|*.png;*.jpg;*.jpeg;*.bmp";
+
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+
+                using (Bitmap bitmap = new Bitmap(dialog.FileName))
+                {
+                    BarcodeReader reader = new BarcodeReader
+                    {
+                        AutoRotate = true,
+                        Options =
+                {
+                    TryHarder = true,
+                    PossibleFormats = new[]
+                    {
+                        BarcodeFormat.QR_CODE
+                    }
+                }
+                    };
+
+                    var result = reader.Decode(bitmap);
+
+                    if (result != null)
+                    {
+                        if (result.Text.StartsWith("zpkd1://"))
+                        {
+                            string url = result.Text.Replace("zpkd1://", "https://");
+                            button_DownloadQR.Enabled = false;
+                            progressBar1.Visible = true;
+                            progressBar1.Minimum = 0;
+                            progressBar1.Maximum = 100;
+                            progressBar1.Value = 0;
+                            progressBar1.Step = 1;
+
+                            _cts = new CancellationTokenSource();
+
+                            try
+                            {
+                                // 1. заранее узнаём имя файла
+                                var info = await FileDownloader.GetDownloadInfoAsync(url);
+
+                                string filePath;
+                                // 1. запоминаем расширение исходного имени
+                                string ext = Path.GetExtension(info.FileName);
+                                // 2. если расширения нет — пробуем взять из info.Extension
+                                if (string.IsNullOrEmpty(ext))
+                                {
+                                    ext = info.Extension;
+                                }
+
+                                using (SaveFileDialog sfd = new SaveFileDialog())
+                                {
+                                    sfd.FileName = info.FileName;
+                                    sfd.Filter = "All files (*.*)|*.*";
+
+                                    if (sfd.ShowDialog() != DialogResult.OK) return;
+
+                                    filePath = sfd.FileName;
+
+                                    // 3. если пользователь НЕ указал расширение — добавляем сохранённое
+                                    if (string.IsNullOrEmpty(Path.GetExtension(filePath)) && 
+                                        !string.IsNullOrEmpty(ext) &&
+                                        !filePath.EndsWith(ext))
+                                    {
+                                        filePath += ext;
+                                    }
+                                }
+
+                                // 2. прогресс
+                                var progress = new Progress<int>(p =>
+                                {
+                                    progressBar1.Value = Math.Min(100, p);
+                                });
+
+                                // 3. скачивание
+                                await FileDownloader.DownloadAsync(url, filePath, progress, _cts.Token);
+
+                                MessageBox.Show("Готово!");
+                                string extension = Path.GetExtension(filePath).ToLower();
+                                if (extension == ".zip") Unpack_Zip(filePath);
+                                else if (extension == ".zpk") Unpack_Zpk(filePath);
+                            }
+                            catch (OperationCanceledException)
+                            {
+                                MessageBox.Show("Отменено");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            finally
+                            {
+                                progressBar1.Visible = false;
+                                button_DownloadQR.Enabled = true;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "Формат ссылки не соответсвует циферблату",
+                                "Ошибка",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "QR код не найден",
+                            "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+
+
     }
 }
 
@@ -29151,5 +29261,139 @@ public class MyCustomComparer : IComparer<FileInfo>
         Console.WriteLine(" ");
 
         return toCompare1.CompareTo(toCompare2);
+    }
+}
+
+public static class FileDownloader
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    public class DownloadInfo
+    {
+        public string FileName { get; set; }
+        public string Extension { get; set; }
+        public long ContentLength { get; set; }
+        public string ContentType { get; set; }
+    }
+
+    // 1. Получить мета-информацию (имя файла и тип)
+    public static async Task<DownloadInfo> GetDownloadInfoAsync(string url)
+    {
+        using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+        using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
+        {
+            response.EnsureSuccessStatusCode();
+
+            string fileName = GetFileNameFromHeaders(response.Content.Headers)
+                              ?? GetFileNameFromUrl(url);
+
+            string ext = Path.GetExtension(fileName);
+
+            if (string.IsNullOrEmpty(ext))
+            {
+                ext = GetExtensionFromContentType(response.Content.Headers.ContentType?.MediaType);
+            }
+
+            return new DownloadInfo
+            {
+                FileName = fileName,
+                Extension = ext,
+                ContentLength = response.Content.Headers.ContentLength ?? -1,
+                ContentType = response.Content.Headers.ContentType?.MediaType
+            };
+        }
+    }
+
+    // 2. Скачивание файла
+    public static async Task DownloadAsync(
+        string url,
+        string filePath,
+        IProgress<int> progress = null,
+        CancellationToken token = default)
+    {
+        using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+        using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, token))
+        {
+            response.EnsureSuccessStatusCode();
+
+            var contentLength = response.Content.Headers.ContentLength ?? -1;
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+            {
+                var buffer = new byte[8192];
+                long total = 0;
+                int read;
+
+                while ((read = await stream.ReadAsync(buffer, 0, buffer.Length, token)) > 0)
+                {
+                    await fileStream.WriteAsync(buffer, 0, read, token);
+                    total += read;
+
+                    if (contentLength > 0)
+                    {
+                        int percent = (int)(total * 100 / contentLength);
+                        progress?.Report(percent);
+                    }
+                }
+            }
+        }
+    }
+
+    // ---------- helpers ----------
+
+    private static string GetFileNameFromHeaders(HttpContentHeaders headers)
+    {
+        ContentDispositionHeaderValue cd = headers.ContentDisposition;
+
+        if (cd != null)
+        {
+            if (!string.IsNullOrEmpty(cd.FileNameStar))
+                return cd.FileNameStar.Trim('"');
+
+            if (!string.IsNullOrEmpty(cd.FileName))
+                return cd.FileName.Trim('"');
+        }
+
+        return null;
+    }
+
+    private static string GetFileNameFromUrl(string url)
+    {
+        try
+        {
+            var uri = new Uri(url);
+            var name = Path.GetFileName(uri.LocalPath);
+            return string.IsNullOrEmpty(name) ? "downloaded_file" : name;
+        }
+        catch
+        {
+            return "downloaded_file";
+        }
+    }
+
+    private static string GetExtensionFromContentType(string contentType)
+    {
+        if (string.IsNullOrEmpty(contentType))
+            return ".bin";
+
+        switch (contentType.ToLower())
+        {
+            case "image/jpeg": return ".jpg";
+            case "image/png": return ".png";
+            case "image/gif": return ".gif";
+            case "image/webp": return ".webp";
+
+            case "application/zip": return ".zip";
+            case "application/pdf": return ".pdf";
+            case "application/json": return ".json";
+            case "text/plain": return ".txt";
+
+            case "video/mp4": return ".mp4";
+            case "audio/mpeg": return ".mp3";
+
+            default:
+                return ".bin";
+        }
     }
 }
