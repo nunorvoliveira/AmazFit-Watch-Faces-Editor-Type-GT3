@@ -154,4 +154,7 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Previo</value>
   </data>
+  <data name="button_EditInformation.Text" xml:space="preserve">
+    <value>Editar información</value>
+  </data>
 </root>

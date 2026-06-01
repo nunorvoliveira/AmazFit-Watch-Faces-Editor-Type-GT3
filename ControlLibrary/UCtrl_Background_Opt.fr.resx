@@ -151,4 +151,7 @@
   <data name="label_EditableBackground_Hint.Text" xml:space="preserve">
     <value>Un arrière-plan personnalisé de l'écran principal sera utilisé</value>
   </data>
+  <data name="button_EditInformation.Text" xml:space="preserve">
+    <value>Éditer les informations</value>
+  </data>
 </root>

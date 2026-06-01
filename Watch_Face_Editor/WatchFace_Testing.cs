@@ -1095,6 +1095,7 @@ namespace Watch_Face_Editor
                 byte[] responseBytes = await client.DownloadDataTaskAsync("https://filepost.dev/v1/account");
 
                 string json = Encoding.UTF8.GetString(responseBytes);
+                Console.WriteLine("FilePost account info JSON: " + json);
 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
 

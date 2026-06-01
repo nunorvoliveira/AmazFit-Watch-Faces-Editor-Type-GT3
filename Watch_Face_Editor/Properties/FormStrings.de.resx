@@ -141,6 +141,9 @@
   <data name="Dialog_Title_SavePNG" xml:space="preserve">
     <value>Vorschau speichern</value>
   </data>
+  <data name="Dialog_Title_SaveQR" xml:space="preserve">
+    <value>QR-Code speichern</value>
+  </data>
   <data name="Dialog_Title_Save_As" xml:space="preserve">
     <value>Projekt speichern unter…</value>
   </data>
@@ -164,6 +167,12 @@
   </data>
   <data name="Elemet_Time" xml:space="preserve">
     <value>Zeit</value>
+  </data>
+  <data name="FilePost_info_storage_used" xml:space="preserve">
+    <value>Verwendeter Speicherplatz</value>
+  </data>
+  <data name="FilePost_info_uploads_month" xml:space="preserve">
+    <value>Uploads in diesem Monat</value>
   </data>
   <data name="FilterGif" xml:space="preserve">
     <value>GIF Dateien (*.gif)|*.gif</value>
@@ -189,11 +198,74 @@
   <data name="FollowSecond" xml:space="preserve">
     <value>Folge den Minuten</value>
   </data>
+  <data name="FormName_EditInformation" xml:space="preserve">
+    <value>Informationen bearbeiten</value>
+  </data>
   <data name="Form_Preview" xml:space="preserve">
     <value>Vorschau</value>
   </data>
   <data name="Form_PreviewX" xml:space="preserve">
     <value>Vorschau [X =</value>
+  </data>
+  <data name="GitHub_AuthError" xml:space="preserve">
+    <value>Fehler bei der Autorisierungsprüfung</value>
+  </data>
+  <data name="GitHub_CheckingRepository" xml:space="preserve">
+    <value>Es wird geprüft, ob das Repository vorhanden ist…</value>
+  </data>
+  <data name="GitHub_CheckingToken" xml:space="preserve">
+    <value>GitHub-Anmeldedaten werden überprüft…</value>
+  </data>
+  <data name="GitHub_FileAdded" xml:space="preserve">
+    <value>Es wurde eine neue Datei hinzugefügt</value>
+  </data>
+  <data name="GitHub_InvalidToken" xml:space="preserve">
+    <value>Das angegebene GitHub-Token ist ungültig (Fehler 401: Nicht autorisiert).</value>
+  </data>
+  <data name="GitHub_PreparingForLaunch" xml:space="preserve">
+    <value>Vorbereitung auf den Start…</value>
+  </data>
+  <data name="GitHub_RepositoryCheckError" xml:space="preserve">
+    <value>Fehler beim Überprüfen des Repositorys</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound1" xml:space="preserve">
+    <value>Repository</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound2" xml:space="preserve">
+    <value>nicht gefunden oder kein Zugriff.</value>
+  </data>
+  <data name="GitHub_Stage_CheckExistingFile" xml:space="preserve">
+    <value>Die vorhandene Datei im Repository wird überprüft…</value>
+  </data>
+  <data name="GitHub_Stage_ConnectingToAPI" xml:space="preserve">
+    <value>Verbindung zur GitHub-API wird hergestellt…</value>
+  </data>
+  <data name="GitHub_Stage_EncodeBase64" xml:space="preserve">
+    <value>Daten in Base64 kodieren…</value>
+  </data>
+  <data name="GitHub_Stage_ReadFile" xml:space="preserve">
+    <value>Das Archiv wird gelesen…</value>
+  </data>
+  <data name="GitHub_Stage_UpdateFile" xml:space="preserve">
+    <value>Die Datei wird auf dem Server aktualisiert (Daten werden hochgeladen)…</value>
+  </data>
+  <data name="GitHub_Stage_UploadFile" xml:space="preserve">
+    <value>Eine neue Datei auf dem Server erstellen (Daten hochladen)…</value>
+  </data>
+  <data name="GitHub_Stage_UploadFileCompleted" xml:space="preserve">
+    <value>Der Upload wurde erfolgreich abgeschlossen!</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch1" xml:space="preserve">
+    <value>Das Token gehört dem Benutzer</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch2" xml:space="preserve">
+    <value>aber als Eigentümer ist aufgeführt: </value>
+  </data>
+  <data name="GitHub_UploadCanceled" xml:space="preserve">
+    <value>Die Datei ist bereits vorhanden. Der Upload wurde vom Benutzer abgebrochen.</value>
+  </data>
+  <data name="GitHub_UploadSuccess" xml:space="preserve">
+    <value>Der Upload war erfolgreich!</value>
   </data>
   <data name="Img_Convert_Error_NoPalette" xml:space="preserve">
     <value>Fehlende Farbkarte</value>
@@ -228,6 +300,9 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Bist du sicher, dass du deine Bilder in das ARGB-Format konvertieren willst?</value>
   </data>
+  <data name="Message_AuthorisationError_Caption" xml:space="preserve">
+    <value>Autorisierungsfehler</value>
+  </data>
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Wiederherstellung</value>
   </data>
@@ -236,6 +311,12 @@
   </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Du musst ein Bild als Haupthintergrund festlegen.</value>
+  </data>
+  <data name="Message_ConfigurationError_Caption" xml:space="preserve">
+    <value>Konfigurationsfehler</value>
+  </data>
+  <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
+    <value>Mit dem Simulator verbunden!</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Es wurde ein neues Zifferblatt erstellt.</value>
@@ -263,6 +344,9 @@
   </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Es ist nicht möglich, eine bestehende Zifferblattdatei zu löschen.</value>
+  </data>
+  <data name="Message_DXGI_error_Text" xml:space="preserve">
+    <value>DXGI wird nicht unterstützt. Es wird auf BitBlt umgeschaltet.</value>
   </data>
   <data name="Message_EditableElementsAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine bearbeitbaren Elemente hinzufügen.</value>
@@ -315,6 +399,9 @@
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Fehler bei der Bildkonvertierung</value>
   </data>
+  <data name="Message_Infirmation_Caption" xml:space="preserve">
+    <value>Information</value>
+  </data>
   <data name="Message_InvalidFileName_Caption" xml:space="preserve">
     <value>Ungültiger Dateiname</value>
   </data>
@@ -329,6 +416,9 @@
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Fehler beim Lesen von JSON-Datei.</value>
+  </data>
+  <data name="Message_LaunchSimulator_Text" xml:space="preserve">
+    <value>Simulator starten</value>
   </data>
   <data name="Message_LoadPreviewStates_Caption" xml:space="preserve">
     <value>Vorschau-Einstellungen herunterladen</value>
@@ -347,6 +437,9 @@
   </data>
   <data name="Message_Old_OS" xml:space="preserve">
     <value>Dieses Element wird von dem ausgewählten Uhrenmodell nicht unterstützt.</value>
+  </data>
+  <data name="Message_OpenProject_Text" xml:space="preserve">
+    <value>Öffne das Projekt mit dem Zifferblatt.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Neustart</value>
@@ -371,6 +464,24 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine Verknüpfungen hinzufügen.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text1" xml:space="preserve">
+    <value>Der Simulator läuft.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text2" xml:space="preserve">
+    <value>Wählen Sie ein Modell aus und starten Sie den Emulator.</value>
+  </data>
+  <data name="Message_Simulator_Disconnected_Text" xml:space="preserve">
+    <value>Der Simulator ist nicht verbunden!</value>
+  </data>
+  <data name="Message_Simulator_NotConnected_Text" xml:space="preserve">
+    <value>Simulator nicht verbunden.</value>
+  </data>
+  <data name="Message_Simulator_PushSuccess_Text" xml:space="preserve">
+    <value>Push erfolgreich!</value>
+  </data>
+  <data name="Message_Simulator_StillConnecting_Text" xml:space="preserve">
+    <value>Wird noch verbunden... Bitte warten.</value>
   </data>
   <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
     <value>Die Anzahl der Bilder für die Trainingsbelastung sollte 3 betragen.</value>
@@ -417,8 +528,14 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Message_Warning_InvalidAPIKey_Text" xml:space="preserve">
+    <value>Ungültiger API-Schlüssel</value>
+  </data>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>Ein Ordner mit JS-Dateien ist bereits in diesem Ordner vorhanden.</value>
+  </data>
+  <data name="Message_Warning_OverwriteFile_Text" xml:space="preserve">
+    <value>Die Datei „*.zpk“ ist bereits vorhanden. Willst du sie überschreiben?</value>
   </data>
   <data name="Message_Warning_Version_Lower" xml:space="preserve">
     <value>Nicht die Versionsnummer des Ziffernblattes reduzieren.</value>
@@ -434,6 +551,15 @@
   </data>
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Vorschaubild konnte nicht erstellt werden. Vielleicht ist ein solches Bild bereits vorhanden.</value>
+  </data>
+  <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
+    <value>ZeppPlayer wurde unter dem angegebenen Pfad nicht gefunden.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound1" xml:space="preserve">
+    <value>Es wurde keine laufende Instanz von ZeppPlayer gefunden.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound2" xml:space="preserve">
+    <value>Öffne einen Tab mit ZeppPlayer in Chrome oder gib die Koordinaten manuell ein.</value>
   </data>
   <data name="Month_StrArray" xml:space="preserve">
     <value>Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez</value>
