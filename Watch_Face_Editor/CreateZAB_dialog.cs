@@ -72,12 +72,18 @@ namespace Watch_Face_Editor
             }
         }
 
-        public CreateZAB_dialog(string name, long id, int version)
+        public CreateZAB_dialog(string name, long id, int version, string formName = "" )
         {
             InitializeComponent();
             WatchFaceName = name;
             WatchFaceId = id;
             Version = version;
+            if (formName != "") 
+            { 
+                this.Text = formName;
+                panel2.Visible = false;
+                this.Height = this.Height - panel2.Height;
+            }
         }
 
         private void button_save_Click(object sender, EventArgs e)

@@ -151,4 +151,7 @@
   <data name="label_EditableBackground_Hint.Text" xml:space="preserve">
     <value>The editable background from the main screen will be used</value>
   </data>
+  <data name="button_EditInformation.Text" xml:space="preserve">
+    <value>Edit information</value>
+  </data>
 </root>

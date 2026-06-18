@@ -97,7 +97,7 @@
       9830657,
       9830659
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "square",
     "background": {
       "w": 390,
@@ -141,7 +141,7 @@
       10944771,
       10948867
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 466,
@@ -183,7 +183,7 @@
       10813697,
       10813699
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 480,
@@ -354,7 +354,7 @@
       9568513,
       9568515
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 480,
@@ -388,6 +388,96 @@
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 5.0
+  },
+  "Balance 3": {
+    "name": "Amazfit Balance 3",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      11141376,
+      11141377,
+      11141379,
+      11145472,
+      11145473,
+      11145475
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance_3.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
+  },
+  "Balance Ultra": {
+    "name": "Amazfit Balance Ultra",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      11075840,
+      11075841,
+      11092224,
+      11092225
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance_Ultra.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
   },
   "Bip 5": {
     "name": "Amazfit Bip 5",
@@ -482,7 +572,7 @@
       9765121,
       10158337
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "square",
     "background": {
       "w": 390,
@@ -513,6 +603,47 @@
     "maskImage": "mask_bip_6.png",
     "watchSkin": "WatchSkin_Bip_6.json",
     "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Bip Max": {
+    "name": "Amazfit Bip Max",
+    "designWidth": 432,
+    "deviceSource_ids": [
+      11206915
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "square",
+    "background": {
+      "w": 432,
+      "h": 514
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 219,
+        "h": 260
+      },
+      "scaling_1_0": {
+        "w": 434,
+        "h": 516
+      },
+      "scaling_1_5": {
+        "w": 650,
+        "h": 773
+      },
+      "scaling_2_0": {
+        "w": 865,
+        "h": 1029
+      },
+      "scaling_2_5": {
+        "w": 1081,
+        "h": 1286
+      }
+    },
+    "maskImage": "mask_bip_max.png",
+    "watchSkin": "WatchSkin_Bip_Max.json",
+    "previewHeight": 350,
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 5.0
@@ -650,7 +781,7 @@
       11010305,
       11010307
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 466,
@@ -681,6 +812,48 @@
     "maskImage": "mask_gtr_4.png",
     "watchSkin": "WatchSkin_Cheetah_2_Pro.json",
     "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Cheetah 2 Ultra": {
+    "name": "Amazfit Cheetah 2 Ultra",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      9978112,
+      9978113
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Cheetah_2_Ultra.json",
+    "previewHeight": 324,
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 5.0
@@ -864,7 +1037,7 @@
       250,
       251
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 416,
@@ -1118,7 +1291,7 @@
       10682625,
       10682627
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 466,
@@ -1161,7 +1334,7 @@
       10551553,
       10551555
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 480,
@@ -1246,7 +1419,7 @@
       10879232,
       10879235
     ],
-    "cpuPlatform": "MHS",
+    "cpuPlatform": "ZPS",
     "screenType": "round",
     "background": {
       "w": 480,

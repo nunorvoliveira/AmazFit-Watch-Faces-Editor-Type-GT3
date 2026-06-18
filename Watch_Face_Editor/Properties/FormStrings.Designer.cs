@@ -142,6 +142,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить QR-код.
+        /// </summary>
+        internal static string Dialog_Title_SaveQR {
+            get {
+                return ResourceManager.GetString("Dialog_Title_SaveQR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выбор файла циферблата.
         /// </summary>
         internal static string Dialog_Title_Unpack {
@@ -205,6 +214,24 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Занято места.
+        /// </summary>
+        internal static string FilePost_info_storage_used {
+            get {
+                return ResourceManager.GetString("FilePost_info_storage_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузок за месяц.
+        /// </summary>
+        internal static string FilePost_info_uploads_month {
+            get {
+                return ResourceManager.GetString("FilePost_info_uploads_month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GIF файлы (*.gif)|*.gif.
         /// </summary>
         internal static string FilterGif {
@@ -243,9 +270,18 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk.
         /// </summary>
-        internal static string FilterZipZab {
+        internal static string FilterZipZpk {
             get {
-                return ResourceManager.GetString("FilterZipZab", resourceCulture);
+                return ResourceManager.GetString("FilterZipZpk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл циферблата (*.zpk)|*.zpk.
+        /// </summary>
+        internal static string FilterZpk {
+            get {
+                return ResourceManager.GetString("FilterZpk", resourceCulture);
             }
         }
         
@@ -282,6 +318,195 @@ namespace Watch_Face_Editor.Properties {
         internal static string Form_PreviewX {
             get {
                 return ResourceManager.GetString("Form_PreviewX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Изменить информацию.
+        /// </summary>
+        internal static string FormName_EditInformation {
+            get {
+                return ResourceManager.GetString("FormName_EditInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка проверки авторизации.
+        /// </summary>
+        internal static string GitHub_AuthError {
+            get {
+                return ResourceManager.GetString("GitHub_AuthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверка существования репозитория....
+        /// </summary>
+        internal static string GitHub_CheckingRepository {
+            get {
+                return ResourceManager.GetString("GitHub_CheckingRepository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверка учетных данных GitHub....
+        /// </summary>
+        internal static string GitHub_CheckingToken {
+            get {
+                return ResourceManager.GetString("GitHub_CheckingToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавлен новый файл.
+        /// </summary>
+        internal static string GitHub_FileAdded {
+            get {
+                return ResourceManager.GetString("GitHub_FileAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Переданный GitHub токен недействителен (ошибка 401 Unauthorized)..
+        /// </summary>
+        internal static string GitHub_InvalidToken {
+            get {
+                return ResourceManager.GetString("GitHub_InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подготовка к запуску....
+        /// </summary>
+        internal static string GitHub_PreparingForLaunch {
+            get {
+                return ResourceManager.GetString("GitHub_PreparingForLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка при проверке репозитория.
+        /// </summary>
+        internal static string GitHub_RepositoryCheckError {
+            get {
+                return ResourceManager.GetString("GitHub_RepositoryCheckError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Репозиторий.
+        /// </summary>
+        internal static string GitHub_RepositoryNotFound1 {
+            get {
+                return ResourceManager.GetString("GitHub_RepositoryNotFound1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на не найден или к нему нет доступа..
+        /// </summary>
+        internal static string GitHub_RepositoryNotFound2 {
+            get {
+                return ResourceManager.GetString("GitHub_RepositoryNotFound2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверка существующего файла в репозитории....
+        /// </summary>
+        internal static string GitHub_Stage_CheckExistingFile {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_CheckExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подключение к GitHub API....
+        /// </summary>
+        internal static string GitHub_Stage_ConnectingToAPI {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_ConnectingToAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Кодирование данных в Base64....
+        /// </summary>
+        internal static string GitHub_Stage_EncodeBase64 {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_EncodeBase64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Чтение архива с диска....
+        /// </summary>
+        internal static string GitHub_Stage_ReadFile {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_ReadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обновление файла на сервере (загрузка данных)....
+        /// </summary>
+        internal static string GitHub_Stage_UpdateFile {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_UpdateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Создание нового файла на сервере (загрузка данных)....
+        /// </summary>
+        internal static string GitHub_Stage_UploadFile {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_UploadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка успешно завершена!.
+        /// </summary>
+        internal static string GitHub_Stage_UploadFileCompleted {
+            get {
+                return ResourceManager.GetString("GitHub_Stage_UploadFileCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Токен принадлежит пользователю.
+        /// </summary>
+        internal static string GitHub_TokenOwnerMismatch1 {
+            get {
+                return ResourceManager.GetString("GitHub_TokenOwnerMismatch1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на но указан владелец.
+        /// </summary>
+        internal static string GitHub_TokenOwnerMismatch2 {
+            get {
+                return ResourceManager.GetString("GitHub_TokenOwnerMismatch2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл существует. Загрузка отменена пользователем..
+        /// </summary>
+        internal static string GitHub_UploadCanceled {
+            get {
+                return ResourceManager.GetString("GitHub_UploadCanceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка успешно завершена!.
+        /// </summary>
+        internal static string GitHub_UploadSuccess {
+            get {
+                return ResourceManager.GetString("GitHub_UploadSuccess", resourceCulture);
             }
         }
         
@@ -385,6 +610,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка авторизации.
+        /// </summary>
+        internal static string Message_AuthorisationError_Caption {
+            get {
+                return ResourceManager.GetString("Message_AuthorisationError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Восстановление.
         /// </summary>
         internal static string Message_AutoSave_Caption {
@@ -408,6 +642,24 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_BG_Not_Image {
             get {
                 return ResourceManager.GetString("Message_BG_Not_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка конфигурации.
+        /// </summary>
+        internal static string Message_ConfigurationError_Caption {
+            get {
+                return ResourceManager.GetString("Message_ConfigurationError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подключено к симулятору!.
+        /// </summary>
+        internal static string Message_ConnectedSimulator_Text {
+            get {
+                return ResourceManager.GetString("Message_ConnectedSimulator_Text", resourceCulture);
             }
         }
         
@@ -489,6 +741,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_DontDelZip {
             get {
                 return ResourceManager.GetString("Message_DontDelZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на DXGI не поддерживается. Переключение на BitBlt..
+        /// </summary>
+        internal static string Message_DXGI_error_Text {
+            get {
+                return ResourceManager.GetString("Message_DXGI_error_Text", resourceCulture);
             }
         }
         
@@ -646,6 +907,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Информация.
+        /// </summary>
+        internal static string Message_Infirmation_Caption {
+            get {
+                return ResourceManager.GetString("Message_Infirmation_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Недопустимое имя файла.
         /// </summary>
         internal static string Message_InvalidFileName_Caption {
@@ -687,6 +957,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_JsonReadError_Text {
             get {
                 return ResourceManager.GetString("Message_JsonReadError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Запустите симулятор..
+        /// </summary>
+        internal static string Message_LaunchSimulator_Text {
+            get {
+                return ResourceManager.GetString("Message_LaunchSimulator_Text", resourceCulture);
             }
         }
         
@@ -741,6 +1020,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_Old_OS {
             get {
                 return ResourceManager.GetString("Message_Old_OS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Откройте проект с циферблатом..
+        /// </summary>
+        internal static string Message_OpenProject_Text {
+            get {
+                return ResourceManager.GetString("Message_OpenProject_Text", resourceCulture);
             }
         }
         
@@ -822,6 +1110,60 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ShortcutsAOD_Text {
             get {
                 return ResourceManager.GetString("Message_ShortcutsAOD_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор отключен!.
+        /// </summary>
+        internal static string Message_Simulator_Disconnected_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_Disconnected_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор не подключен..
+        /// </summary>
+        internal static string Message_Simulator_NotConnected_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_NotConnected_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправлено успешно!.
+        /// </summary>
+        internal static string Message_Simulator_PushSuccess_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_PushSuccess_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Все еще соединяюсь... Пожалуйста, подождите..
+        /// </summary>
+        internal static string Message_Simulator_StillConnecting_Text {
+            get {
+                return ResourceManager.GetString("Message_Simulator_StillConnecting_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Симулятор запущен..
+        /// </summary>
+        internal static string Message_SimulatorRuning_Text1 {
+            get {
+                return ResourceManager.GetString("Message_SimulatorRuning_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выберите модель и запустите эмулятор..
+        /// </summary>
+        internal static string Message_SimulatorRuning_Text2 {
+            get {
+                return ResourceManager.GetString("Message_SimulatorRuning_Text2", resourceCulture);
             }
         }
         
@@ -925,11 +1267,29 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не верный API Key.
+        /// </summary>
+        internal static string Message_Warning_InvalidAPIKey_Text {
+            get {
+                return ResourceManager.GetString("Message_Warning_InvalidAPIKey_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на В этой папке уже существует папка с JS файлами..
         /// </summary>
         internal static string Message_Warning_JS_Exist1 {
             get {
                 return ResourceManager.GetString("Message_Warning_JS_Exist1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл &quot;*.zpk&quot; уже существует. Перезаписать?.
+        /// </summary>
+        internal static string Message_Warning_OverwriteFile_Text {
+            get {
+                return ResourceManager.GetString("Message_Warning_OverwriteFile_Text", resourceCulture);
             }
         }
         
@@ -1011,6 +1371,33 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_Wrong_Preview_Exists {
             get {
                 return ResourceManager.GetString("Message_Wrong_Preview_Exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ZeppPlayer не найден по указанному пути..
+        /// </summary>
+        internal static string Message_ZeppPlayerNotFound {
+            get {
+                return ResourceManager.GetString("Message_ZeppPlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось найти запущенный ZeppPlayer..
+        /// </summary>
+        internal static string Message_ZeppPlayerTabNotFound1 {
+            get {
+                return ResourceManager.GetString("Message_ZeppPlayerTabNotFound1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Откройте в Chrome вкладку с ZeppPlayer или укажите координаты вручную..
+        /// </summary>
+        internal static string Message_ZeppPlayerTabNotFound2 {
+            get {
+                return ResourceManager.GetString("Message_ZeppPlayerTabNotFound2", resourceCulture);
             }
         }
         

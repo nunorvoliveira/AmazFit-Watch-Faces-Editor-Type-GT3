@@ -265,6 +265,99 @@ namespace Watch_Face_Editor
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.comboBox_ConvertingInput_Model = new System.Windows.Forms.ComboBox();
             this.numericUpDown_ConvertingInput_Custom = new System.Windows.Forms.NumericUpDown();
+            this.tabPage_Test = new System.Windows.Forms.TabPage();
+            this.panel_SimulatorCapture = new System.Windows.Forms.Panel();
+            this.button_CaptureResumeGif = new System.Windows.Forms.Button();
+            this.button_CapturePauseGif = new System.Windows.Forms.Button();
+            this.checkBox_DrawCursor = new System.Windows.Forms.CheckBox();
+            this.numericUpDown_CapturePosY = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.numericUpDown_CapturePosX = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button_CaptureBreakGif = new System.Windows.Forms.Button();
+            this.progressBar_Capture = new System.Windows.Forms.ProgressBar();
+            this.label18 = new System.Windows.Forms.Label();
+            this.numericUpDown_CaptureFrameCount = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numericUpDown_CaptureFps = new System.Windows.Forms.NumericUpDown();
+            this.button_CaptureSaveGif = new System.Windows.Forms.Button();
+            this.radioButtonBitBlt = new System.Windows.Forms.RadioButton();
+            this.radioButtonDxgi = new System.Windows.Forms.RadioButton();
+            this.button_CaptureStop = new System.Windows.Forms.Button();
+            this.button_CaptureStart = new System.Windows.Forms.Button();
+            this.pictureBox_Capture = new System.Windows.Forms.PictureBox();
+            this.numericUpDown_CaptureOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDown_CaptureOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label_CaptureWidth = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numericUpDown_CaptureHeight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox_simulator = new System.Windows.Forms.GroupBox();
+            this.button_SimulatorDisconnect = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkBox_SimulatorCapture = new System.Windows.Forms.CheckBox();
+            this.button_SimulatorSend = new System.Windows.Forms.Button();
+            this.button_SimulatorConnect = new System.Windows.Forms.Button();
+            this.linkLabel_ZeusCLI = new System.Windows.Forms.LinkLabel();
+            this.linkLabel_Simulator = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button_UpdateScreenPos = new System.Windows.Forms.Button();
+            this.groupBox_ZeppPlayer = new System.Windows.Forms.GroupBox();
+            this.button_ZeppPlayer_UpdateScreenPos = new System.Windows.Forms.Button();
+            this.checkBox_ZeppPlayerCapture = new System.Windows.Forms.CheckBox();
+            this.button_ZeppPlayerSend = new System.Windows.Forms.Button();
+            this.button_ZeppPlayerBrowse = new System.Windows.Forms.Button();
+            this.textBox_ZeppPlayerPath = new System.Windows.Forms.TextBox();
+            this.linkLabel_ZeppPlayer = new System.Windows.Forms.LinkLabel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.groupBox_UploadToLitterbox = new System.Windows.Forms.GroupBox();
+            this.radioButton_GitHub = new System.Windows.Forms.RadioButton();
+            this.checkBox_AddPreviewQR = new System.Windows.Forms.CheckBox();
+            this.panel_FilePost_info = new System.Windows.Forms.Panel();
+            this.label_FilePost_info_storage_used = new System.Windows.Forms.Label();
+            this.label_FilePost_info_uploads_month = new System.Windows.Forms.Label();
+            this.label_FilePost_info_email = new System.Windows.Forms.Label();
+            this.radioButton_FilePost = new System.Windows.Forms.RadioButton();
+            this.radioButton_Litterbox = new System.Windows.Forms.RadioButton();
+            this.button_saveQR = new System.Windows.Forms.Button();
+            this.pictureBoxQRCode = new System.Windows.Forms.PictureBox();
+            this.textBox_FileSharingURL = new System.Windows.Forms.TextBox();
+            this.label_URL = new System.Windows.Forms.Label();
+            this.panel_Choosing_FileSharing = new System.Windows.Forms.Panel();
+            this.panel_GitHub = new System.Windows.Forms.Panel();
+            this.label_GitHub_Instructions = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox_GitHub_AskConfirmation = new System.Windows.Forms.CheckBox();
+            this.btnUploadToGitHub = new System.Windows.Forms.Button();
+            this.pictureBox_GitHub_help = new System.Windows.Forms.PictureBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.label_GitHub_help = new System.Windows.Forms.Label();
+            this.textBox_GitHub_owner = new System.Windows.Forms.TextBox();
+            this.textBox_GitHub_filePath = new System.Windows.Forms.TextBox();
+            this.label_owner = new System.Windows.Forms.Label();
+            this.label_filePath = new System.Windows.Forms.Label();
+            this.label_token = new System.Windows.Forms.Label();
+            this.textBox_GitHub_repoName = new System.Windows.Forms.TextBox();
+            this.textBox_GitHub_token = new System.Windows.Forms.TextBox();
+            this.label_repoName = new System.Windows.Forms.Label();
+            this.panel_FilePost = new System.Windows.Forms.Panel();
+            this.linkLabel_FilePost_API_key = new System.Windows.Forms.LinkLabel();
+            this.textBox_FilePost_API_key = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnUploadToFilePost = new System.Windows.Forms.Button();
+            this.panel_Litterbox = new System.Windows.Forms.Panel();
+            this.btnUploadToLitterbox = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radioButton_1hour = new System.Windows.Forms.RadioButton();
+            this.radioButton_12hours = new System.Windows.Forms.RadioButton();
+            this.radioButton_3days = new System.Windows.Forms.RadioButton();
+            this.radioButton_1day = new System.Windows.Forms.RadioButton();
             this.tabPage_Settings = new System.Windows.Forms.TabPage();
             this.button_createZAB = new System.Windows.Forms.Button();
             this.checkBox_DevelopmentMode = new System.Windows.Forms.CheckBox();
@@ -375,6 +468,7 @@ namespace Watch_Face_Editor
             this.button_unpack_zip = new System.Windows.Forms.Button();
             this.pictureBox_Preview = new System.Windows.Forms.PictureBox();
             this.timer_AutoSave = new System.Windows.Forms.Timer(this.components);
+            this.button_DownloadQR = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_Edit.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -461,6 +555,27 @@ namespace Watch_Face_Editor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_ConvertingOutput_Custom)).BeginInit();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_ConvertingInput_Custom)).BeginInit();
+            this.tabPage_Test.SuspendLayout();
+            this.panel_SimulatorCapture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CapturePosY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CapturePosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureFrameCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureFps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Capture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureOffsetY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureOffsetX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureHeight)).BeginInit();
+            this.groupBox_simulator.SuspendLayout();
+            this.groupBox_ZeppPlayer.SuspendLayout();
+            this.groupBox_UploadToLitterbox.SuspendLayout();
+            this.panel_FilePost_info.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQRCode)).BeginInit();
+            this.panel_Choosing_FileSharing.SuspendLayout();
+            this.panel_GitHub.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_GitHub_help)).BeginInit();
+            this.panel_FilePost.SuspendLayout();
+            this.panel_Litterbox.SuspendLayout();
             this.tabPage_Settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AutoSave_Time)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -488,6 +603,7 @@ namespace Watch_Face_Editor
             // 
             this.tabControl1.Controls.Add(this.tabPage_Edit);
             this.tabControl1.Controls.Add(this.tabPageConverting);
+            this.tabControl1.Controls.Add(this.tabPage_Test);
             this.tabControl1.Controls.Add(this.tabPage_Settings);
             this.tabControl1.Controls.Add(this.tabPage_Tips);
             this.tabControl1.Controls.Add(this.tabPage_About);
@@ -605,16 +721,14 @@ namespace Watch_Face_Editor
             // 
             // удалитьИзображениеToolStripMenuItem
             // 
-            this.удалитьИзображениеToolStripMenuItem.Image = global::Watch_Face_Editor.Properties.Resources.image_remove_icon;
-            this.удалитьИзображениеToolStripMenuItem.Name = "удалитьИзображениеToolStripMenuItem";
             resources.ApplyResources(this.удалитьИзображениеToolStripMenuItem, "удалитьИзображениеToolStripMenuItem");
+            this.удалитьИзображениеToolStripMenuItem.Name = "удалитьИзображениеToolStripMenuItem";
             this.удалитьИзображениеToolStripMenuItem.Click += new System.EventHandler(this.удалитьИзображениеToolStripMenuItem_Click);
             // 
             // обновитьСписокИзображенийToolStripMenuItem
             // 
-            this.обновитьСписокИзображенийToolStripMenuItem.Image = global::Watch_Face_Editor.Properties.Resources.pictures_icon;
-            this.обновитьСписокИзображенийToolStripMenuItem.Name = "обновитьСписокИзображенийToolStripMenuItem";
             resources.ApplyResources(this.обновитьСписокИзображенийToolStripMenuItem, "обновитьСписокИзображенийToolStripMenuItem");
+            this.обновитьСписокИзображенийToolStripMenuItem.Name = "обновитьСписокИзображенийToolStripMenuItem";
             this.обновитьСписокИзображенийToolStripMenuItem.Click += new System.EventHandler(this.обновитьСписокИзображенийToolStripMenuItem_Click);
             // 
             // dataGridView_AnimImagesList
@@ -807,7 +921,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBox_IconBackground
             // 
-            this.pictureBox_IconBackground.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Background_icon;
             resources.ApplyResources(this.pictureBox_IconBackground, "pictureBox_IconBackground");
             this.pictureBox_IconBackground.Name = "pictureBox_IconBackground";
             this.pictureBox_IconBackground.TabStop = false;
@@ -828,35 +941,30 @@ namespace Watch_Face_Editor
             // 
             // pictureBox_IconDate
             // 
-            this.pictureBox_IconDate.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Very_Basic_Calendar_16;
             resources.ApplyResources(this.pictureBox_IconDate, "pictureBox_IconDate");
             this.pictureBox_IconDate.Name = "pictureBox_IconDate";
             this.pictureBox_IconDate.TabStop = false;
             // 
             // pictureBox_IconAir
             // 
-            this.pictureBox_IconAir.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Weather_Partly_Cloudy_Rain_16;
             resources.ApplyResources(this.pictureBox_IconAir, "pictureBox_IconAir");
             this.pictureBox_IconAir.Name = "pictureBox_IconAir";
             this.pictureBox_IconAir.TabStop = false;
             // 
             // pictureBox_IconSystem
             // 
-            this.pictureBox_IconSystem.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Logos_Administrative_Tools_16;
             resources.ApplyResources(this.pictureBox_IconSystem, "pictureBox_IconSystem");
             this.pictureBox_IconSystem.Name = "pictureBox_IconSystem";
             this.pictureBox_IconSystem.TabStop = false;
             // 
             // pictureBox_IconTime
             // 
-            this.pictureBox_IconTime.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Sidebar_Search_16;
             resources.ApplyResources(this.pictureBox_IconTime, "pictureBox_IconTime");
             this.pictureBox_IconTime.Name = "pictureBox_IconTime";
             this.pictureBox_IconTime.TabStop = false;
             // 
             // pictureBox_IconActivity
             // 
-            this.pictureBox_IconActivity.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Sports_Walking_16;
             resources.ApplyResources(this.pictureBox_IconActivity, "pictureBox_IconActivity");
             this.pictureBox_IconActivity.Name = "pictureBox_IconActivity";
             this.pictureBox_IconActivity.TabStop = false;
@@ -2455,6 +2563,7 @@ namespace Watch_Face_Editor
             this.userCtrl_Background_Options.Editable_background = false;
             this.userCtrl_Background_Options.Name = "userCtrl_Background_Options";
             this.userCtrl_Background_Options.ValueChanged += new ControlLibrary.UCtrl_Background_Opt.ValueChangedHandler(this.userCtrl_Background_Options_ValueChanged);
+            this.userCtrl_Background_Options.InformationChanged += new ControlLibrary.UCtrl_Background_Opt.InformationChangedHandler(this.userCtrl_Background_Options_InformationChanged);
             // 
             // uCtrl_EditableElements_Opt
             // 
@@ -2763,7 +2872,11 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingOutput_Model.Items25"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items26"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items27"),
-            resources.GetString("comboBox_ConvertingOutput_Model.Items28")});
+            resources.GetString("comboBox_ConvertingOutput_Model.Items28"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items29"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items30"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items31"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items32")});
             resources.ApplyResources(this.comboBox_ConvertingOutput_Model, "comboBox_ConvertingOutput_Model");
             this.comboBox_ConvertingOutput_Model.Name = "comboBox_ConvertingOutput_Model";
             this.comboBox_ConvertingOutput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingOutput_Model_SelectedIndexChanged);
@@ -2830,7 +2943,11 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingInput_Model.Items25"),
             resources.GetString("comboBox_ConvertingInput_Model.Items26"),
             resources.GetString("comboBox_ConvertingInput_Model.Items27"),
-            resources.GetString("comboBox_ConvertingInput_Model.Items28")});
+            resources.GetString("comboBox_ConvertingInput_Model.Items28"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items29"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items30"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items31"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items32")});
             resources.ApplyResources(this.comboBox_ConvertingInput_Model, "comboBox_ConvertingInput_Model");
             this.comboBox_ConvertingInput_Model.Name = "comboBox_ConvertingInput_Model";
             this.comboBox_ConvertingInput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingInput_Model_SelectedIndexChanged);
@@ -2854,6 +2971,752 @@ namespace Watch_Face_Editor
             0,
             0,
             0});
+            // 
+            // tabPage_Test
+            // 
+            this.tabPage_Test.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_Test.Controls.Add(this.panel_SimulatorCapture);
+            this.tabPage_Test.Controls.Add(this.groupBox_simulator);
+            this.tabPage_Test.Controls.Add(this.groupBox_ZeppPlayer);
+            this.tabPage_Test.Controls.Add(this.groupBox_UploadToLitterbox);
+            resources.ApplyResources(this.tabPage_Test, "tabPage_Test");
+            this.tabPage_Test.Name = "tabPage_Test";
+            // 
+            // panel_SimulatorCapture
+            // 
+            this.panel_SimulatorCapture.Controls.Add(this.button_CaptureResumeGif);
+            this.panel_SimulatorCapture.Controls.Add(this.button_CapturePauseGif);
+            this.panel_SimulatorCapture.Controls.Add(this.checkBox_DrawCursor);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CapturePosY);
+            this.panel_SimulatorCapture.Controls.Add(this.label20);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CapturePosX);
+            this.panel_SimulatorCapture.Controls.Add(this.label21);
+            this.panel_SimulatorCapture.Controls.Add(this.button_CaptureBreakGif);
+            this.panel_SimulatorCapture.Controls.Add(this.progressBar_Capture);
+            this.panel_SimulatorCapture.Controls.Add(this.label18);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CaptureFrameCount);
+            this.panel_SimulatorCapture.Controls.Add(this.label15);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CaptureFps);
+            this.panel_SimulatorCapture.Controls.Add(this.button_CaptureSaveGif);
+            this.panel_SimulatorCapture.Controls.Add(this.radioButtonBitBlt);
+            this.panel_SimulatorCapture.Controls.Add(this.radioButtonDxgi);
+            this.panel_SimulatorCapture.Controls.Add(this.button_CaptureStop);
+            this.panel_SimulatorCapture.Controls.Add(this.button_CaptureStart);
+            this.panel_SimulatorCapture.Controls.Add(this.pictureBox_Capture);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CaptureOffsetY);
+            this.panel_SimulatorCapture.Controls.Add(this.label14);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CaptureOffsetX);
+            this.panel_SimulatorCapture.Controls.Add(this.label16);
+            this.panel_SimulatorCapture.Controls.Add(this.label17);
+            this.panel_SimulatorCapture.Controls.Add(this.label_CaptureWidth);
+            this.panel_SimulatorCapture.Controls.Add(this.label13);
+            this.panel_SimulatorCapture.Controls.Add(this.numericUpDown_CaptureHeight);
+            this.panel_SimulatorCapture.Controls.Add(this.label12);
+            this.panel_SimulatorCapture.Controls.Add(this.label11);
+            this.panel_SimulatorCapture.Controls.Add(this.label10);
+            resources.ApplyResources(this.panel_SimulatorCapture, "panel_SimulatorCapture");
+            this.panel_SimulatorCapture.Name = "panel_SimulatorCapture";
+            // 
+            // button_CaptureResumeGif
+            // 
+            resources.ApplyResources(this.button_CaptureResumeGif, "button_CaptureResumeGif");
+            this.button_CaptureResumeGif.Name = "button_CaptureResumeGif";
+            this.button_CaptureResumeGif.UseVisualStyleBackColor = true;
+            this.button_CaptureResumeGif.Click += new System.EventHandler(this.button_CaptureResumeGif_Click);
+            // 
+            // button_CapturePauseGif
+            // 
+            resources.ApplyResources(this.button_CapturePauseGif, "button_CapturePauseGif");
+            this.button_CapturePauseGif.Name = "button_CapturePauseGif";
+            this.button_CapturePauseGif.UseVisualStyleBackColor = true;
+            this.button_CapturePauseGif.Click += new System.EventHandler(this.button_CapturePauseGif_Click);
+            // 
+            // checkBox_DrawCursor
+            // 
+            resources.ApplyResources(this.checkBox_DrawCursor, "checkBox_DrawCursor");
+            this.checkBox_DrawCursor.Name = "checkBox_DrawCursor";
+            this.checkBox_DrawCursor.ThreeState = true;
+            this.checkBox_DrawCursor.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown_CapturePosY
+            // 
+            resources.ApplyResources(this.numericUpDown_CapturePosY, "numericUpDown_CapturePosY");
+            this.numericUpDown_CapturePosY.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numericUpDown_CapturePosY.Minimum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_CapturePosY.Name = "numericUpDown_CapturePosY";
+            this.numericUpDown_CapturePosY.ValueChanged += new System.EventHandler(this.numericUpDown_CapturePosY_ValueChanged);
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // numericUpDown_CapturePosX
+            // 
+            resources.ApplyResources(this.numericUpDown_CapturePosX, "numericUpDown_CapturePosX");
+            this.numericUpDown_CapturePosX.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numericUpDown_CapturePosX.Minimum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_CapturePosX.Name = "numericUpDown_CapturePosX";
+            this.numericUpDown_CapturePosX.ValueChanged += new System.EventHandler(this.numericUpDown_CapturePosX_ValueChanged);
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // button_CaptureBreakGif
+            // 
+            resources.ApplyResources(this.button_CaptureBreakGif, "button_CaptureBreakGif");
+            this.button_CaptureBreakGif.Name = "button_CaptureBreakGif";
+            this.button_CaptureBreakGif.UseVisualStyleBackColor = true;
+            this.button_CaptureBreakGif.Click += new System.EventHandler(this.button_CaptureBreakGif_Click);
+            // 
+            // progressBar_Capture
+            // 
+            resources.ApplyResources(this.progressBar_Capture, "progressBar_Capture");
+            this.progressBar_Capture.Name = "progressBar_Capture";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // numericUpDown_CaptureFrameCount
+            // 
+            resources.ApplyResources(this.numericUpDown_CaptureFrameCount, "numericUpDown_CaptureFrameCount");
+            this.numericUpDown_CaptureFrameCount.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureFrameCount.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureFrameCount.Name = "numericUpDown_CaptureFrameCount";
+            this.numericUpDown_CaptureFrameCount.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // numericUpDown_CaptureFps
+            // 
+            resources.ApplyResources(this.numericUpDown_CaptureFps, "numericUpDown_CaptureFps");
+            this.numericUpDown_CaptureFps.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureFps.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureFps.Name = "numericUpDown_CaptureFps";
+            this.numericUpDown_CaptureFps.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // button_CaptureSaveGif
+            // 
+            resources.ApplyResources(this.button_CaptureSaveGif, "button_CaptureSaveGif");
+            this.button_CaptureSaveGif.Name = "button_CaptureSaveGif";
+            this.button_CaptureSaveGif.UseVisualStyleBackColor = true;
+            this.button_CaptureSaveGif.Click += new System.EventHandler(this.button_CaptureSaveGif_Click);
+            // 
+            // radioButtonBitBlt
+            // 
+            resources.ApplyResources(this.radioButtonBitBlt, "radioButtonBitBlt");
+            this.radioButtonBitBlt.Checked = true;
+            this.radioButtonBitBlt.Name = "radioButtonBitBlt";
+            this.radioButtonBitBlt.TabStop = true;
+            this.radioButtonBitBlt.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonDxgi
+            // 
+            resources.ApplyResources(this.radioButtonDxgi, "radioButtonDxgi");
+            this.radioButtonDxgi.Name = "radioButtonDxgi";
+            this.radioButtonDxgi.UseVisualStyleBackColor = true;
+            // 
+            // button_CaptureStop
+            // 
+            resources.ApplyResources(this.button_CaptureStop, "button_CaptureStop");
+            this.button_CaptureStop.Name = "button_CaptureStop";
+            this.button_CaptureStop.UseVisualStyleBackColor = true;
+            this.button_CaptureStop.Click += new System.EventHandler(this.button_CaptureStop_Click);
+            // 
+            // button_CaptureStart
+            // 
+            resources.ApplyResources(this.button_CaptureStart, "button_CaptureStart");
+            this.button_CaptureStart.Name = "button_CaptureStart";
+            this.button_CaptureStart.UseVisualStyleBackColor = true;
+            this.button_CaptureStart.Click += new System.EventHandler(this.button_CaptureStart_Click);
+            // 
+            // pictureBox_Capture
+            // 
+            this.pictureBox_Capture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBox_Capture, "pictureBox_Capture");
+            this.pictureBox_Capture.Name = "pictureBox_Capture";
+            this.pictureBox_Capture.TabStop = false;
+            // 
+            // numericUpDown_CaptureOffsetY
+            // 
+            resources.ApplyResources(this.numericUpDown_CaptureOffsetY, "numericUpDown_CaptureOffsetY");
+            this.numericUpDown_CaptureOffsetY.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureOffsetY.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_CaptureOffsetY.Name = "numericUpDown_CaptureOffsetY";
+            this.numericUpDown_CaptureOffsetY.ValueChanged += new System.EventHandler(this.numericUpDown_CaptureOffsetY_ValueChanged);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // numericUpDown_CaptureOffsetX
+            // 
+            resources.ApplyResources(this.numericUpDown_CaptureOffsetX, "numericUpDown_CaptureOffsetX");
+            this.numericUpDown_CaptureOffsetX.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureOffsetX.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_CaptureOffsetX.Name = "numericUpDown_CaptureOffsetX";
+            this.numericUpDown_CaptureOffsetX.ValueChanged += new System.EventHandler(this.numericUpDown_CaptureOffsetX_ValueChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // label_CaptureWidth
+            // 
+            resources.ApplyResources(this.label_CaptureWidth, "label_CaptureWidth");
+            this.label_CaptureWidth.Name = "label_CaptureWidth";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // numericUpDown_CaptureHeight
+            // 
+            resources.ApplyResources(this.numericUpDown_CaptureHeight, "numericUpDown_CaptureHeight");
+            this.numericUpDown_CaptureHeight.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureHeight.Minimum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureHeight.Name = "numericUpDown_CaptureHeight";
+            this.numericUpDown_CaptureHeight.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown_CaptureHeight.ValueChanged += new System.EventHandler(this.numericUpDown_CaptureHeight_ValueChanged);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // groupBox_simulator
+            // 
+            resources.ApplyResources(this.groupBox_simulator, "groupBox_simulator");
+            this.groupBox_simulator.Controls.Add(this.button_SimulatorDisconnect);
+            this.groupBox_simulator.Controls.Add(this.label9);
+            this.groupBox_simulator.Controls.Add(this.checkBox_SimulatorCapture);
+            this.groupBox_simulator.Controls.Add(this.button_SimulatorSend);
+            this.groupBox_simulator.Controls.Add(this.button_SimulatorConnect);
+            this.groupBox_simulator.Controls.Add(this.linkLabel_ZeusCLI);
+            this.groupBox_simulator.Controls.Add(this.linkLabel_Simulator);
+            this.groupBox_simulator.Controls.Add(this.label6);
+            this.groupBox_simulator.Controls.Add(this.button_UpdateScreenPos);
+            this.groupBox_simulator.Name = "groupBox_simulator";
+            this.groupBox_simulator.TabStop = false;
+            this.groupBox_simulator.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_Paint);
+            // 
+            // button_SimulatorDisconnect
+            // 
+            resources.ApplyResources(this.button_SimulatorDisconnect, "button_SimulatorDisconnect");
+            this.button_SimulatorDisconnect.Name = "button_SimulatorDisconnect";
+            this.button_SimulatorDisconnect.UseVisualStyleBackColor = true;
+            this.button_SimulatorDisconnect.Click += new System.EventHandler(this.button_SimulatorDisconnect_Click);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // checkBox_SimulatorCapture
+            // 
+            resources.ApplyResources(this.checkBox_SimulatorCapture, "checkBox_SimulatorCapture");
+            this.checkBox_SimulatorCapture.Name = "checkBox_SimulatorCapture";
+            this.checkBox_SimulatorCapture.UseVisualStyleBackColor = true;
+            this.checkBox_SimulatorCapture.CheckedChanged += new System.EventHandler(this.checkBox_SimulatorCapture_CheckedChanged);
+            // 
+            // button_SimulatorSend
+            // 
+            resources.ApplyResources(this.button_SimulatorSend, "button_SimulatorSend");
+            this.button_SimulatorSend.Name = "button_SimulatorSend";
+            this.button_SimulatorSend.UseVisualStyleBackColor = true;
+            this.button_SimulatorSend.Click += new System.EventHandler(this.button_SimulatorSend_Click);
+            // 
+            // button_SimulatorConnect
+            // 
+            resources.ApplyResources(this.button_SimulatorConnect, "button_SimulatorConnect");
+            this.button_SimulatorConnect.Name = "button_SimulatorConnect";
+            this.button_SimulatorConnect.UseVisualStyleBackColor = true;
+            this.button_SimulatorConnect.Click += new System.EventHandler(this.button_SimulatorConnect_Click);
+            // 
+            // linkLabel_ZeusCLI
+            // 
+            resources.ApplyResources(this.linkLabel_ZeusCLI, "linkLabel_ZeusCLI");
+            this.linkLabel_ZeusCLI.Name = "linkLabel_ZeusCLI";
+            this.linkLabel_ZeusCLI.TabStop = true;
+            this.linkLabel_ZeusCLI.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_ZeusCLI_LinkClicked);
+            // 
+            // linkLabel_Simulator
+            // 
+            resources.ApplyResources(this.linkLabel_Simulator, "linkLabel_Simulator");
+            this.linkLabel_Simulator.Name = "linkLabel_Simulator";
+            this.linkLabel_Simulator.TabStop = true;
+            this.linkLabel_Simulator.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Simulator_LinkClicked);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // button_UpdateScreenPos
+            // 
+            resources.ApplyResources(this.button_UpdateScreenPos, "button_UpdateScreenPos");
+            this.button_UpdateScreenPos.Name = "button_UpdateScreenPos";
+            this.button_UpdateScreenPos.UseVisualStyleBackColor = true;
+            this.button_UpdateScreenPos.Click += new System.EventHandler(this.button_UpdateScreenPos_Click);
+            // 
+            // groupBox_ZeppPlayer
+            // 
+            this.groupBox_ZeppPlayer.Controls.Add(this.button_ZeppPlayer_UpdateScreenPos);
+            this.groupBox_ZeppPlayer.Controls.Add(this.checkBox_ZeppPlayerCapture);
+            this.groupBox_ZeppPlayer.Controls.Add(this.button_ZeppPlayerSend);
+            this.groupBox_ZeppPlayer.Controls.Add(this.button_ZeppPlayerBrowse);
+            this.groupBox_ZeppPlayer.Controls.Add(this.textBox_ZeppPlayerPath);
+            this.groupBox_ZeppPlayer.Controls.Add(this.linkLabel_ZeppPlayer);
+            this.groupBox_ZeppPlayer.Controls.Add(this.label19);
+            resources.ApplyResources(this.groupBox_ZeppPlayer, "groupBox_ZeppPlayer");
+            this.groupBox_ZeppPlayer.Name = "groupBox_ZeppPlayer";
+            this.groupBox_ZeppPlayer.TabStop = false;
+            this.groupBox_ZeppPlayer.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_Paint);
+            // 
+            // button_ZeppPlayer_UpdateScreenPos
+            // 
+            resources.ApplyResources(this.button_ZeppPlayer_UpdateScreenPos, "button_ZeppPlayer_UpdateScreenPos");
+            this.button_ZeppPlayer_UpdateScreenPos.Name = "button_ZeppPlayer_UpdateScreenPos";
+            this.button_ZeppPlayer_UpdateScreenPos.UseVisualStyleBackColor = true;
+            this.button_ZeppPlayer_UpdateScreenPos.Click += new System.EventHandler(this.button_ZeppPlayer_UpdateScreenPos_Click);
+            // 
+            // checkBox_ZeppPlayerCapture
+            // 
+            resources.ApplyResources(this.checkBox_ZeppPlayerCapture, "checkBox_ZeppPlayerCapture");
+            this.checkBox_ZeppPlayerCapture.Name = "checkBox_ZeppPlayerCapture";
+            this.checkBox_ZeppPlayerCapture.UseVisualStyleBackColor = true;
+            this.checkBox_ZeppPlayerCapture.CheckedChanged += new System.EventHandler(this.checkBox_ZeppPlayerCapture_CheckedChanged);
+            // 
+            // button_ZeppPlayerSend
+            // 
+            resources.ApplyResources(this.button_ZeppPlayerSend, "button_ZeppPlayerSend");
+            this.button_ZeppPlayerSend.Name = "button_ZeppPlayerSend";
+            this.button_ZeppPlayerSend.UseVisualStyleBackColor = true;
+            this.button_ZeppPlayerSend.Click += new System.EventHandler(this.button_ZeppPlayerSend_Click);
+            // 
+            // button_ZeppPlayerBrowse
+            // 
+            resources.ApplyResources(this.button_ZeppPlayerBrowse, "button_ZeppPlayerBrowse");
+            this.button_ZeppPlayerBrowse.Name = "button_ZeppPlayerBrowse";
+            this.button_ZeppPlayerBrowse.UseVisualStyleBackColor = true;
+            this.button_ZeppPlayerBrowse.Click += new System.EventHandler(this.button_ZeppPlayerBrowse_Click);
+            // 
+            // textBox_ZeppPlayerPath
+            // 
+            this.textBox_ZeppPlayerPath.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_ZeppPlayerPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBox_ZeppPlayerPath, "textBox_ZeppPlayerPath");
+            this.textBox_ZeppPlayerPath.Name = "textBox_ZeppPlayerPath";
+            this.textBox_ZeppPlayerPath.ReadOnly = true;
+            this.textBox_ZeppPlayerPath.TextChanged += new System.EventHandler(this.textBox_ZeppPlayerPath_TextChanged);
+            // 
+            // linkLabel_ZeppPlayer
+            // 
+            resources.ApplyResources(this.linkLabel_ZeppPlayer, "linkLabel_ZeppPlayer");
+            this.linkLabel_ZeppPlayer.Name = "linkLabel_ZeppPlayer";
+            this.linkLabel_ZeppPlayer.TabStop = true;
+            this.linkLabel_ZeppPlayer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_ZeppPlayer_LinkClicked);
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // groupBox_UploadToLitterbox
+            // 
+            this.groupBox_UploadToLitterbox.Controls.Add(this.radioButton_GitHub);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.checkBox_AddPreviewQR);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.panel_FilePost_info);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.radioButton_FilePost);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.radioButton_Litterbox);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.button_saveQR);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.pictureBoxQRCode);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.textBox_FileSharingURL);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.label_URL);
+            this.groupBox_UploadToLitterbox.Controls.Add(this.panel_Choosing_FileSharing);
+            resources.ApplyResources(this.groupBox_UploadToLitterbox, "groupBox_UploadToLitterbox");
+            this.groupBox_UploadToLitterbox.Name = "groupBox_UploadToLitterbox";
+            this.groupBox_UploadToLitterbox.TabStop = false;
+            this.groupBox_UploadToLitterbox.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_Paint);
+            // 
+            // radioButton_GitHub
+            // 
+            resources.ApplyResources(this.radioButton_GitHub, "radioButton_GitHub");
+            this.radioButton_GitHub.Name = "radioButton_GitHub";
+            this.radioButton_GitHub.UseVisualStyleBackColor = true;
+            this.radioButton_GitHub.CheckedChanged += new System.EventHandler(this.radioButton_FileSharing_CheckedChanged);
+            // 
+            // checkBox_AddPreviewQR
+            // 
+            resources.ApplyResources(this.checkBox_AddPreviewQR, "checkBox_AddPreviewQR");
+            this.checkBox_AddPreviewQR.Name = "checkBox_AddPreviewQR";
+            this.checkBox_AddPreviewQR.UseVisualStyleBackColor = true;
+            // 
+            // panel_FilePost_info
+            // 
+            this.panel_FilePost_info.Controls.Add(this.label_FilePost_info_storage_used);
+            this.panel_FilePost_info.Controls.Add(this.label_FilePost_info_uploads_month);
+            this.panel_FilePost_info.Controls.Add(this.label_FilePost_info_email);
+            resources.ApplyResources(this.panel_FilePost_info, "panel_FilePost_info");
+            this.panel_FilePost_info.Name = "panel_FilePost_info";
+            // 
+            // label_FilePost_info_storage_used
+            // 
+            resources.ApplyResources(this.label_FilePost_info_storage_used, "label_FilePost_info_storage_used");
+            this.label_FilePost_info_storage_used.Name = "label_FilePost_info_storage_used";
+            // 
+            // label_FilePost_info_uploads_month
+            // 
+            resources.ApplyResources(this.label_FilePost_info_uploads_month, "label_FilePost_info_uploads_month");
+            this.label_FilePost_info_uploads_month.Name = "label_FilePost_info_uploads_month";
+            // 
+            // label_FilePost_info_email
+            // 
+            resources.ApplyResources(this.label_FilePost_info_email, "label_FilePost_info_email");
+            this.label_FilePost_info_email.Name = "label_FilePost_info_email";
+            // 
+            // radioButton_FilePost
+            // 
+            resources.ApplyResources(this.radioButton_FilePost, "radioButton_FilePost");
+            this.radioButton_FilePost.Name = "radioButton_FilePost";
+            this.radioButton_FilePost.UseVisualStyleBackColor = true;
+            this.radioButton_FilePost.CheckedChanged += new System.EventHandler(this.radioButton_FileSharing_CheckedChanged);
+            // 
+            // radioButton_Litterbox
+            // 
+            resources.ApplyResources(this.radioButton_Litterbox, "radioButton_Litterbox");
+            this.radioButton_Litterbox.Checked = true;
+            this.radioButton_Litterbox.Name = "radioButton_Litterbox";
+            this.radioButton_Litterbox.TabStop = true;
+            this.radioButton_Litterbox.UseVisualStyleBackColor = true;
+            this.radioButton_Litterbox.CheckedChanged += new System.EventHandler(this.radioButton_FileSharing_CheckedChanged);
+            // 
+            // button_saveQR
+            // 
+            resources.ApplyResources(this.button_saveQR, "button_saveQR");
+            this.button_saveQR.Name = "button_saveQR";
+            this.button_saveQR.UseVisualStyleBackColor = true;
+            this.button_saveQR.Click += new System.EventHandler(this.button_saveQR_Click);
+            // 
+            // pictureBoxQRCode
+            // 
+            resources.ApplyResources(this.pictureBoxQRCode, "pictureBoxQRCode");
+            this.pictureBoxQRCode.Name = "pictureBoxQRCode";
+            this.pictureBoxQRCode.TabStop = false;
+            // 
+            // textBox_FileSharingURL
+            // 
+            this.textBox_FileSharingURL.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_FileSharingURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBox_FileSharingURL, "textBox_FileSharingURL");
+            this.textBox_FileSharingURL.Name = "textBox_FileSharingURL";
+            this.textBox_FileSharingURL.ReadOnly = true;
+            // 
+            // label_URL
+            // 
+            resources.ApplyResources(this.label_URL, "label_URL");
+            this.label_URL.Name = "label_URL";
+            // 
+            // panel_Choosing_FileSharing
+            // 
+            this.panel_Choosing_FileSharing.Controls.Add(this.panel_GitHub);
+            this.panel_Choosing_FileSharing.Controls.Add(this.panel_FilePost);
+            this.panel_Choosing_FileSharing.Controls.Add(this.panel_Litterbox);
+            resources.ApplyResources(this.panel_Choosing_FileSharing, "panel_Choosing_FileSharing");
+            this.panel_Choosing_FileSharing.Name = "panel_Choosing_FileSharing";
+            // 
+            // panel_GitHub
+            // 
+            resources.ApplyResources(this.panel_GitHub, "panel_GitHub");
+            this.panel_GitHub.Controls.Add(this.label_GitHub_Instructions);
+            this.panel_GitHub.Controls.Add(this.panel2);
+            this.panel_GitHub.Name = "panel_GitHub";
+            this.panel_GitHub.VisibleChanged += new System.EventHandler(this.panel_GitHub_VisibleChanged);
+            // 
+            // label_GitHub_Instructions
+            // 
+            resources.ApplyResources(this.label_GitHub_Instructions, "label_GitHub_Instructions");
+            this.label_GitHub_Instructions.BackColor = System.Drawing.SystemColors.Control;
+            this.label_GitHub_Instructions.Name = "label_GitHub_Instructions";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.checkBox_GitHub_AskConfirmation);
+            this.panel2.Controls.Add(this.btnUploadToGitHub);
+            this.panel2.Controls.Add(this.pictureBox_GitHub_help);
+            this.panel2.Controls.Add(this.lblStatus);
+            this.panel2.Controls.Add(this.label_GitHub_help);
+            this.panel2.Controls.Add(this.textBox_GitHub_owner);
+            this.panel2.Controls.Add(this.textBox_GitHub_filePath);
+            this.panel2.Controls.Add(this.label_owner);
+            this.panel2.Controls.Add(this.label_filePath);
+            this.panel2.Controls.Add(this.label_token);
+            this.panel2.Controls.Add(this.textBox_GitHub_repoName);
+            this.panel2.Controls.Add(this.textBox_GitHub_token);
+            this.panel2.Controls.Add(this.label_repoName);
+            this.panel2.Name = "panel2";
+            // 
+            // checkBox_GitHub_AskConfirmation
+            // 
+            resources.ApplyResources(this.checkBox_GitHub_AskConfirmation, "checkBox_GitHub_AskConfirmation");
+            this.checkBox_GitHub_AskConfirmation.Name = "checkBox_GitHub_AskConfirmation";
+            this.checkBox_GitHub_AskConfirmation.UseVisualStyleBackColor = true;
+            this.checkBox_GitHub_AskConfirmation.CheckedChanged += new System.EventHandler(this.textBox_GitHub_TextChanged);
+            // 
+            // btnUploadToGitHub
+            // 
+            resources.ApplyResources(this.btnUploadToGitHub, "btnUploadToGitHub");
+            this.btnUploadToGitHub.Name = "btnUploadToGitHub";
+            this.btnUploadToGitHub.UseVisualStyleBackColor = true;
+            this.btnUploadToGitHub.Click += new System.EventHandler(this.btnUploadToGitHub_Click);
+            // 
+            // pictureBox_GitHub_help
+            // 
+            this.pictureBox_GitHub_help.Image = global::Watch_Face_Editor.Properties.Resources.help;
+            resources.ApplyResources(this.pictureBox_GitHub_help, "pictureBox_GitHub_help");
+            this.pictureBox_GitHub_help.Name = "pictureBox_GitHub_help";
+            this.pictureBox_GitHub_help.TabStop = false;
+            this.pictureBox_GitHub_help.Click += new System.EventHandler(this.pictureBox_GitHub_help_Click);
+            // 
+            // lblStatus
+            // 
+            resources.ApplyResources(this.lblStatus, "lblStatus");
+            this.lblStatus.Name = "lblStatus";
+            // 
+            // label_GitHub_help
+            // 
+            resources.ApplyResources(this.label_GitHub_help, "label_GitHub_help");
+            this.label_GitHub_help.Name = "label_GitHub_help";
+            this.label_GitHub_help.Click += new System.EventHandler(this.pictureBox_GitHub_help_Click);
+            // 
+            // textBox_GitHub_owner
+            // 
+            resources.ApplyResources(this.textBox_GitHub_owner, "textBox_GitHub_owner");
+            this.textBox_GitHub_owner.Name = "textBox_GitHub_owner";
+            this.textBox_GitHub_owner.TextChanged += new System.EventHandler(this.textBox_GitHub_TextChanged);
+            // 
+            // textBox_GitHub_filePath
+            // 
+            resources.ApplyResources(this.textBox_GitHub_filePath, "textBox_GitHub_filePath");
+            this.textBox_GitHub_filePath.Name = "textBox_GitHub_filePath";
+            this.textBox_GitHub_filePath.TextChanged += new System.EventHandler(this.textBox_GitHub_TextChanged);
+            // 
+            // label_owner
+            // 
+            resources.ApplyResources(this.label_owner, "label_owner");
+            this.label_owner.Name = "label_owner";
+            // 
+            // label_filePath
+            // 
+            resources.ApplyResources(this.label_filePath, "label_filePath");
+            this.label_filePath.Name = "label_filePath";
+            // 
+            // label_token
+            // 
+            resources.ApplyResources(this.label_token, "label_token");
+            this.label_token.Name = "label_token";
+            // 
+            // textBox_GitHub_repoName
+            // 
+            resources.ApplyResources(this.textBox_GitHub_repoName, "textBox_GitHub_repoName");
+            this.textBox_GitHub_repoName.Name = "textBox_GitHub_repoName";
+            this.textBox_GitHub_repoName.TextChanged += new System.EventHandler(this.textBox_GitHub_TextChanged);
+            // 
+            // textBox_GitHub_token
+            // 
+            resources.ApplyResources(this.textBox_GitHub_token, "textBox_GitHub_token");
+            this.textBox_GitHub_token.Name = "textBox_GitHub_token";
+            this.textBox_GitHub_token.UseSystemPasswordChar = true;
+            this.textBox_GitHub_token.TextChanged += new System.EventHandler(this.textBox_GitHub_TextChanged);
+            // 
+            // label_repoName
+            // 
+            resources.ApplyResources(this.label_repoName, "label_repoName");
+            this.label_repoName.Name = "label_repoName";
+            // 
+            // panel_FilePost
+            // 
+            resources.ApplyResources(this.panel_FilePost, "panel_FilePost");
+            this.panel_FilePost.Controls.Add(this.linkLabel_FilePost_API_key);
+            this.panel_FilePost.Controls.Add(this.textBox_FilePost_API_key);
+            this.panel_FilePost.Controls.Add(this.label8);
+            this.panel_FilePost.Controls.Add(this.label7);
+            this.panel_FilePost.Controls.Add(this.btnUploadToFilePost);
+            this.panel_FilePost.Name = "panel_FilePost";
+            // 
+            // linkLabel_FilePost_API_key
+            // 
+            resources.ApplyResources(this.linkLabel_FilePost_API_key, "linkLabel_FilePost_API_key");
+            this.linkLabel_FilePost_API_key.Name = "linkLabel_FilePost_API_key";
+            this.linkLabel_FilePost_API_key.TabStop = true;
+            this.linkLabel_FilePost_API_key.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_FilePost_API_key_LinkClicked);
+            // 
+            // textBox_FilePost_API_key
+            // 
+            resources.ApplyResources(this.textBox_FilePost_API_key, "textBox_FilePost_API_key");
+            this.textBox_FilePost_API_key.Name = "textBox_FilePost_API_key";
+            this.textBox_FilePost_API_key.UseSystemPasswordChar = true;
+            this.textBox_FilePost_API_key.TextChanged += new System.EventHandler(this.textBox_FilePost_API_key_TextChanged);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // btnUploadToFilePost
+            // 
+            resources.ApplyResources(this.btnUploadToFilePost, "btnUploadToFilePost");
+            this.btnUploadToFilePost.Name = "btnUploadToFilePost";
+            this.btnUploadToFilePost.UseVisualStyleBackColor = true;
+            this.btnUploadToFilePost.Click += new System.EventHandler(this.btnUploadToFilePost_Click);
+            // 
+            // panel_Litterbox
+            // 
+            resources.ApplyResources(this.panel_Litterbox, "panel_Litterbox");
+            this.panel_Litterbox.Controls.Add(this.btnUploadToLitterbox);
+            this.panel_Litterbox.Controls.Add(this.label5);
+            this.panel_Litterbox.Controls.Add(this.radioButton_1hour);
+            this.panel_Litterbox.Controls.Add(this.radioButton_12hours);
+            this.panel_Litterbox.Controls.Add(this.radioButton_3days);
+            this.panel_Litterbox.Controls.Add(this.radioButton_1day);
+            this.panel_Litterbox.Name = "panel_Litterbox";
+            // 
+            // btnUploadToLitterbox
+            // 
+            resources.ApplyResources(this.btnUploadToLitterbox, "btnUploadToLitterbox");
+            this.btnUploadToLitterbox.Name = "btnUploadToLitterbox";
+            this.btnUploadToLitterbox.UseVisualStyleBackColor = true;
+            this.btnUploadToLitterbox.Click += new System.EventHandler(this.btnUploadToLitterbox_Click);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // radioButton_1hour
+            // 
+            resources.ApplyResources(this.radioButton_1hour, "radioButton_1hour");
+            this.radioButton_1hour.Checked = true;
+            this.radioButton_1hour.Name = "radioButton_1hour";
+            this.radioButton_1hour.TabStop = true;
+            this.radioButton_1hour.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_12hours
+            // 
+            resources.ApplyResources(this.radioButton_12hours, "radioButton_12hours");
+            this.radioButton_12hours.Name = "radioButton_12hours";
+            this.radioButton_12hours.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_3days
+            // 
+            resources.ApplyResources(this.radioButton_3days, "radioButton_3days");
+            this.radioButton_3days.Name = "radioButton_3days";
+            this.radioButton_3days.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_1day
+            // 
+            resources.ApplyResources(this.radioButton_1day, "radioButton_1day");
+            this.radioButton_1day.Name = "radioButton_1day";
+            this.radioButton_1day.UseVisualStyleBackColor = true;
             // 
             // tabPage_Settings
             // 
@@ -3433,7 +4296,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBox_ES_site
             // 
-            this.pictureBox_ES_site.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.logo_es_site;
             resources.ApplyResources(this.pictureBox_ES_site, "pictureBox_ES_site");
             this.pictureBox_ES_site.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox_ES_site.Name = "pictureBox_ES_site";
@@ -3459,7 +4321,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBox_YouTube_Avoska88
             // 
-            this.pictureBox_YouTube_Avoska88.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.YouTube;
             resources.ApplyResources(this.pictureBox_YouTube_Avoska88, "pictureBox_YouTube_Avoska88");
             this.pictureBox_YouTube_Avoska88.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox_YouTube_Avoska88.Name = "pictureBox_YouTube_Avoska88";
@@ -3468,7 +4329,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBoxpictureBox_buymeacoff
             // 
-            this.pictureBoxpictureBox_buymeacoff.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.bmc_qr;
             resources.ApplyResources(this.pictureBoxpictureBox_buymeacoff, "pictureBoxpictureBox_buymeacoff");
             this.pictureBoxpictureBox_buymeacoff.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxpictureBox_buymeacoff.Name = "pictureBoxpictureBox_buymeacoff";
@@ -3509,7 +4369,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBox_qr
             // 
-            this.pictureBox_qr.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.Ionic_Qr_code;
             resources.ApplyResources(this.pictureBox_qr, "pictureBox_qr");
             this.pictureBox_qr.Name = "pictureBox_qr";
             this.pictureBox_qr.TabStop = false;
@@ -3574,7 +4433,6 @@ namespace Watch_Face_Editor
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::Watch_Face_Editor.Properties.Resources.gtr_3;
             resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
@@ -3745,7 +4603,6 @@ namespace Watch_Face_Editor
             // 
             // button_pack_zip
             // 
-            this.button_pack_zip.Image = global::Watch_Face_Editor.Properties.Resources.packaging;
             resources.ApplyResources(this.button_pack_zip, "button_pack_zip");
             this.button_pack_zip.Name = "button_pack_zip";
             this.button_pack_zip.UseVisualStyleBackColor = true;
@@ -3753,7 +4610,6 @@ namespace Watch_Face_Editor
             // 
             // button_unpack_zip
             // 
-            this.button_unpack_zip.Image = global::Watch_Face_Editor.Properties.Resources.unpacking;
             resources.ApplyResources(this.button_unpack_zip, "button_unpack_zip");
             this.button_unpack_zip.Name = "button_unpack_zip";
             this.button_unpack_zip.UseVisualStyleBackColor = true;
@@ -3773,10 +4629,18 @@ namespace Watch_Face_Editor
             this.timer_AutoSave.Interval = 60000;
             this.timer_AutoSave.Tick += new System.EventHandler(this.timer_AutoSave_Tick);
             // 
+            // button_DownloadQR
+            // 
+            resources.ApplyResources(this.button_DownloadQR, "button_DownloadQR");
+            this.button_DownloadQR.Name = "button_DownloadQR";
+            this.button_DownloadQR.UseVisualStyleBackColor = true;
+            this.button_DownloadQR.Click += new System.EventHandler(this.button_DownloadQR_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button_DownloadQR);
             this.Controls.Add(this.checkBox_Show_Buttons);
             this.Controls.Add(this.label_watch_model);
             this.Controls.Add(this.comboBox_watch_model);
@@ -3959,6 +4823,38 @@ namespace Watch_Face_Editor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_ConvertingOutput_Custom)).EndInit();
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_ConvertingInput_Custom)).EndInit();
+            this.tabPage_Test.ResumeLayout(false);
+            this.tabPage_Test.PerformLayout();
+            this.panel_SimulatorCapture.ResumeLayout(false);
+            this.panel_SimulatorCapture.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CapturePosY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CapturePosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureFrameCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureFps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Capture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureOffsetY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureOffsetX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureHeight)).EndInit();
+            this.groupBox_simulator.ResumeLayout(false);
+            this.groupBox_simulator.PerformLayout();
+            this.groupBox_ZeppPlayer.ResumeLayout(false);
+            this.groupBox_ZeppPlayer.PerformLayout();
+            this.groupBox_UploadToLitterbox.ResumeLayout(false);
+            this.groupBox_UploadToLitterbox.PerformLayout();
+            this.panel_FilePost_info.ResumeLayout(false);
+            this.panel_FilePost_info.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQRCode)).EndInit();
+            this.panel_Choosing_FileSharing.ResumeLayout(false);
+            this.panel_Choosing_FileSharing.PerformLayout();
+            this.panel_GitHub.ResumeLayout(false);
+            this.panel_GitHub.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_GitHub_help)).EndInit();
+            this.panel_FilePost.ResumeLayout(false);
+            this.panel_FilePost.PerformLayout();
+            this.panel_Litterbox.ResumeLayout(false);
+            this.panel_Litterbox.PerformLayout();
             this.tabPage_Settings.ResumeLayout(false);
             this.tabPage_Settings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AutoSave_Time)).EndInit();
@@ -4332,6 +5228,100 @@ namespace Watch_Face_Editor
         internal System.Windows.Forms.CheckBox checkBox_Shortcuts_In_Gif;
         internal System.Windows.Forms.CheckBox checkBox_Buttons_In_Gif;
         internal System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TabPage tabPage_Test;
+        private System.Windows.Forms.GroupBox groupBox_UploadToLitterbox;
+        private System.Windows.Forms.Button btnUploadToLitterbox;
+        private System.Windows.Forms.Button button_saveQR;
+        private System.Windows.Forms.PictureBox pictureBoxQRCode;
+        private System.Windows.Forms.RadioButton radioButton_3days;
+        private System.Windows.Forms.RadioButton radioButton_1day;
+        private System.Windows.Forms.RadioButton radioButton_12hours;
+        private System.Windows.Forms.RadioButton radioButton_1hour;
+        private System.Windows.Forms.TextBox textBox_FileSharingURL;
+        private System.Windows.Forms.Label label_URL;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox_simulator;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.LinkLabel linkLabel_ZeusCLI;
+        private System.Windows.Forms.LinkLabel linkLabel_Simulator;
+        private System.Windows.Forms.Panel panel_FilePost;
+        private System.Windows.Forms.Button btnUploadToFilePost;
+        private System.Windows.Forms.RadioButton radioButton_Litterbox;
+        private System.Windows.Forms.Panel panel_Litterbox;
+        private System.Windows.Forms.RadioButton radioButton_FilePost;
+        private System.Windows.Forms.TextBox textBox_FilePost_API_key;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel linkLabel_FilePost_API_key;
+        private System.Windows.Forms.Panel panel_FilePost_info;
+        private System.Windows.Forms.Label label_FilePost_info_email;
+        private System.Windows.Forms.Label label_FilePost_info_uploads_month;
+        private System.Windows.Forms.Label label_FilePost_info_storage_used;
+        private System.Windows.Forms.Button button_SimulatorSend;
+        private System.Windows.Forms.Button button_SimulatorConnect;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel_SimulatorCapture;
+        private System.Windows.Forms.CheckBox checkBox_SimulatorCapture;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button_UpdateScreenPos;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CaptureHeight;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CaptureOffsetX;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label_CaptureWidth;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CaptureOffsetY;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.PictureBox pictureBox_Capture;
+        private System.Windows.Forms.Button button_CaptureStop;
+        private System.Windows.Forms.Button button_CaptureStart;
+        private System.Windows.Forms.RadioButton radioButtonBitBlt;
+        private System.Windows.Forms.RadioButton radioButtonDxgi;
+        private System.Windows.Forms.Button button_CaptureSaveGif;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CaptureFps;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CaptureFrameCount;
+        private System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.ProgressBar progressBar_Capture;
+        private System.Windows.Forms.Button button_CaptureBreakGif;
+        private System.Windows.Forms.GroupBox groupBox_ZeppPlayer;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.LinkLabel linkLabel_ZeppPlayer;
+        private System.Windows.Forms.Button button_ZeppPlayerSend;
+        private System.Windows.Forms.Button button_ZeppPlayerBrowse;
+        private System.Windows.Forms.TextBox textBox_ZeppPlayerPath;
+        private System.Windows.Forms.Button button_SimulatorDisconnect;
+        private System.Windows.Forms.CheckBox checkBox_ZeppPlayerCapture;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CapturePosY;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CapturePosX;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button button_ZeppPlayer_UpdateScreenPos;
+        private System.Windows.Forms.CheckBox checkBox_DrawCursor;
+        private System.Windows.Forms.Button button_CaptureResumeGif;
+        private System.Windows.Forms.Button button_CapturePauseGif;
+        private System.Windows.Forms.Button button_DownloadQR;
+        private System.Windows.Forms.CheckBox checkBox_AddPreviewQR;
+        private System.Windows.Forms.RadioButton radioButton_GitHub;
+        private System.Windows.Forms.Panel panel_GitHub;
+        private System.Windows.Forms.Label label_GitHub_Instructions;
+        private System.Windows.Forms.Button btnUploadToGitHub;
+        private System.Windows.Forms.TextBox textBox_GitHub_token;
+        private System.Windows.Forms.Label label_token;
+        private System.Windows.Forms.Label label_owner;
+        private System.Windows.Forms.TextBox textBox_GitHub_owner;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox textBox_GitHub_filePath;
+        private System.Windows.Forms.Label label_filePath;
+        private System.Windows.Forms.TextBox textBox_GitHub_repoName;
+        private System.Windows.Forms.Label label_repoName;
+        private System.Windows.Forms.Label label_GitHub_help;
+        private System.Windows.Forms.PictureBox pictureBox_GitHub_help;
+        private System.Windows.Forms.Panel panel_Choosing_FileSharing;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox_GitHub_AskConfirmation;
     }
 }
 

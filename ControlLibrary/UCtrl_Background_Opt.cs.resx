@@ -157,4 +157,7 @@
   <data name="label_EditableBackground_Hint.Text" xml:space="preserve">
     <value>Použije se vlastní pozadí z hlavní obrazovky</value>
   </data>
+  <data name="button_EditInformation.Text" xml:space="preserve">
+    <value>Upravit informace</value>
+  </data>
 </root>

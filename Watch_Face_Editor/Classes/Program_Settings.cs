@@ -65,6 +65,14 @@ namespace Watch_Face_Editor
         public int AutoSaveTime = 0;
         public bool DevelopmentMode = false;
 
+        public string ZeppPlayerPath = "";
+        public string FilePost_API_key = "";
+        public string GitHub_owner = "";
+        public string GitHub_repoName = "";
+        public string GitHub_filePath = "/";
+        public string GitHub_token = "";
+        public bool GitHub_AskConfirmation = false;
+
         public int[] CustomColors = { };
 
         public string language { get; set; }
@@ -75,8 +83,8 @@ namespace Watch_Face_Editor
 
         public string model_config = @"\model_config\configurations.json";
 
-        public string CacheFonts_light = "0123456789 _-.,:;`'%°\\\\/";
+        public string CacheFonts_light = "0123456789 _+-.,:;`'%°\\\\/";
         public string CacheFonts_full = "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " +
-                "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя  ҐЄІЇґєії " + "_-.,:;`'%°\\\\/";
+                "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя  ҐЄІЇґєії " + "_+-.,:;`'%°\\\\/";
     }
 }

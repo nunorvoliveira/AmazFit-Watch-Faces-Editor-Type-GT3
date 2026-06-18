@@ -1139,38 +1139,6 @@ namespace Watch_Face_Editor
                     onDigitalCrown += Environment.NewLine + TabInString(11) + "normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
                     if (Watch_Face.SwitchBG_Color.vibro) onDigitalCrown += Environment.NewLine + TabInString(11) + "vibro(28);";
 
-                    /*variables += TabInString(4) + Environment.NewLine;
-                    variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
-                    variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
-
-                    switchBG_function += Environment.NewLine + TabInString(6);
-                    switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBgColor use crown');";
-                    //switchBG_function += Environment.NewLine + TabInString(4) + "let degreeSum = 0;";
-                    //switchBG_function += Environment.NewLine + TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level";
-                    switchBG_function += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
-                    switchBG_function += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
-                    switchBG_function += Environment.NewLine + TabInString(8) + "hmApp.registerSpinEvent(function (key, degree) {";
-                    switchBG_function += Environment.NewLine + TabInString(9) + "if (key === hmApp.key.HOME) {";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "degreeSum += degree;";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "if (Math.abs(degreeSum) > crownSensitivity){";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "let step = degreeSum < 0 ? -1 : 1;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "bgColorIndex += step;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "bgColorIndex = bgColorIndex < 0 ? bgColorList.length + bgColorIndex : bgColorIndex % bgColorList.length;";
-                    //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "let toastText = bgColorToastList[bgColorIndex].replace('%s', `${bgColorIndex + 1}`);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
-                    if (Watch_Face.SwitchBG_Color.vibro) switchBG_function += Environment.NewLine + TabInString(11) + "vibro(28);";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "}";
-                    switchBG_function += Environment.NewLine + TabInString(9) + "} // key";
-                    switchBG_function += Environment.NewLine + TabInString(8) + "}) // crown";
-                    switchBG_function += Environment.NewLine + TabInString(7) + "}, 250);";
-                    switchBG_function += Environment.NewLine + TabInString(6) + "}";
-
-                    resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
-                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
                 }
                 switchBG_function += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                 //switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -4478,14 +4446,40 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
-                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+                                
+                                string timerName = "worldClockTimer";
+                                if (!variables.Contains("let " + timerName + ";"))
+                                {
+                                    variables += TabInString(4) + "let " + timerName + ";" + Environment.NewLine;
+                                    variables += TabInString(4) + "let worldClockTimerCount = 0;" + Environment.NewLine;
+                                }
+                                if (!resume_call.Contains(timerName + " = timer.createTimer"))
+                                {
+                                    resume_call += TabInString(8) + "if (worldClock.getWorldClockCount()) updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(8) + "if (!" + timerName + ") {" + Environment.NewLine;
+                                    resume_call += TabInString(9) + timerName + " = timer.createTimer(500, 1000, (function (option) {" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "if (worldClockTimerCount == 0 && worldClock.getWorldClockCount() > 0) {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime();" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "} else {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.uninit();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.init();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "}" + Environment.NewLine;
+                                    resume_call += TabInString(9) + "}));  // end timer " + Environment.NewLine;
+                                    resume_call += TabInString(8) + "};  // end timer check" + Environment.NewLine;
+
+                                    pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                                    pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                                    pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                                    pause_call += TabInString(8) + "}" + Environment.NewLine;
+                                }
                             }
                         }
 
@@ -4596,14 +4590,40 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
-                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+
+                                string timerName = "worldClockTimer";
+                                if (!variables.Contains("let " + timerName + ";"))
+                                {
+                                    variables += TabInString(4) + "let " + timerName + ";" + Environment.NewLine;
+                                    variables += TabInString(4) + "let worldClockTimerCount = 0;" + Environment.NewLine;
+                                }
+                                if (!resume_call.Contains(timerName + " = timer.createTimer"))
+                                {
+                                    resume_call += TabInString(8) + "if (worldClock.getWorldClockCount()) updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(8) + "if (!" + timerName + ") {" + Environment.NewLine;
+                                    resume_call += TabInString(9) + timerName + " = timer.createTimer(500, 1000, (function (option) {" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "if (worldClockTimerCount == 0 && worldClock.getWorldClockCount() > 0) {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime();" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "} else {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.uninit();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.init();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "}" + Environment.NewLine;
+                                    resume_call += TabInString(9) + "}));  // end timer " + Environment.NewLine;
+                                    resume_call += TabInString(8) + "};  // end timer check" + Environment.NewLine;
+
+                                    pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                                    pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                                    pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                                    pause_call += TabInString(8) + "}" + Environment.NewLine;
+                                }
                             }
                         }
 
@@ -4711,14 +4731,40 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
-                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+
+                                string timerName = "worldClockTimer";
+                                if (!variables.Contains("let " + timerName + ";"))
+                                {
+                                    variables += TabInString(4) + "let " + timerName + ";" + Environment.NewLine;
+                                    variables += TabInString(4) + "let worldClockTimerCount = 0;" + Environment.NewLine;
+                                }
+                                if (!resume_call.Contains(timerName + " = timer.createTimer"))
+                                {
+                                    resume_call += TabInString(8) + "if (worldClock.getWorldClockCount()) updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(8) + "if (!" + timerName + ") {" + Environment.NewLine;
+                                    resume_call += TabInString(9) + timerName + " = timer.createTimer(500, 1000, (function (option) {" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "if (worldClockTimerCount == 0 && worldClock.getWorldClockCount() > 0) {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime();" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "} else {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.uninit();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.init();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "}" + Environment.NewLine;
+                                    resume_call += TabInString(9) + "}));  // end timer " + Environment.NewLine;
+                                    resume_call += TabInString(8) + "};  // end timer check" + Environment.NewLine;
+
+                                    pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                                    pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                                    pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                                    pause_call += TabInString(8) + "}" + Environment.NewLine;
+                                }
                             }
                         }
 
@@ -4825,14 +4871,40 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
-                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
-                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
-                                resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
+
+                                string timerName = "worldClockTimer";
+                                if (!variables.Contains("let " + timerName + ";"))
+                                {
+                                    variables += TabInString(4) + "let " + timerName + ";" + Environment.NewLine;
+                                    variables += TabInString(4) + "let worldClockTimerCount = 0;" + Environment.NewLine;
+                                }
+                                if (!resume_call.Contains(timerName + " = timer.createTimer"))
+                                {
+                                    resume_call += TabInString(8) + "if (worldClock.getWorldClockCount()) updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(8) + "if (!" + timerName + ") {" + Environment.NewLine;
+                                    resume_call += TabInString(9) + timerName + " = timer.createTimer(500, 1000, (function (option) {" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "if (worldClockTimerCount == 0 && worldClock.getWorldClockCount() > 0) {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime();" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "} else {" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.uninit();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "worldClock.init();" + Environment.NewLine;
+                                    resume_call += TabInString(11) + "updateWorldTime(true);" + Environment.NewLine;
+                                    resume_call += TabInString(10) + "}" + Environment.NewLine;
+                                    resume_call += TabInString(9) + "}));  // end timer " + Environment.NewLine;
+                                    resume_call += TabInString(8) + "};  // end timer check" + Environment.NewLine;
+
+                                    pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                                    pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                                    pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                                    pause_call += TabInString(8) + "}" + Environment.NewLine;
+                                }
                             }
                         }
 

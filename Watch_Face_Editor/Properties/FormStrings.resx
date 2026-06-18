@@ -141,6 +141,9 @@
   <data name="Dialog_Title_SavePNG" xml:space="preserve">
     <value>Сохранить предпросмотр</value>
   </data>
+  <data name="Dialog_Title_SaveQR" xml:space="preserve">
+    <value>Сохранить QR-код</value>
+  </data>
   <data name="Dialog_Title_Save_As" xml:space="preserve">
     <value>Сохранить проект как...</value>
   </data>
@@ -165,6 +168,12 @@
   <data name="Elemet_Time" xml:space="preserve">
     <value>Время</value>
   </data>
+  <data name="FilePost_info_storage_used" xml:space="preserve">
+    <value>Занято места</value>
+  </data>
+  <data name="FilePost_info_uploads_month" xml:space="preserve">
+    <value>Загрузок за месяц</value>
+  </data>
   <data name="FilterGif" xml:space="preserve">
     <value>GIF файлы (*.gif)|*.gif</value>
   </data>
@@ -177,8 +186,11 @@
   <data name="FilterZip" xml:space="preserve">
     <value>Zip файл циферблата (*.zip)|*.zip</value>
   </data>
-  <data name="FilterZipZab" xml:space="preserve">
+  <data name="FilterZipZpk" xml:space="preserve">
     <value>Файл циферблата (*.zip; *.zpk)|*.zip; *.zpk</value>
+  </data>
+  <data name="FilterZpk" xml:space="preserve">
+    <value>Файл циферблата (*.zpk)|*.zpk</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Следовать за часами</value>
@@ -186,11 +198,74 @@
   <data name="FollowSecond" xml:space="preserve">
     <value>Следовать за минутами</value>
   </data>
+  <data name="FormName_EditInformation" xml:space="preserve">
+    <value>Изменить информацию</value>
+  </data>
   <data name="Form_Preview" xml:space="preserve">
     <value>Предпросмотр</value>
   </data>
   <data name="Form_PreviewX" xml:space="preserve">
     <value>Предпросмотр [X =</value>
+  </data>
+  <data name="GitHub_AuthError" xml:space="preserve">
+    <value>Ошибка проверки авторизации</value>
+  </data>
+  <data name="GitHub_CheckingRepository" xml:space="preserve">
+    <value>Проверка существования репозитория...</value>
+  </data>
+  <data name="GitHub_CheckingToken" xml:space="preserve">
+    <value>Проверка учетных данных GitHub...</value>
+  </data>
+  <data name="GitHub_FileAdded" xml:space="preserve">
+    <value>Добавлен новый файл</value>
+  </data>
+  <data name="GitHub_InvalidToken" xml:space="preserve">
+    <value>Переданный GitHub токен недействителен (ошибка 401 Unauthorized).</value>
+  </data>
+  <data name="GitHub_PreparingForLaunch" xml:space="preserve">
+    <value>Подготовка к запуску...</value>
+  </data>
+  <data name="GitHub_RepositoryCheckError" xml:space="preserve">
+    <value>Ошибка при проверке репозитория</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound1" xml:space="preserve">
+    <value>Репозиторий</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound2" xml:space="preserve">
+    <value>не найден или к нему нет доступа.</value>
+  </data>
+  <data name="GitHub_Stage_CheckExistingFile" xml:space="preserve">
+    <value>Проверка существующего файла в репозитории...</value>
+  </data>
+  <data name="GitHub_Stage_ConnectingToAPI" xml:space="preserve">
+    <value>Подключение к GitHub API...</value>
+  </data>
+  <data name="GitHub_Stage_EncodeBase64" xml:space="preserve">
+    <value>Кодирование данных в Base64...</value>
+  </data>
+  <data name="GitHub_Stage_ReadFile" xml:space="preserve">
+    <value>Чтение архива с диска...</value>
+  </data>
+  <data name="GitHub_Stage_UpdateFile" xml:space="preserve">
+    <value>Обновление файла на сервере (загрузка данных)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFile" xml:space="preserve">
+    <value>Создание нового файла на сервере (загрузка данных)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFileCompleted" xml:space="preserve">
+    <value>Загрузка успешно завершена!</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch1" xml:space="preserve">
+    <value>Токен принадлежит пользователю</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch2" xml:space="preserve">
+    <value>но указан владелец</value>
+  </data>
+  <data name="GitHub_UploadCanceled" xml:space="preserve">
+    <value>Файл существует. Загрузка отменена пользователем.</value>
+  </data>
+  <data name="GitHub_UploadSuccess" xml:space="preserve">
+    <value>Загрузка успешно завершена!</value>
   </data>
   <data name="Img_Convert_Error_NoPalette" xml:space="preserve">
     <value>Отсутствует карта цветов</value>
@@ -225,6 +300,9 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Вы точно хотите конвертировать изображения в формат ARGB?</value>
   </data>
+  <data name="Message_AuthorisationError_Caption" xml:space="preserve">
+    <value>Ошибка авторизации</value>
+  </data>
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Восстановление</value>
   </data>
@@ -233,6 +311,12 @@
   </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Нужно установить изображение в качестве основного фона.</value>
+  </data>
+  <data name="Message_ConfigurationError_Caption" xml:space="preserve">
+    <value>Ошибка конфигурации</value>
+  </data>
+  <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
+    <value>Подключено к симулятору!</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Новый циферблат создан.</value>
@@ -261,6 +345,9 @@
   </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Невозможно удалить существующий файл циферблата.</value>
+  </data>
+  <data name="Message_DXGI_error_Text" xml:space="preserve">
+    <value>DXGI не поддерживается. Переключение на BitBlt.</value>
   </data>
   <data name="Message_EditableElementsAOD_Text" xml:space="preserve">
     <value>Вы не можете добавлять настраиваемые элементы на экран AOD.</value>
@@ -313,6 +400,9 @@
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Ошибка конвертации изображения</value>
   </data>
+  <data name="Message_Infirmation_Caption" xml:space="preserve">
+    <value>Информация</value>
+  </data>
   <data name="Message_InvalidFileName_Caption" xml:space="preserve">
     <value>Недопустимое имя файла</value>
   </data>
@@ -327,6 +417,9 @@
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Ошибка чтения JSON файла.</value>
+  </data>
+  <data name="Message_LaunchSimulator_Text" xml:space="preserve">
+    <value>Запустите симулятор.</value>
   </data>
   <data name="Message_LoadPreviewStates_Caption" xml:space="preserve">
     <value>Загрузка настроек предпросмотра</value>
@@ -345,6 +438,9 @@
   </data>
   <data name="Message_Old_OS" xml:space="preserve">
     <value>Этот виджет не поддерживается выбранной моделью часов.</value>
+  </data>
+  <data name="Message_OpenProject_Text" xml:space="preserve">
+    <value>Откройте проект с циферблатом.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Перезагрузка</value>
@@ -372,6 +468,24 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Вы не можете добавлять ярлыки на экран AOD.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text1" xml:space="preserve">
+    <value>Симулятор запущен.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text2" xml:space="preserve">
+    <value>Выберите модель и запустите эмулятор.</value>
+  </data>
+  <data name="Message_Simulator_Disconnected_Text" xml:space="preserve">
+    <value>Симулятор отключен!</value>
+  </data>
+  <data name="Message_Simulator_NotConnected_Text" xml:space="preserve">
+    <value>Симулятор не подключен.</value>
+  </data>
+  <data name="Message_Simulator_PushSuccess_Text" xml:space="preserve">
+    <value>Отправлено успешно!</value>
+  </data>
+  <data name="Message_Simulator_StillConnecting_Text" xml:space="preserve">
+    <value>Все еще соединяюсь... Пожалуйста, подождите.</value>
   </data>
   <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
     <value>Количество изображений для отображения тренировочной нагрузки должно быть равным 3.</value>
@@ -418,8 +532,14 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Информация</value>
   </data>
+  <data name="Message_Warning_InvalidAPIKey_Text" xml:space="preserve">
+    <value>Не верный API Key</value>
+  </data>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>В этой папке уже существует папка с JS файлами.</value>
+  </data>
+  <data name="Message_Warning_OverwriteFile_Text" xml:space="preserve">
+    <value>Файл "*.zpk" уже существует. Перезаписать?</value>
   </data>
   <data name="Message_Warning_Version_Lower" xml:space="preserve">
     <value>Нельзя уменьшать номер версии циферблата.</value>
@@ -435,6 +555,15 @@
   </data>
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Не удалось создать изображение предпросмотра. Возможно такое изображение уже имеется.</value>
+  </data>
+  <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
+    <value>ZeppPlayer не найден по указанному пути.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound1" xml:space="preserve">
+    <value>Не удалось найти запущенный ZeppPlayer.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound2" xml:space="preserve">
+    <value>Откройте в Chrome вкладку с ZeppPlayer или укажите координаты вручную.</value>
   </data>
   <data name="Month_StrArray" xml:space="preserve">
     <value>Янв, Фев, Мрт, Апр, Май, Июн, Июл, Авг, Сен, Окт, Ноя, Дек</value>

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -2912,6 +2913,37 @@ namespace Watch_Face_Editor
                 {
                     button_CreatePreview.Visible = false;
                 }
+            }
+        }
+
+        private void userCtrl_Background_Options_InformationChanged(object sender, EventArgs eventArgs)
+        {
+            string name = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                name = Watch_Face.WatchFace_Info.WatchFaceName;
+            long id = Watch_Face.WatchFace_Info.WatchFaceId;
+            int version = Watch_Face.WatchFace_Info.WatchFaceVersion;
+            string formName = Properties.FormStrings.FormName_EditInformation;
+            CreateZAB_dialog zab_dialog = new CreateZAB_dialog(name, id, version, formName);
+            zab_dialog.ShowDialog(this);
+            bool dialogResult = zab_dialog.Result;
+            if (dialogResult)
+            {
+                string newName = zab_dialog.WatchFaceName;
+                long newID = zab_dialog.WatchFaceId;
+                int newVersion = zab_dialog.Version;
+
+                Watch_Face.WatchFace_Info.WatchFaceName = newName;
+                if (newID > 999 && newID < 10000000) Watch_Face.WatchFace_Info.WatchFaceId = newID;
+                if (newVersion < version)
+                {
+                    MessageBox.Show(Properties.FormStrings.Message_Warning_Version_Lower,
+                        Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else Watch_Face.WatchFace_Info.WatchFaceVersion = newVersion;
+
+                if (!newName.Equals(name) || newID != id || newVersion != version) JSON_Modified = true;
+                if (JSON_Modified) FormText();
             }
         }
 

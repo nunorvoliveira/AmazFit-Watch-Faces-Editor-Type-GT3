@@ -209,45 +209,8 @@ namespace Watch_Face_Editor
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_SaveGIF;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                //Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-
                 Form1 form1 = this.Owner as Form1;//Получаем ссылку на первую форму
                 Classes.AmazfitPlatform selectedModel = form1.SelectedModel;
-                //switch (form1.comboBox_watch_model.Text)
-                //{
-                //    case "GTR 3 Pro":
-                //        bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                //        break;
-
-                //    case "GTS 3":
-                //    case "GTS 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                //        break;
-
-                //    case "GTR 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                //        break;
-
-                //    case "Amazfit Band 7":
-                //        bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                //        break;
-
-                //    case "GTS 4 mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                //        break;
-
-                //    case "Falcon":
-                //    case "GTR mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                //        break;
-                //}
                 Bitmap bitmap = new Bitmap(selectedModel.background.w, selectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + selectedModel.maskImage);
 
