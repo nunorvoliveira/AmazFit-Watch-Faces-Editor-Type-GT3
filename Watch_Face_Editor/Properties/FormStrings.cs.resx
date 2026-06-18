@@ -141,6 +141,9 @@
   <data name="Dialog_Title_SavePNG" xml:space="preserve">
     <value>Uložit náhled</value>
   </data>
+  <data name="Dialog_Title_SaveQR" xml:space="preserve">
+    <value>Uložit QR kód</value>
+  </data>
   <data name="Dialog_Title_Save_As" xml:space="preserve">
     <value>Uložit projekt jako...</value>
   </data>
@@ -164,6 +167,12 @@
   </data>
   <data name="Elemet_Time" xml:space="preserve">
     <value>Čas</value>
+  </data>
+  <data name="FilePost_info_storage_used" xml:space="preserve">
+    <value>Použité_úložiště</value>
+  </data>
+  <data name="FilePost_info_uploads_month" xml:space="preserve">
+    <value>Počet stažení za měsíc</value>
   </data>
   <data name="FilterGif" xml:space="preserve">
     <value>Soubory GIF (*.gif)|*.gif</value>
@@ -189,11 +198,74 @@
   <data name="FollowSecond" xml:space="preserve">
     <value>Postupujte podle minut</value>
   </data>
+  <data name="FormName_EditInformation" xml:space="preserve">
+    <value>Upravit informace</value>
+  </data>
   <data name="Form_Preview" xml:space="preserve">
     <value>Náhled</value>
   </data>
   <data name="Form_PreviewX" xml:space="preserve">
     <value>Náhled [X=</value>
+  </data>
+  <data name="GitHub_AuthError" xml:space="preserve">
+    <value>Chyba ověření autorizace</value>
+  </data>
+  <data name="GitHub_CheckingRepository" xml:space="preserve">
+    <value>Kontrola existence repozitáře...</value>
+  </data>
+  <data name="GitHub_CheckingToken" xml:space="preserve">
+    <value>Ověřování přihlašovacích údajů GitHubu...</value>
+  </data>
+  <data name="GitHub_FileAdded" xml:space="preserve">
+    <value>Přidán nový soubor</value>
+  </data>
+  <data name="GitHub_InvalidToken" xml:space="preserve">
+    <value>Token předaný GitHubu je neplatný (chyba 401 Neautorizováno).</value>
+  </data>
+  <data name="GitHub_PreparingForLaunch" xml:space="preserve">
+    <value>Příprava na spuštění...</value>
+  </data>
+  <data name="GitHub_RepositoryCheckError" xml:space="preserve">
+    <value>Chyba při kontrole úložiště</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound1" xml:space="preserve">
+    <value>Úložiště</value>
+  </data>
+  <data name="GitHub_RepositoryNotFound2" xml:space="preserve">
+    <value>nenalezen nebo k němu nelze přistupovat.</value>
+  </data>
+  <data name="GitHub_Stage_CheckExistingFile" xml:space="preserve">
+    <value>Zkontrolování existujícího souboru v repozitáři...</value>
+  </data>
+  <data name="GitHub_Stage_ConnectingToAPI" xml:space="preserve">
+    <value>Připojování k API GitHubu...</value>
+  </data>
+  <data name="GitHub_Stage_EncodeBase64" xml:space="preserve">
+    <value>Kódování dat v Base64...</value>
+  </data>
+  <data name="GitHub_Stage_ReadFile" xml:space="preserve">
+    <value>Načítání archivu z disku...</value>
+  </data>
+  <data name="GitHub_Stage_UpdateFile" xml:space="preserve">
+    <value>Aktualizace souboru na serveru (stahování dat)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFile" xml:space="preserve">
+    <value>Vytváření nového souboru na serveru (nahrávání dat)...</value>
+  </data>
+  <data name="GitHub_Stage_UploadFileCompleted" xml:space="preserve">
+    <value>Stahování úspěšně dokončeno!</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch1" xml:space="preserve">
+    <value>Token patří uživateli</value>
+  </data>
+  <data name="GitHub_TokenOwnerMismatch2" xml:space="preserve">
+    <value>a uvedený vlastník</value>
+  </data>
+  <data name="GitHub_UploadCanceled" xml:space="preserve">
+    <value>Soubor existuje. Stahování bylo zrušeno uživatelem.</value>
+  </data>
+  <data name="GitHub_UploadSuccess" xml:space="preserve">
+    <value>Stahování úspěšně dokončeno!</value>
   </data>
   <data name="Img_Convert_Error_NoPalette" xml:space="preserve">
     <value>Chybí barevná mapa</value>
@@ -228,6 +300,9 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Opravdu chcete převést obrázky do formátu ARGB?</value>
   </data>
+  <data name="Message_AuthorisationError_Caption" xml:space="preserve">
+    <value>Chyba autorizace</value>
+  </data>
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Obnova</value>
   </data>
@@ -236,6 +311,12 @@
   </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Musíte nastavit obrázek jako hlavní pozadí.</value>
+  </data>
+  <data name="Message_ConfigurationError_Caption" xml:space="preserve">
+    <value>Chyba konfigurace</value>
+  </data>
+  <data name="Message_ConnectedSimulator_Text" xml:space="preserve">
+    <value>Připojeno k simulátoru!</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Byl vytvořen nový ciferník.</value>
@@ -263,6 +344,9 @@
   </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Není možné odstranit existující soubor ciferníku.</value>
+  </data>
+  <data name="Message_DXGI_error_Text" xml:space="preserve">
+    <value>DXGI není podporováno. Přechází se na BitBlt.</value>
   </data>
   <data name="Message_EditableElementsAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidávat vlastní položky.</value>
@@ -315,6 +399,9 @@
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Chyba převodu obrázku</value>
   </data>
+  <data name="Message_Infirmation_Caption" xml:space="preserve">
+    <value>Informace</value>
+  </data>
   <data name="Message_InvalidFileName_Caption" xml:space="preserve">
     <value>Neplatný název souboru</value>
   </data>
@@ -329,6 +416,9 @@
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Chyba při čtení souboru JSON. !!!</value>
+  </data>
+  <data name="Message_LaunchSimulator_Text" xml:space="preserve">
+    <value>Spusťte simulátor.</value>
   </data>
   <data name="Message_LoadPreviewStates_Caption" xml:space="preserve">
     <value>Načítání nastavení náhledu</value>
@@ -347,6 +437,9 @@
   </data>
   <data name="Message_Old_OS" xml:space="preserve">
     <value>Tento widget není podporován vybraným modelem hodinek.</value>
+  </data>
+  <data name="Message_OpenProject_Text" xml:space="preserve">
+    <value>Otevřete projekt pomocí otočného voliče.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Restartujte</value>
@@ -371,6 +464,24 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidávat zástupce.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text1" xml:space="preserve">
+    <value>Simulátor se spustil.</value>
+  </data>
+  <data name="Message_SimulatorRuning_Text2" xml:space="preserve">
+    <value>Vyberte model a spusťte emulátor.</value>
+  </data>
+  <data name="Message_Simulator_Disconnected_Text" xml:space="preserve">
+    <value>Simulátor je vypnutý!</value>
+  </data>
+  <data name="Message_Simulator_NotConnected_Text" xml:space="preserve">
+    <value>Simulátor není připojen.</value>
+  </data>
+  <data name="Message_Simulator_PushSuccess_Text" xml:space="preserve">
+    <value>Úspěšně odesláno!</value>
+  </data>
+  <data name="Message_Simulator_StillConnecting_Text" xml:space="preserve">
+    <value>Stále se připojuji... Čekejte prosím.</value>
   </data>
   <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
     <value>Počet obrázků pro zobrazení tréninkové zátěže musí být 3.</value>
@@ -417,8 +528,14 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Informace</value>
   </data>
+  <data name="Message_Warning_InvalidAPIKey_Text" xml:space="preserve">
+    <value>Neplatný klíč API</value>
+  </data>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>V této složce již existuje složka se soubory JS.</value>
+  </data>
+  <data name="Message_Warning_OverwriteFile_Text" xml:space="preserve">
+    <value>Soubor „*.zpk“ již existuje. Přepsat?</value>
   </data>
   <data name="Message_Warning_Version_Lower" xml:space="preserve">
     <value>Nesnižujte číslo verze ciferníku.</value>
@@ -434,6 +551,15 @@
   </data>
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Vytvoření náhledu obrázku se nezdařilo. Možná už takový obrázek existuje.</value>
+  </data>
+  <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
+    <value>Zepp Player nebyl nalezen na zadané cestě.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound1" xml:space="preserve">
+    <value>Nelze najít spuštěný Zepp Player.</value>
+  </data>
+  <data name="Message_ZeppPlayerTabNotFound2" xml:space="preserve">
+    <value>Otevřete kartu s ZeppPlayerem v Chromu nebo zadejte souřadnice ručně.</value>
   </data>
   <data name="Month_StrArray" xml:space="preserve">
     <value>Leden, Únor, Březen, Duben, Květen, Červen, Červenec, Srpen, Září, Říjen, Listopad, Prosinec</value>

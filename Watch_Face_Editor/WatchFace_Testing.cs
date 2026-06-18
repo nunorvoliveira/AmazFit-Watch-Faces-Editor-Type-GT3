@@ -85,6 +85,7 @@ namespace Watch_Face_Editor
         private async void btnUploadToLitterbox_Click(object sender, EventArgs e)
         {
             string zpkName = "";
+            bool fromProject = true;
             if (ProjectDir == null || Watch_Face == null)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -97,6 +98,7 @@ namespace Watch_Face_Editor
                 {
                     zpkName = openFileDialog.FileName;
                     NameForQR = Path.GetFileNameWithoutExtension(zpkName);
+                    fromProject = false;
                 }
             }
             else
@@ -148,7 +150,7 @@ namespace Watch_Face_Editor
                     pictureBoxQRCode.Image = currentQRCode;
                     pictureBoxQRCode.Visible = true;
                     button_saveQR.Enabled = true;
-                    checkBox_AddPreviewQR.Enabled = true;
+                    checkBox_AddPreviewQR.Enabled = fromProject;
                 }
                 catch (Exception ex)
                 {
@@ -183,6 +185,7 @@ namespace Watch_Face_Editor
             }
 
             string zpkName = "";
+            bool fromProject = true;
             if (ProjectDir == null || Watch_Face == null)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -195,6 +198,7 @@ namespace Watch_Face_Editor
                 {
                     zpkName = openFileDialog.FileName;
                     NameForQR = Path.GetFileNameWithoutExtension(zpkName);
+                    fromProject = false;
                 }
             }
             else
@@ -246,7 +250,7 @@ namespace Watch_Face_Editor
                     pictureBoxQRCode.Image = currentQRCode;
                     pictureBoxQRCode.Visible = true;
                     button_saveQR.Enabled = true;
-                    checkBox_AddPreviewQR.Enabled = true;
+                    checkBox_AddPreviewQR.Enabled = fromProject;
                 }
                 catch (Exception ex)
                 {
@@ -301,6 +305,7 @@ namespace Watch_Face_Editor
         private async void btnUploadToGitHub_Click(object sender, EventArgs e)
         {
             string zpkName = "";
+            bool fromProject = true;
             if (ProjectDir == null || Watch_Face == null)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -313,6 +318,7 @@ namespace Watch_Face_Editor
                 {
                     zpkName = openFileDialog.FileName;
                     NameForQR = Path.GetFileNameWithoutExtension(zpkName);
+                    fromProject = false;
                 }
             }
             else
@@ -408,7 +414,7 @@ namespace Watch_Face_Editor
                         pictureBoxQRCode.Image = currentQRCode;
                         pictureBoxQRCode.Visible = true;
                         button_saveQR.Enabled = true;
-                        checkBox_AddPreviewQR.Enabled = true;
+                        checkBox_AddPreviewQR.Enabled = fromProject;
 
                     }
                     catch (UnauthorizedAccessException ex)

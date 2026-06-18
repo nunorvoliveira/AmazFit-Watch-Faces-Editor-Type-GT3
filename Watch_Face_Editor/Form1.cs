@@ -27853,6 +27853,14 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingInput_Model.Text = "480 (Balance 2)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
                         break;
+                    case "Balance 3":
+                        comboBox_ConvertingInput_Model.Text = "480 (Balance 3)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "Balance Ultra":
+                        comboBox_ConvertingInput_Model.Text = "480 (Balance Ultra)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
                     case "Cheetah Pro":
                         comboBox_ConvertingInput_Model.Text = "480 (Cheetah Pro)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
@@ -27950,6 +27958,8 @@ namespace Watch_Face_Editor
                 case "480 (Cheetah 2 Ultra)":
                 case "480 (Balance)":
                 case "480 (Balance 2)":
+                case "480 (Balance 3)":
+                case "480 (Balance Ultra)":
                 case "480 (T-Rex 3)":
                 case "480 (T-Rex 3 Pro 48mm)":
                 case "480 (T-Rex Ultra 2)":
@@ -28007,6 +28017,8 @@ namespace Watch_Face_Editor
                 case "480 (Cheetah 2 Ultra)":
                 case "480 (Balance)":
                 case "480 (Balance 2)":
+                case "480 (Balance 3)":
+                case "480 (Balance Ultra)":
                 case "480 (T-Rex 3)":
                 case "480 (T-Rex 3 Pro 48mm)":
                 case "480 (T-Rex Ultra 2)":
@@ -28126,6 +28138,14 @@ namespace Watch_Face_Editor
                     case "480 (Balance 2)":
                         suffix = "_Balance_2";
                         DeviceName = "Balance 2";
+                        break;
+                    case "480 (Balance 3)":
+                        suffix = "_Balance_3";
+                        DeviceName = "Balance 3";
+                        break;
+                    case "480 (Balance Ultra)":
+                        suffix = "_Balance_Ultra";
+                        DeviceName = "Balance Ultra";
                         break;
                     case "480 (Cheetah Pro)":
                         suffix = "_Cheetah_Pro";
